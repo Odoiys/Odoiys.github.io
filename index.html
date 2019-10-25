@@ -385,7 +385,7 @@
 
 +3ch DWORD   e_lfanew // Offset to start of PE header 指向PE文件头 
 
-} IMAGE_DOS_HEADER ENDS</code></pre><p>这个结构中有两字段很重要，一个是e_magic,一个是e_lfanew。e_magic（一个字大小）字段需要被设置为5A4Dh这个也是PE程序载入的重要标志，这个值非常有意思，他们对应的字符分别位Z和M，是为了纪念MS-DOS的最初创建者Mark Zbikowski而专门设置的，由于在hex编辑器中显示是由低位到高位故显示为4D5Ah,刚好是创建者的名字缩写。另一个字段是e_lfanew。这个字段表示的是真正的PE文件头部相对偏移地址（RVA），它指出了真正PE头部文件偏移位置。它占用四个字节，位于文件开始偏移的3ch字节中。<br><img src="https://img2018.cnblogs.com/blog/1502566/201810/1502566-20181016215742548-1940975626.png" alt=""><br><img src="https://img2018.cnblogs.com/blog/1502566/201810/1502566-20181016215752793-1349386892.png" alt=""></p>
+} IMAGE_DOS_HEADER ENDS</code></pre><p>这个结构中有两字段很重要，一个是e_magic,一个是e_lfanew。e_magic（一个字大小）字段需要被设置为5A4Dh这个也是PE程序载入的重要标志，这个值非常有意思，他们对应的字符分别位Z和M，是为了纪念MS-DOS的最初创建者Mark Zbikowski而专门设置的，由于在hex编辑器中显示是由低位到高位故显示为4D5Ah,刚好是创建者的名字缩写。另一个字段是e_lfanew。这个字段表示的是真正的PE文件头部相对偏移地址（RVA），它指出了真正PE头部文件偏移位置。它占用四个字节，位于文件开始偏移的3ch字节中。<br><img src="https://i.imgur.com/502a8sl.png" alt=""><br><img src="https://i.imgur.com/1gQk60T.png" alt=""></p>
 <h2 id="2）PE文件头文件"><a href="#2）PE文件头文件" class="headerlink" title="2）PE文件头文件"></a>2）PE文件头文件</h2><p>紧跟着DOS头文件下面的就是peheader。PEheader是PE相关结构NT映像头（IMAGE_NT_HEADER）的简称，其中包含许多PE装载器用到的重要字段。执行体在支持PE文件结构的操作系统执行时，PE装载器将IMAGE_DOS_HEADER结构中的e_fanew字段找到PEheader的起始偏移量，加上基址得到PE文件头的指针：</p>
 <p>PNTHeader=IMAGBase+dosHeader-&gt;e_lfanewr(其实就是去字段e_lfanew的值)</p>
 <p>下面来讨论IMAGE_NT_HEADER的结构，它是由三个字段组成（左边的数字是PE文件头的偏移量）：<br>    STRUCT </p>
@@ -401,7 +401,7 @@
 
 
 
-} IMAGE_NT_HEADER ENDS</code></pre><p>Signature字段<br>这个字段是PE文件的标志字段，通常设置成00004550h，其ASCII码为PE00，这个字段是PE文件头的开始，前面的DOS_HEADER结构中的字段e_lfanew字段就是指向这里。<br><img src="https://img2018.cnblogs.com/blog/1502566/201810/1502566-20181016215939668-545259272.png" alt=""><br>IMAGE_FILE_HEADER字段</p>
+} IMAGE_NT_HEADER ENDS</code></pre><p>Signature字段<br>这个字段是PE文件的标志字段，通常设置成00004550h，其ASCII码为PE00，这个字段是PE文件头的开始，前面的DOS_HEADER结构中的字段e_lfanew字段就是指向这里。<br><img src="https://i.imgur.com/K7MP7HM.png" alt=""><br>IMAGE_FILE_HEADER字段</p>
 <p>这个字段也是包含几个字段结构，它包含了PE文件的一些基本信息，最重要的是其中一个域指出了IMAGE_OPTIONAL_HEADER的大小。<br>    typedef struct _IMAGE_FILE_HEADER {</p>
 <pre><code>WORD Machine;//运行平台
 
@@ -417,7 +417,7 @@ WORD SizeOfOptionalHeader;//IMAGE_OPTIONAL_HEADER32结构大小
 
 WORD Characteristics;//文件属性
 
-} IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER;</code></pre><p><img src="https://img2018.cnblogs.com/blog/1502566/201810/1502566-20181016220016169-1791174274.png" alt=""></p>
+} IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER;</code></pre><p><img src="https://i.imgur.com/ao7iSVJ.png" alt=""></p>
 <p>上图标出七个字段的位置及各自的值。</p>
 <p>1）Machine字段，表示目标CPU 的类型。</p>
 <p>几个常见的及其标识如下：</p>
