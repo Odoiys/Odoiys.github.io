@@ -81,14 +81,15 @@
 
 
 
-<meta name="description" content="万物皆存于此">
+<meta name="description" content="本章介绍两中技术，一是SEH(结构化异常处理),二是VEH(向量化异常处理) 一，异常处理的基本概念中断：是由外部硬件设备或异步事件产生的。异常：是由内部事件产生的，又可分为故障，陷阱和终止。 1)异常列表除了CPU能够捕获一个事件并引发一个硬件异常外，在代码中可以主动引发一个软件异常，这只需要调用RaiseException()函数，实例如下：void RaiseException(DWORD">
 <meta name="keywords" content="study">
-<meta property="og:type" content="website">
-<meta property="og:title" content="Odoiys学习历程">
-<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;categories&#x2F;%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B&#x2F;index.html">
+<meta property="og:type" content="article">
+<meta property="og:title" content="Windows下的异常处理">
+<meta property="og:url" content="http:&#x2F;&#x2F;yoursite.com&#x2F;2019&#x2F;10&#x2F;26&#x2F;Windows%E4%B8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86&#x2F;index.html">
 <meta property="og:site_name" content="Odoiys学习历程">
-<meta property="og:description" content="万物皆存于此">
+<meta property="og:description" content="本章介绍两中技术，一是SEH(结构化异常处理),二是VEH(向量化异常处理) 一，异常处理的基本概念中断：是由外部硬件设备或异步事件产生的。异常：是由内部事件产生的，又可分为故障，陷阱和终止。 1)异常列表除了CPU能够捕获一个事件并引发一个硬件异常外，在代码中可以主动引发一个软件异常，这只需要调用RaiseException()函数，实例如下：void RaiseException(DWORD">
 <meta property="og:locale" content="ZH-Hans">
+<meta property="og:updated_time" content="2019-10-26T09:01:48.436Z">
 <meta name="twitter:card" content="summary">
 
 
@@ -119,13 +120,13 @@
 
 
 
-  <link rel="canonical" href="http://yoursite.com/categories/逆向工程/"/>
+  <link rel="canonical" href="http://yoursite.com/2019/10/26/Windows下的异常处理/"/>
 
 
 
 
 
-  <title>Category: 逆向工程 | Odoiys学习历程</title>
+  <title>Windows下的异常处理 | Odoiys学习历程</title>
   
 
 
@@ -144,7 +145,7 @@
     
   
 
-  <div class="container sidebar-position-left ">
+  <div class="container sidebar-position-left page-post-detail">
     <div class="headband"></div>
 
     <header id="header" class="header" itemscope itemtype="http://schema.org/WPHeader">
@@ -228,55 +229,165 @@
           <div id="content" class="content">
             
 
-  
-  
-  
-  <div class="post-block category">
+  <div id="posts" class="posts-expand">
+    
 
-    <div id="posts" class="posts-collapse">
-      <div class="collection-title">
-        <h1>逆向工程<small>Category</small>
-        </h1>
-      </div>
+  
 
-      
-        
+  
+  
+  
 
   <article class="post post-type-normal" itemscope itemtype="http://schema.org/Article">
-    <header class="post-header">
+  
+  
+  
+  <div class="post-block">
+    <link itemprop="mainEntityOfPage" href="http://yoursite.com/2019/10/26/Windows%E4%B8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">
 
-      <h2 class="post-title">
+    <span hidden itemprop="author" itemscope itemtype="http://schema.org/Person">
+      <meta itemprop="name" content="archli">
+      <meta itemprop="description" content="">
+      <meta itemprop="image" content="http://b-ssl.duitang.com/uploads/item/201506/03/20150603230715_xuCML.jpeg">
+    </span>
+
+    <span hidden itemprop="publisher" itemscope itemtype="http://schema.org/Organization">
+      <meta itemprop="name" content="Odoiys学习历程">
+    </span>
+
+    
+      <header class="post-header">
+
         
-            <a class="post-title-link" href="/2019/10/21/PE%E6%96%87%E4%BB%B6/" itemprop="url">
-              
-                <span itemprop="name">PE文件</span>
-              
-            </a>
         
-      </h2>
+          <h1 class="post-title" itemprop="name headline">Windows下的异常处理</h1>
+        
 
-      <div class="post-meta">
-        <time class="post-time" itemprop="dateCreated"
-              datetime="2019-10-21T10:16:21+08:00"
-              content="2019-10-21" >
-          10-21
-        </time>
-      </div>
+        <div class="post-meta">
+          <span class="post-time">
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-calendar-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">Posted on</span>
+              
+              <time title="Post created" itemprop="dateCreated datePublished" datetime="2019-10-26T16:27:25+08:00">
+                2019-10-26
+              </time>
+            
 
-    </header>
-  </article>
+            
 
+            
+          </span>
+
+          
+            <span class="post-category" >
+            
+              <span class="post-meta-divider">|</span>
+            
+              <span class="post-meta-item-icon">
+                <i class="fa fa-folder-o"></i>
+              </span>
+              
+                <span class="post-meta-item-text">In</span>
+              
+              
+                <span itemprop="about" itemscope itemtype="http://schema.org/Thing">
+                  <a href="/categories/%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86%E5%AD%A6%E4%B9%A0/" itemprop="url" rel="index">
+                    <span itemprop="name">加密与解密学习</span>
+                  </a>
+                </span>
+
+                
+                
+              
+            </span>
+          
+
+          
+            
+          
+
+          
+          
+
+          
+
+          
+
+          
+
+        </div>
+      </header>
+    
+
+    
+    
+    
+    <div class="post-body" itemprop="articleBody">
 
       
-    </div>
+      
 
+      
+        <p>本章介绍两中技术，一是SEH(结构化异常处理),二是VEH(向量化异常处理)</p>
+<h1 id="一，异常处理的基本概念"><a href="#一，异常处理的基本概念" class="headerlink" title="一，异常处理的基本概念"></a>一，异常处理的基本概念</h1><p>中断：是由外部硬件设备或异步事件产生的。<br>异常：是由内部事件产生的，又可分为故障，陷阱和终止。</p>
+<h2 id="1-异常列表"><a href="#1-异常列表" class="headerlink" title="1)异常列表"></a>1)异常列表</h2><p>除了CPU能够捕获一个事件并引发一个硬件异常外，在代码中可以主动引发一个软件异常，这只需要调用RaiseException()函数，实例如下：<br>void RaiseException(DWORD dwExceptionCode,//标识所引发的异常的代码<br>                    DWORD dwExceptionFlags,//异常是否继续执行的标识<br>                    DWORD nNumberOfArguments,//附加信息<br>                    CONST DWORD *lpArguments);//附加信息</p>
+<h2 id="2-异常处理的基本过程"><a href="#2-异常处理的基本过程" class="headerlink" title="2)异常处理的基本过程"></a>2)异常处理的基本过程</h2>
+      
+    </div>
+    
+    
+    
+
+    
+
+    
+
+    
+
+    <footer class="post-footer">
+      
+
+      
+      
+      
+
+      
+        <div class="post-nav">
+          <div class="post-nav-next post-nav-item">
+            
+              <a href="/2019/10/21/PE%E6%96%87%E4%BB%B6/" rel="next" title="PE文件">
+                <i class="fa fa-chevron-left"></i> PE文件
+              </a>
+            
+          </div>
+
+          <span class="post-nav-divider"></span>
+
+          <div class="post-nav-prev post-nav-item">
+            
+          </div>
+        </div>
+      
+
+      
+      
+    </footer>
   </div>
   
   
   
+  </article>
 
-  
 
+
+    <div class="post-spread">
+      
+    </div>
+  </div>
 
 
           </div>
@@ -284,6 +395,10 @@
 
 
           
+
+  
+
+
 
         </div>
         
@@ -304,8 +419,17 @@
       
 
       
+        <ul class="sidebar-nav motion-element">
+          <li class="sidebar-nav-toc sidebar-nav-active" data-target="post-toc-wrap">
+            Table of Contents
+          </li>
+          <li class="sidebar-nav-overview" data-target="site-overview-wrap">
+            Overview
+          </li>
+        </ul>
+      
 
-      <section class="site-overview-wrap sidebar-panel sidebar-panel-active">
+      <section class="site-overview-wrap sidebar-panel">
         <div class="site-overview">
           <div class="site-author motion-element" itemprop="author" itemscope itemtype="http://schema.org/Person">
             
@@ -368,6 +492,22 @@
         </div>
       </section>
 
+      
+      <!--noindex-->
+        <section class="post-toc-wrap motion-element sidebar-panel sidebar-panel-active">
+          <div class="post-toc">
+
+            
+              
+            
+
+            
+              <div class="post-toc-content"><ol class="nav"><li class="nav-item nav-level-1"><a class="nav-link" href="#一，异常处理的基本概念"><span class="nav-number">1.</span> <span class="nav-text">一，异常处理的基本概念</span></a><ol class="nav-child"><li class="nav-item nav-level-2"><a class="nav-link" href="#1-异常列表"><span class="nav-number">1.1.</span> <span class="nav-text">1)异常列表</span></a></li><li class="nav-item nav-level-2"><a class="nav-link" href="#2-异常处理的基本过程"><span class="nav-number">1.2.</span> <span class="nav-text">2)异常处理的基本过程</span></a></li></ol></li></ol></div>
+            
+
+          </div>
+        </section>
+      <!--/noindex-->
       
 
       
@@ -508,6 +648,10 @@
 
 
   
+  <script type="text/javascript" src="/js/src/scrollspy.js?v=5.1.4"></script>
+<script type="text/javascript" src="/js/src/post-details.js?v=5.1.4"></script>
+
+
 
   
 
