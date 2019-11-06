@@ -141,39 +141,7 @@
                 <h1 id="qiandao"><a href="#qiandao" class="headerlink" title="qiandao"></a>qiandao</h1><p>放在od中<br><img src="/.com//qiandao.jpg" alt></p>
 <h1 id="helloRe"><a href="#helloRe" class="headerlink" title="helloRe"></a>helloRe</h1><p>放在ida中，反编译<br><img src="/.com//helloRe1.png" alt><br>main函数：输入字符串，长度不能超过25，通过一个if语句即可获得success</p>
 <p>查看sub_401080<br><img src="/.com//helloRe2.png" alt><br>sub_401080是对输入a1进行了处理<br>sub_401080的返回值是一个判断，函数sub_401000如果不等于0，则返回True<br>并且调用sub_401000时，传入经过处理的输入a1<br>进入sub_401000<br><img src="/.com//helloRe3.png" alt><br>if成立的条件是v3和输入相同，strcpy函数将aAy9ZZx9xoc9zI9复制给v3<br>阅读汇编可知<br><img src="/.com//helloRe4.png" alt><br>是经过sub_401080处理后的等于这一串字符串</p>
-<p>明白后写出脚本：<br><code>if __name__ == &quot;__main__&quot;:
-    f_flag = &#39;aY9)Z(?|ZX9xOC9z_i9eOYCw&#39;
-    flag = [0]*25
-    f_ord = [0]*25
-    for i in range(len(f_flag)):
-        f_ord[i] = ord(f_flag[i])
-    for i in range(len(f_flag)):
-        if(f_ord[i]&gt;=40 and f_ord[i] &lt; 48):
-            flag[i] = f_ord[i] + 8
-        else:
-            if(f_ord[i]&gt;=62 and f_ord[i]&lt;=73):
-                flag[i] = f_ord[i] + 3
-            else:
-                if(f_ord[i]&gt;=79 and f_ord[i]&lt;92):
-                    flag[i] = f_ord[i] -2
-                else: 
-                    if(f_ord[i]&gt;=93 and f_ord[i]&lt;=107):
-                        flag[i] = f_ord[i] + 4
-                    else:
-                        if(f_ord[i]&gt;=115 and f_ord[i]&lt;=125):
-                            flag[i] = f_ord[i] - 3
-                        else:
-                            if (f_ord[i] &lt; 38 and f_ord[i]&gt;29):
-                                flag[i] = f_ord[i] +1
-                            else:
-                                flag[i] = f_ord[i]
-    for i in range(len(flag)):
-        flag[i] = chr(flag[i])
-    flag1 = &#39;&#39;
-    for i in range(len(flag)):
-        flag1 += flag[i]
-    print(flag1)</code>     </p>
-<p>`</p>
+<p>明白后写出脚本：<br>if <strong>name</strong> == “<strong>main</strong>“:<br>    f_flag = ‘aY9)Z(?|ZX9xOC9z_i9eOYCw’<br>    flag = [0]<em>25<br>    f_ord = [0]</em>25<br>    for i in range(len(f_flag)):<br>        f_ord[i] = ord(f_flag[i])<br>    for i in range(len(f_flag)):<br>        if(f_ord[i]&gt;=40 and f_ord[i] &lt; 48):<br>            flag[i] = f_ord[i] + 8<br>        else:<br>            if(f_ord[i]&gt;=62 and f_ord[i]&lt;=73):<br>                flag[i] = f_ord[i] + 3<br>            else:<br>                if(f_ord[i]&gt;=79 and f_ord[i]&lt;92):<br>                    flag[i] = f_ord[i] -2<br>                else:<br>                    if(f_ord[i]&gt;=93 and f_ord[i]&lt;=107):<br>                        flag[i] = f_ord[i] + 4<br>                    else:<br>                        if(f_ord[i]&gt;=115 and f_ord[i]&lt;=125):<br>                            flag[i] = f_ord[i] - 3<br>                        else:<br>                            if (f_ord[i] &lt; 38 and f_ord[i]&gt;29):<br>                                flag[i] = f_ord[i] +1<br>                            else:<br>                                flag[i] = f_ord[i]<br>    for i in range(len(flag)):<br>        flag[i] = chr(flag[i])<br>    flag1 = ‘’<br>    for i in range(len(flag)):<br>        flag1 += flag[i]<br>    print(flag1)  </p>
 
             </div>
 
