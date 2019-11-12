@@ -1,0 +1,202 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.jpg"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.jpg">
+	
+			    <title>
+    Odoiys学习历程
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="miccall" />
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg1.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">Archli</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/re-wp/">re wp</a></li><li><a class="category-link" href="/categories/%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86%E5%AD%A6%E4%B9%A0/">加密与解密学习</a></li><li><a class="category-link" href="/categories/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/">逆向工程</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/Odoiys" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://cn.bing.com/th?id=OIP.5K4C3AZPxTYrOSCdjD4f-QHaEK&amp;pid=Api&amp;rs=1);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >i春秋 竞赛训练营</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h1 id="CrackMe01"><a href="#CrackMe01" class="headerlink" title="CrackMe01"></a>CrackMe01</h1><p><img src="https://s2.ax1x.com/2019/11/12/M112uR.png" alt><br>打开字符串的话很难找到我们想要的函数的位置，所以不采取这个方法。<br>我们可以通过找api函数的办法来找到我们加密的位置。<br>这个时候需要打开输入函数，找到defwindowproc，这个api的功能是：</p>
+<blockquote>
+<p>调用重定向的窗口过程来为应用程序没有处理的任何窗口消息提供转换的处理。该函数确保每一个消息得到处理。<br>这样我们双击来到这里<br><img src="https://s2.ax1x.com/2019/11/12/M132Rg.png" alt><br>右键查看外部引用<br><img src="https://s2.ax1x.com/2019/11/12/M18MY8.png" alt><br>一个一个查看，发现我们所需要的加密函数是在第一个交叉引用里面<br>进入函数<br><img src="https://s2.ax1x.com/2019/11/12/M1851e.png" alt><br>可以看到加密的函数有两个<br>    do<br>    {<br>     *(&amp;chText + v12) ^ = v6;<br>     v12 += 2;<br>    }(v12 &lt; 44)</p>
+</blockquote>
+<pre><code>if ( (v6 &amp; 0xF00) == 1024 &amp;&amp; (v6 &amp; 0xF0) == 176 &amp;&amp; (v6 &amp; 6) == 6 )
+{ 
+ showWindow((HWND)a1,5);
+ UpdateWindow((HWND)a1);
+}</code></pre><p>根据这个加密函数，可写出解密函数:<br>    for i in range(1,10000):<br>        if(i &amp; 0xf00 == 1024):<br>            if(i &amp; 0xf0 == 176):<br>                if(i &amp; 6 == 6):<br>                    print(hex(i))</p>
+<pre><code>chText = [0x4F0, 0x4DA, 0x4D7, 0x4D1, 0x48C, 0x4FF, 0x4F5, 0x4FE, 0x4E3, 0x4F8, 0x4E7, 0x4FF, 0x4E3, 0x4E9, 0x4F0,
+  0x4F3, 0x485, 0x480, 0x484, 0x4F2, 0x4F4, 0x4F3]
+flag = &apos;&apos;
+
+for i in range(22):
+    chText[i] ^= 0x4b6
+    flag += chr(chText[i])
+
+print(flag)</code></pre><p>总结：加密函数真的很简单了，但是这道题最让我困扰的是如何找到加密函数，今天学到了用api函数找到加密的位置，不给main函数是真的难受啊。网上的wp还有更麻烦的，有动态调试的，等等。看来要好好看一下win32编程了。顺便如果学会了动态调试的话，可以尝试用动态调试来解决问题，毕竟用动态调试跟踪系统函数的想法还是蛮不错的。</p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2019/11/12/i春秋-竞赛训练营/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = '';
+var conf = '';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " target="_blank" rel="noopener" style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
