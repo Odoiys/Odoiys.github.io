@@ -140,18 +140,15 @@
             <div class="typo" style="padding: 3rem;">
                 <h1 id="CrackMe01"><a href="#CrackMe01" class="headerlink" title="CrackMe01"></a>CrackMe01</h1><p><img src="https://s2.ax1x.com/2019/11/12/M112uR.png" alt><br>打开字符串的话很难找到我们想要的函数的位置，所以不采取这个方法。<br>我们可以通过找api函数的办法来找到我们加密的位置。<br>这个时候需要打开输入函数，找到defwindowproc，这个api的功能是：</p>
 <blockquote>
-<p>调用重定向的窗口过程来为应用程序没有处理的任何窗口消息提供转换的处理。该函数确保每一个消息得到处理。<br>这样我们双击来到这里<br><img src="https://s2.ax1x.com/2019/11/12/M132Rg.png" alt><br>右键查看外部引用<br><img src="https://s2.ax1x.com/2019/11/12/M18MY8.png" alt><br>一个一个查看，发现我们所需要的加密函数是在第一个交叉引用里面<br>进入函数<br><img src="https://s2.ax1x.com/2019/11/12/M1851e.png" alt><br>可以看到加密的函数有两个<br>    do<br>    {<br>     *(&amp;chText + v12) ^ = v6;<br>     v12 += 2;<br>    }(v12 &lt; 44)</p>
+<p>调用重定向的窗口过程来为应用程序没有处理的任何窗口消息提供转换的处理。该函数确保每一个消息得到处理。</p>
 </blockquote>
+<p>这样我们双击来到这里<br><img src="https://s2.ax1x.com/2019/11/12/M132Rg.png" alt><br>右键查看外部引用<br><img src="https://s2.ax1x.com/2019/11/12/M18MY8.png" alt><br>一个一个查看，发现我们所需要的加密函数是在第一个交叉引用里面<br>进入函数<br><img src="https://s2.ax1x.com/2019/11/12/M1851e.png" alt><br>可以看到加密的函数有两个<br>    do<br>    {<br>     *(&amp;chText + v12) ^ = v6;<br>     v12 += 2;<br>    }(v12 &lt; 44)</p>
 <pre><code>if ( (v6 &amp; 0xF00) == 1024 &amp;&amp; (v6 &amp; 0xF0) == 176 &amp;&amp; (v6 &amp; 6) == 6 )
 { 
  showWindow((HWND)a1,5);
  UpdateWindow((HWND)a1);
-}</code></pre><p>根据这个加密函数，可写出解密函数:<br>    for i in range(1,10000):<br>        if(i &amp; 0xf00 == 1024):<br>            if(i &amp; 0xf0 == 176):<br>                if(i &amp; 6 == 6):<br>                    print(hex(i))</p>
-<pre><code>chText = [0x4F0, 0x4DA, 0x4D7, 0x4D1, 0x48C, 0x4FF, 0x4F5, 0x4FE, 0x4E3, 0x4F8, 0x4E7, 0x4FF, 0x4E3, 0x4E9, 0x4F0,
-  0x4F3, 0x485, 0x480, 0x484, 0x4F2, 0x4F4, 0x4F3]
-flag = &apos;&apos;
-
-for i in range(22):
+}</code></pre><p>根据这个加密函数，可写出解密函数:<br>    for i in range(1,10000):<br>        if(i &amp; 0xf00 == 1024):<br>            if(i &amp; 0xf0 == 176):<br>                if(i &amp; 6 == 6):<br>                    print(hex(i))<br>    chText = [0x4F0, 0x4DA, 0x4D7, 0x4D1, 0x48C, 0x4FF, 0x4F5, 0x4FE, 0x4E3, 0x4F8, 0x4E7, 0x4FF, 0x4E3, 0x4E9, 0x4F0,<br>      0x4F3, 0x485, 0x480, 0x484, 0x4F2, 0x4F4, 0x4F3]<br>    flag = ‘’</p>
+<pre><code>for i in range(22):
     chText[i] ^= 0x4b6
     flag += chr(chText[i])
 
