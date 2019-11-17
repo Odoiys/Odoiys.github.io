@@ -147,10 +147,8 @@ for i in range(len(code)):
 
     str += chr((encode[i] - 13) ^ 0x39
 
-print(str)`</code></pre><h1 id="dll-reverse"><a href="#dll-reverse" class="headerlink" title="dll reverse"></a>dll reverse</h1><p>dll文件不想多讲，百度都有。对于这道题来说直接把dll文件放进去分析就可以了。<br>很容易找到加密函数<br><img src="https://s2.ax1x.com/2019/11/17/MDNekn.png" alt><br>大概看一下，应该是base64再加上了一个异或的操作，结果也给了，直接逆向代码就可以得出要输入的代码了。还有一点要说的是base64中的对照表有一部分换了<br>下面是解密代码<br>    `import base64<br>    list = bytes([69, 106, 67, 52, 86, 59, 79, 103, 71, 67, 25, 35, 67,117, 108, 103, 59, 101, 84, 70, 66, 55, 1, 80, 85, 96, 73, 36, 24, 74, 39, 31, 9, 29, 74, 0])</p>
-<pre><code>list_1 = bytes([34, 89, 50, 94, 56, 11, 66, 86, 38, 112, 77, 69, 19, 34, 45, 29, 91, 55, 112, 3, 18, 96, 124, 54, 7, 83, 3, 83, 79,120, 86, 38, 0, 0, 0, 0])
-
-list_2 = []
+print(str)`</code></pre><h1 id="dll-reverse"><a href="#dll-reverse" class="headerlink" title="dll reverse"></a>dll reverse</h1><p>dll文件不想多讲，百度都有。对于这道题来说直接把dll文件放进去分析就可以了。<br>很容易找到加密函数<br><img src="https://s2.ax1x.com/2019/11/17/MDNekn.png" alt><br>大概看一下，应该是base64再加上了一个异或的操作，结果也给了，直接逆向代码就可以得出要输入的代码了。还有一点要说的是base64中的对照表有一部分换了<br>下面是解密代码<br>    `import base64<br>    list = bytes([69, 106, 67, 52, 86, 59, 79, 103, 71, 67, 25, 35, 67,117, 108, 103, 59, 101, 84, 70, 66, 55, 1, 80, 85, 96, 73, 36, 24, 74, 39, 31, 9, 29, 74, 0])<br>    list_1 = bytes([34, 89, 50, 94, 56, 11, 66, 86, 38, 112, 77, 69, 19, 34, 45, 29, 91, 55, 112, 3, 18, 96, 124, 54, 7, 83, 3, 83, 79,120, 86, 38, 0, 0, 0, 0])</p>
+<pre><code>list_2 = []
 
 flag = &apos;&apos;
 for i in range(32):
