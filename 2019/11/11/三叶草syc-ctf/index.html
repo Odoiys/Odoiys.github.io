@@ -178,7 +178,36 @@ b1 = np.fromstring(b,dtype=np.uint8)
 flag = &apos;&apos;
 for i in xrange(len(a1)):
     flag += chr(a1[i] ^ b1[i])
-print(flag)</code></pre>
+print(flag)</code></pre><h1 id="re-py"><a href="#re-py" class="headerlink" title="re_py"></a>re_py</h1><pre><code>re_py源代码：
+
+print &quot;This is a maze.&quot;
+print &quot;Python is so easy.&quot;
+print &apos;Plz Input The Shortest Way:&apos;
+maze=&quot;###########S#@@@@@@##@#@####@##@#@@@@#@##@####@#@##@@@@@@#@#########@##E######@##@@@@@@@@###########&quot;
+way = raw_input()
+len = len(way)
+p=11
+for i in way:
+    if i==&quot;&amp;&quot;:
+        p-=10
+    if i==&quot;$&quot;:
+        p+=10
+    if i==&quot;6&quot;:
+        p-=1
+    if i==&quot;3&quot;:
+        p+=1
+    if maze[p]==&quot;#&quot;:
+        print &quot;Your way is wrong&quot;
+        exit(0)
+        break
+    if maze[p]==&quot;@&quot;:
+        continue
+    if maze[p]==&quot;E&quot;:
+    print &quot;You do it,your flag is Syc\{+Your Input+\}.&quot;
+    exit(0)
+print &quot;May be something wrong.&quot;</code></pre><p>从这里看来是一道迷宫题，十个字符为一行，&amp;是向上，$是向下，6是向左，3是向右</p>
+<h1 id><a href="#" class="headerlink" title="# # # # # # # #"></a># # # # # # # #</h1><h1 id="S"><a href="#S" class="headerlink" title="S # @ @ @ @ @ @"></a>S # @ @ @ @ @ @</h1><h1 id="-1"><a href="#-1" class="headerlink" title="@ # @ # # # # @"></a>@ # @ # # # # @</h1><h1 id="-2"><a href="#-2" class="headerlink" title="@ # @ @ @ @ # @"></a>@ # @ @ @ @ # @</h1><h1 id="-3"><a href="#-3" class="headerlink" title="@ # # # # @ # @"></a>@ # # # # @ # @</h1><h1 id="-4"><a href="#-4" class="headerlink" title="@ @ @ @ @ @ # @"></a>@ @ @ @ @ @ # @</h1><h1 id="-5"><a href="#-5" class="headerlink" title="# # # # # # # @"></a># # # # # # # @</h1><h1 id="E"><a href="#E" class="headerlink" title="E # # # # # # @"></a>E # # # # # # @</h1><h1 id="-6"><a href="#-6" class="headerlink" title="@ @ @ @ @ @ @ @"></a>@ @ @ @ @ @ @ @</h1><h1 id="-7"><a href="#-7" class="headerlink" title="# # # # # # # #"></a># # # # # # # #</h1><p>根据图写出flag即可</p>
+
             </div>
 
             <!-- Post Comments -->
