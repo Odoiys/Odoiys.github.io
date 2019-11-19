@@ -205,9 +205,70 @@ for i in way:
     if maze[p]==&quot;E&quot;:
     print &quot;You do it,your flag is Syc\{+Your Input+\}.&quot;
     exit(0)
-print &quot;May be something wrong.&quot;</code></pre><p>从这里看来是一道迷宫题，十个字符为一行，&amp;是向上，$是向下，6是向左，3是向右</p>
-<h1 id><a href="#" class="headerlink" title="# # # # # # # #"></a># # # # # # # #</h1><h1 id="S"><a href="#S" class="headerlink" title="S # @ @ @ @ @ @"></a>S # @ @ @ @ @ @</h1><h1 id="-1"><a href="#-1" class="headerlink" title="@ # @ # # # # @"></a>@ # @ # # # # @</h1><h1 id="-2"><a href="#-2" class="headerlink" title="@ # @ @ @ @ # @"></a>@ # @ @ @ @ # @</h1><h1 id="-3"><a href="#-3" class="headerlink" title="@ # # # # @ # @"></a>@ # # # # @ # @</h1><h1 id="-4"><a href="#-4" class="headerlink" title="@ @ @ @ @ @ # @"></a>@ @ @ @ @ @ # @</h1><h1 id="-5"><a href="#-5" class="headerlink" title="# # # # # # # @"></a># # # # # # # @</h1><h1 id="E"><a href="#E" class="headerlink" title="E # # # # # # @"></a>E # # # # # # @</h1><h1 id="-6"><a href="#-6" class="headerlink" title="@ @ @ @ @ @ @ @"></a>@ @ @ @ @ @ @ @</h1><h1 id="-7"><a href="#-7" class="headerlink" title="# # # # # # # #"></a># # # # # # # #</h1><p>根据图写出flag即可</p>
+print &quot;May be something wrong.&quot;</code></pre><p>从这里看来是一道迷宫题，十个字符为一行，&amp;是向上，$是向下，6是向左，3是向右<br>‘# # # # # # # # # #<br>‘# S # @ @ @ @ @ @ #<br>’# @ # @ # # # # @ #<br>‘# @ # @ @ @ @ # @ #<br>’# @ # # # # @ # @ #<br>‘# @ @ @ @ @ @ # @ #<br>’# # # # # # # # @ #<br>‘# E # # # # # # @ #<br>’# @ @ @ @ @ @ @ @ #<br>‘# # # # # # # # # #<br>根据图写出flag即可</p>
+<h1 id="python1"><a href="#python1" class="headerlink" title="python1"></a>python1</h1><p>把文件放到python在线反编译当中，直接可以看到源代码</p>
+<pre><code>源代码
+import struct
+import time
+def b(a):
+    return a &amp; 0xFFFFFFFFFFFFFFFF
+def c(str):
+    return struct.unpack(&apos;&lt;Q&apos;, str)[0]
+def d(a):
+    for i in range(64):
+        a = a * 2
+        if a &gt; 0xFFFFFFFFFFFFFFFF:
+            a = b(a)
+            a = b(a ^ 0xB0004B7679FA26B3)
+            continue
+    return a
+if __name__ == &apos;__main__&apos;:
+    cmp_data = [
+        0x6E8DD76D3B876F95,
+        0xE206DA09DAF4BED6,
+        0x77559D346E134BF1,
+        0x61CE39CAC5EAF891,
+        0x656C3C155520E36F]
+    input = input(&apos;plz input your flag:&apos;)
+    if len(input) % 8 != 0:
+        for i in range(8 - len(input) % 8):
+            input += &apos;\x00&apos;        
+    arr = []
+    for i in range(len(input) // 8):
+        value = d(c(input[i * 8:i * 8 + 8]))
+        arr.append(value)
 
+    for i in range(5):
+        if arr[i] != cmp_data[i]:
+            print(&apos;fail&apos;)
+            time.sleep(5)
+            exit()
+            continue
+    print (&apos;success&apos;)
+    time.sleep(5)
+    exit()</code></pre><p>做题前⾸先熟悉python的使⽤，如struct.pack和struct.unpack，python和pyc⽂件反编译⽅⾯不多<br>提，Life is short, you need python。<br>题⽬的难点主要在于对d函数的逆向，会有64次乘⼆，每次乘2后还会进⾏判断，如果⼤于<br>0xffffffffffffffff，会&amp;0xffffffffffffffff再^ 0xB0004B7679FA26B3。<br>我们在些逆向脚本时候同样要进⾏64次的除以⼆，但是有个问题就是如何处理&amp;0xffffffffffffffff再^<br>0xB0004B7679FA26B3呢？<br>其实能看出来的话这道题就很简单了，⼊⼿点就是奇偶。<br>每次乘⼆后这⼀次循环得到的是偶数，每次&amp;0xffffffffffffffff再^ 0xB0004B7679FA26B3这⼀次循环得<br>到的都是奇数。我们写脚本进⾏64次循环除以⼆时候，先进⾏判断，如果是偶数就直接除以⼆，如果是<br>奇数就先^ 0xB0004B7679FA26B3，再+0xffffffffffffffff+1，再除以⼆即可。</p>
+<pre><code>脚本：
+import struct
+def decode(a):
+    for i in range(64):
+        if(a%2 == 0):
+            a /= 2
+        else:
+            a ^=  0xB0004B7679FA26B3
+            a = a + 0xffffffffffffffff + 1
+            a /= 2
+    return a
+if __name__ == &apos;__main__&apos;:
+    cmp_data = [
+        0x6E8DD76D3B876F95,
+        0xE206DA09DAF4BED6,
+        0x77559D346E134BF1,
+        0x61CE39CAC5EAF891,
+        0x656C3C155520E36F]
+    flag = &apos;&apos;
+    for i in range(5):
+        flag += struct.pack(&quot;&gt;Q&quot;,decode(cmp_data[i]))[::-1].strip()
+        print(flag)</code></pre>
             </div>
 
             <!-- Post Comments -->
