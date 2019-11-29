@@ -65,24 +65,25 @@
 	
 </head>
     
-		
-<!-- Layouts -->
-
-
-
-<!--  代码渲染  -->
-<link rel="stylesheet" href="/css/prism_coy.css" />
-<link rel="stylesheet" href="/css/typo.css" />
-<!-- 文章页 -->
-<body class="is-loading">
+		<body class="is-loading">
     <!-- Wrapper 外包 s-->
-    <div id="wrapper" class="fade-in">
+    <div id="wrapper" class="fade-in overlay">
         <!-- Intro 头部显示 s -->
+                <div id="intro">
+            <h1>This is<br />
+                        Odoiys </h1>
+            <p> I never give up <br/> until I die
+            </p>
+            <ul class="actions">
+                <li><a href="#header" class="button icon solo fa-arrow-down scrolly">Continue</a></li>
+            </ul>
+        </div>
         <!-- Intro 头部显示 e -->
         <!-- Header 头部logo start -->
         <header id="header">
     <a href="/" class="logo">Archli</a>
 </header>
+        <!-- Header 头部logo end -->
         <!-- Nav 导航条 start -->
         <nav id="nav" class="special" >
             <ul class="menu links" >
@@ -137,51 +138,59 @@
                     
 			</ul>
 </nav>
+        <!-- Nav 导航条 end -->
+        <!-- Main 主要部分 start -->
+        
+        <!-- 文章列表   s -->
+        <div id="main" style="background-color: transparent; padding:0;">
+        <section class="link_container" style="margin-top: 0; background-color: transparent; ">
+            <div class="link_row">
+                <!-- 文章sample  s-->
 
-        <div id="main" >
-            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://cn.bing.com/th?id=OIP.5K4C3AZPxTYrOSCdjD4f-QHaEK&amp;pid=Api&amp;rs=1);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
-                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >i春秋 竞赛训练营</h2></a>
-            </div>
-            <!-- Post -->
-            <div class="typo" style="padding: 3rem;">
-                <h1 id="CrackMe01"><a href="#CrackMe01" class="headerlink" title="CrackMe01"></a>CrackMe01</h1><p><img src="https://s2.ax1x.com/2019/11/12/M112uR.png" alt><br>打开字符串的话很难找到我们想要的函数的位置，所以不采取这个方法。<br>我们可以通过找api函数的办法来找到我们加密的位置。<br>这个时候需要打开输入函数，找到defwindowproc，这个api的功能是：</p>
-<blockquote>
-<p>调用重定向的窗口过程来为应用程序没有处理的任何窗口消息提供转换的处理。该函数确保每一个消息得到处理。</p>
-</blockquote>
-<p>这样我们双击来到这里<br><img src="https://s2.ax1x.com/2019/11/12/M132Rg.png" alt><br>右键查看外部引用<br><img src="https://s2.ax1x.com/2019/11/12/M18MY8.png" alt><br>一个一个查看，发现我们所需要的加密函数是在第一个交叉引用里面<br>进入函数<br><img src="https://s2.ax1x.com/2019/11/12/M1851e.png" alt><br>可以看到加密的函数有两个<br><code>do</code><br><code>{</code><br><code>*(&amp;chText + v12) ^ = v6;</code><br><code>v12 += 2;</code><br><code>}(v12 &lt; 44)</code></p>
-<pre><code>if ( (v6 &amp; 0xF00) == 1024 &amp;&amp; (v6 &amp; 0xF0) == 176 &amp;&amp; (v6 &amp; 6) == 6 )
-{ 
- showWindow((HWND)a1,5);
- UpdateWindow((HWND)a1);
-}</code></pre><p>根据这个加密函数，可写出解密函数:<br><code>for i in range(1,10000):</code><br>    <code>if(i &amp; 0xf00 == 1024):</code><br>        <code>if(i &amp; 0xf0 == 176):</code><br>            <code>if(i &amp; 6 == 6):</code><br>                <code>print(hex(i))</code><br><code>chText = [0x4F0, 0x4DA, 0x4D7, 0x4D1, 0x48C, 0x4FF, 0x4F5, 0x4FE, 0x4E3, 0x4F8, 0x4E7, 0x4FF, 0x4E3, 0x4E9, 0x4F0,0x4F3, 0x485, 0x480, 0x484, 0x4F2, 0x4F4, 0x4F3]</code><br><code>flag = &#39;&#39;</code><br><code>for i in range(22):</code><br>    <code>chText[i] ^= 0x4b6</code><br>    <code>flag += chr(chText[i])</code><br><code>print(flag)</code></p>
-<p>总结：加密函数真的很简单了，但是这道题最让我困扰的是如何找到加密函数，今天学到了用api函数找到加密的位置，不给main函数是真的难受啊。网上的wp还有更麻烦的，有动态调试的，等等。看来要好好看一下win32编程了。顺便如果学会了动态调试的话，可以尝试用动态调试来解决问题，毕竟用动态调试跟踪系统函数的想法还是蛮不错的。</p>
-
-            </div>
-
-            <!-- Post Comments -->
+                
+                <div class="6u 12u(narrower)">
+                    <section class="link_box special">
+                       <a href="/2019/10/17/DLL%E5%AD%A6%E4%B9%A0/">
+                        <div class="page_title" style="background-image: url(http://img01.sogoucdn.com/app/a/200863/img_411029_157103249997545);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;">
+                            <!--标题-->
+                            <h2 class="page_title_text"> DLL学习 </h2>
+                            <!--段落-->
+                        </div>
+                        </a>
+                        <div class="home-post-info">
+                            <!-- Author Avatar -->
+                            <div class="home-post-info-author-avatar">
+                                <h6><span class="home-post-info-data">2019-10-17</span></h6>
+                                <div class="home-post-info-Category">
+                                    <!-- Category -->
+                                    <span>
+                            <h6>
+                            <a class="post_category-link" href="http://localhost:4000/categories/Algorithm/" target="_blank" rel="noopener">
+                                </a>
+                            </h6>
+                        </span>
+                                </div>
+                            </div>
+                        </div>
+                    </section>
+                </div>
+                <!-- 文章sample  e-->
             
-    <!-- 使用 changyan -->
-<div id="changyan-comment">
-    <!--PC和WAP自适应版-->
-<div id="SOHUCS" sid="2019/11/12/i春秋-竞赛训练营/"  ></div>
-<script type="text/javascript">
-(function(){
-var appid = '';
-var conf = '';
-var width = window.innerWidth || document.documentElement.clientWidth;
-if (width < 960) {
-window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
-
-</div>
-<style>
-    #changyan-comment{
-        background-color: #eee;
-        padding: 2pc;
-    }
-</style>
-
-
+            </div>
+        </section>
         </div>
+        <!-- 文章列表   end -->
+        <!-- Main 主要部分 end -->
+        <!-- footer  页码 start-->
+        <footer style="text-align: center; padding-top: 2em;">
+  
+    <div class="pagination" >
+        <a class="extend prev" rel="prev" href="/archives/">pre</a><a class="page-number" href="/archives/">1</a><span class="page-number current">2</span>
+    </div>  
+    
+</footer>
+
+        <!-- footer  页码 end-->
         <!-- Copyright 版权 start -->
                 <div id="copyright">
             <ul>
@@ -192,10 +201,11 @@ window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="tex
                 <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
 			
         </div>
+        <!-- Copyright 版权 end -->
     </div>
+    <!-- Wrapper 外包 e-->
+    <!-- Scripts -->
 </body>
-
-
 
  	
 </html>
