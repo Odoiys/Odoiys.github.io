@@ -148,6 +148,68 @@
 <blockquote>
 <p><a href="https://odoiys.github.io/2019/11/29/rc4%E5%AD%A6%E4%B9%A0/" target="_blank" rel="noopener" title="rc4学习">https://odoiys.github.io/2019/11/29/rc4%E5%AD%A6%E4%B9%A0/</a></p>
 </blockquote>
+<h1 id="签到题"><a href="#签到题" class="headerlink" title="签到题"></a>签到题</h1><p>使用z3求解器</p>
+<pre><code>from z3 import *
+a = [12, 83, 78, 39, 23, 27, 4, 53, 85, 53, 78, 6, 85, 6, 6, 12, 24, 52, 14, 92, 3, 34, 73, 36, 9, 74, 42, 67, 58, 27, 86, 62, 48, 48, 0, 36, 96, 25, 37, 12, 15, 26, 1, 52, 46, 84, 83, 72, 68]
+b = [18564,37316,
+32053,
+33278,
+23993,
+33151,
+15248,
+13719,
+34137,
+27391,
+28639,
+18453,
+28465,
+12384,
+20780,
+45085,
+35827,
+37243,
+26037,
+39409,
+17583,
+20825,
+44474,
+35138,
+36914,
+25918,
+38915,
+17672,
+21219,
+43935,
+37072,
+39359,
+27793,
+41447,
+18098,
+21335,
+46164,
+38698,
+39084,
+29205,
+40913,
+19117,
+21786,
+46573,
+38322,
+41017,
+29298,
+43409,
+19655]
+s = Solver()
+key = [BitVec(&apos;u%d&apos;%i,8) for i in range(49)]
+for i in range(7):
+    for j in range(7):
+        s.add(b[i*7+j] == key[i*7]*a[j]+key[i*7+1]*a[7*1+j]+key[i*7+2]*a[7*2+j]+key[i*7+3]*a[7*3+j]+key[i*7+4]*a[7*4+j]+key[i*7+5]*a[7*5+j]+key[i*7+6]*a[7*6+j])
+flag = &apos;&apos;
+if s.check() == sat:
+    result = s.model()
+    for i in range(49):
+        flag += chr(result[key[i]].as_long().real)
+    print flag</code></pre><p>z3有问题可以看这个链接<br><a href="https://ericpony.github.io/z3py-tutorial/guide-examples.htm" target="_blank" rel="noopener" title="z3求解器手册">https://ericpony.github.io/z3py-tutorial/guide-examples.htm</a></p>
 
             </div>
 
