@@ -1,0 +1,375 @@
+<!DOCTYPE HTML>
+<html>
+
+<head>
+	<link rel="bookmark"  type="image/x-icon"  href="/img/logo_miccall.jpg"/>
+	<link rel="shortcut icon" href="/img/logo_miccall.jpg">
+	
+			    <title>
+    Odoiys学习历程
+    </title>
+    <meta charset="utf-8" />
+    <meta name="viewport" content="width=device-width, initial-scale=1, user-scalable=no" />
+    <link rel="stylesheet" href="/css/mic_main.css" />
+    <link rel="stylesheet" href="/css/dropdownMenu.css" />
+    <meta name="keywords" content="miccall" />
+    
+    	<script async src="//busuanzi.ibruce.info/busuanzi/2.3/busuanzi.pure.mini.js"></script>
+	 
+    <noscript>
+        <link rel="stylesheet" href="/css/noscript.css" />
+    </noscript>
+    <style type="text/css">
+        body:before {
+          content: ' ';
+          position: fixed;
+          top: 0;
+          background: url('/img/bg1.jpg') center 0 no-repeat;
+          right: 0;
+          bottom: 0;
+          left: 0;
+          background-size: cover; 
+        }
+    </style>
+
+			    
+  
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Config({
+        tex2jax: {
+          inlineMath: [ ['$','$'], ["\\(","\\)"]  ],
+          processEscapes: true,
+          skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+        }
+      });
+    </script>
+
+    <script type="text/x-mathjax-config">
+      MathJax.Hub.Queue(function() {
+        var all = MathJax.Hub.getAllJax(), i;
+        for (i=0; i < all.length; i += 1) {
+          all[i].SourceElement().parentNode.className += ' has-jax';
+        }
+      });
+    </script>
+    <script async type="text/javascript" src="//cdn.bootcss.com/mathjax/2.7.1/latest.js?config=TeX-AMS-MML_HTMLorMML"></script>
+  
+
+
+    <script src="/js/jquery.min.js"></script>
+    <script src="/js/jquery.scrollex.min.js"></script>
+    <script src="/js/jquery.scrolly.min.js"></script>
+    <script src="/js/skel.min.js"></script>
+    <script src="/js/util.js"></script>
+    <script src="/js/main.js"></script>
+	
+</head>
+    
+		
+<!-- Layouts -->
+
+
+
+<!--  代码渲染  -->
+<link rel="stylesheet" href="/css/prism_coy.css" />
+<link rel="stylesheet" href="/css/typo.css" />
+<!-- 文章页 -->
+<body class="is-loading">
+    <!-- Wrapper 外包 s-->
+    <div id="wrapper" class="fade-in">
+        <!-- Intro 头部显示 s -->
+        <!-- Intro 头部显示 e -->
+        <!-- Header 头部logo start -->
+        <header id="header">
+    <a href="/" class="logo">Archli</a>
+</header>
+        <!-- Nav 导航条 start -->
+        <nav id="nav" class="special" >
+            <ul class="menu links" >
+			<!-- Homepage  主页  --> 
+			<li >
+	            <a href="/" rel="nofollow">主页</a>
+	        </li>
+			<!-- categories_name  分类   --> 
+	        
+	        <li class="active">
+	            <a href="#s1">分类</a>
+	                    <ul class="submenu">
+	                        <li>
+	                        <a class="category-link" href="/categories/crypto/">crypto</a></li><li><a class="category-link" href="/categories/re-wp/">re wp</a></li><li><a class="category-link" href="/categories/%E5%8A%A0%E5%AF%86%E4%B8%8E%E8%A7%A3%E5%AF%86%E5%AD%A6%E4%B9%A0/">加密与解密学习</a></li><li><a class="category-link" href="/categories/%E9%80%86%E5%90%91%E5%B7%A5%E7%A8%8B/">逆向工程</a>
+	                    </ul>
+	        </li>
+	        
+	        <!-- archives  归档   --> 
+	        
+	        
+		        <!-- Pages 自定义   -->
+		        
+		        <li>
+		            <a href="/about/" title="简历">
+		                简历
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/group/" title="团队">
+		                团队
+		            </a>
+		        </li>
+		        
+		        <li>
+		            <a href="/gallery/" title="图库">
+		                图库
+		            </a>
+		        </li>
+		        
+
+
+            </ul>
+            <!-- icons 图标   -->
+			<ul class="icons">
+                    
+                    <li>
+                        <a title="github" href="https://github.com/Odoiys" target="_blank" rel="noopener">
+                            <i class="icon fa fa-github"></i>
+                        </a>
+                    </li>
+                    
+			</ul>
+</nav>
+
+        <div id="main" >
+            <div class ="post_page_title_img" style="height: 25rem;background-image: url(https://timgsa.baidu.com/timg?image&amp;quality=80&amp;size=b9999_10000&amp;sec=1579592181&amp;di=ab4e05da9d32f5e40fd5cf44410e61e5&amp;imgtype=jpg&amp;er=1&amp;src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F81fbae7162675ef9c9627c47fc283a964a9f0c87.png);background-position: center; background-repeat:no-repeat; background-size:cover;-moz-background-size:cover;overflow:hidden;" >
+                <a href="#" style="padding: 4rem 4rem 2rem 4rem ;"><h2 >花指令学习</h2></a>
+            </div>
+            <!-- Post -->
+            <div class="typo" style="padding: 3rem;">
+                <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在原来的汇编程序中加入一些干扰阅读的代码，这些代码可以看做是花指令。</p>
+<p>这类题在ctf中很常见，但是要多加练习。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>总体上花指令分为两类，一类是可履行式花指令，另一类为不可履行式花指令（废物指令）。</p>
+<p>对于可履行式花指令，望文生义就是能够正常运转的但又不改动原始程序逻辑性的一组无用指令。这类花指令有如下特色：</p>
+<p>①能够正常运转；</p>
+<p>②不改动任何寄存器的值；</p>
+<p>③反汇编器能够正确反汇编该指令。</p>
+<p>对于不可履行式花指令，是指被刺进到原始代码中但又不改动原始程序逻辑性的一组无用字节。这类花指令有如下特色：</p>
+<p>①不行以正常运转；</p>
+<p>②不改动任何寄存器的值；</p>
+<p>③反汇编器或许会过错反汇编这些字节。</p>
+<h3 id="花指令的经典模型"><a href="#花指令的经典模型" class="headerlink" title="花指令的经典模型"></a>花指令的经典模型</h3><h4 id="1-伪装-vc"><a href="#1-伪装-vc" class="headerlink" title="1.伪装 vc"></a>1.伪装 vc</h4><p><code>VC++程序的入口代码:</code></p>
+<p><code>PUSH EBP</code></p>
+<p><code>MOV EBP,ESP</code></p>
+<p><code>PUSH -1</code></p>
+<p><code>push 415448 -\___</code></p>
+<p><code>PUSH 4021A8 // 在这段代码中类似这样的[操作数](https://baike.baidu.com/item/操作数)可以乱填</code></p>
+<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
+<p><code>PUSH EAX</code></p>
+<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
+<p><code>ADD ESP,-6C</code></p>
+<p><code>PUSH EBX</code></p>
+<p><code>PUSH ESI</code></p>
+<p><code>PUSH EDI</code></p>
+<p><code>ADD BYTE PTR DS:[EAX],AL //这条指令可以不要!</code></p>
+<p><code>jmp 跳转到程序原来的入口点</code></p>
+<h4 id="2-跳转"><a href="#2-跳转" class="headerlink" title="2.跳转"></a>2.跳转</h4><p><code>somewhere:</code><br><code>nop //&quot;胡乱&quot;跳转的开始...</code><br><code>jmp 下一个jmp的地址 /在附近随意跳</code><br><code>jmp ... //...</code><br><code>jmp 原入口的地址 //跳到原始oep</code></p>
+<hr>
+<p><code>新入口: push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>inc ecx</code></p>
+<p><code>push edx</code></p>
+<p><code>nop</code></p>
+<p><code>pop edx</code></p>
+<p><code>dec ecx</code></p>
+<p><code>pop ebp</code></p>
+<p><code>inc ecx</code></p>
+<p><code>loop somewhere //跳转到上面那段代码地址去！</code></p>
+<h4 id="3-伪装c"><a href="#3-伪装c" class="headerlink" title="3.伪装c"></a>3.伪装c</h4><p><code>融合</code></p>
+<p><code>把A的代码换成B的</code></p>
+<p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>push -1</code></p>
+<p><code>push 111111</code></p>
+<p><code>push 222222</code></p>
+<p><code>mov eax,fs:[0]</code></p>
+<p><code>push eax</code></p>
+<p><code>mov fs:[0],esp</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov fs:[0],eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov ebp,eax</code></p>
+<p><code>jmp 老入口</code></p>
+<h4 id="4-c"><a href="#4-c" class="headerlink" title="4.c ++"></a>4.c ++</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>push -1</code></p>
+<p><code>push 111111</code></p>
+<p><code>push 222222</code></p>
+<p><code>mov eax,fs:[0]</code></p>
+<p><code>push eax</code></p>
+<p><code>mov fs:[0],esp</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov fs:[0],eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov ebp,eax</code></p>
+<h4 id="5-Microsoft-Visual-C-6-0"><a href="#5-Microsoft-Visual-C-6-0" class="headerlink" title="5.Microsoft Visual C++ 6.0"></a>5.Microsoft Visual C++ 6.0</h4><p><code>PUSH -1</code></p>
+<p><code>PUSH 0</code></p>
+<p><code>PUSH 0</code></p>
+<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
+<p><code>PUSH EAX</code></p>
+<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
+<p><code>SUB ESP,68</code></p>
+<p><code>PUSH EBX</code></p>
+<p><code>PUSH ESI</code></p>
+<p><code>PUSH EDI</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>ADD ESP,68</code></p>
+<p><code>POP EAX</code></p>
+<p><code>MOV DWORD PTR FS:[0],EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>MOV EBP,EAX</code></p>
+<p><code>JMP 原入口</code></p>
+<h4 id="6"><a href="#6" class="headerlink" title="6."></a>6.</h4><p><code>在mov ebp,eax</code></p>
+<p><code>后面加上</code></p>
+<p><code>PUSH EAX</code></p>
+<p><code>POP EAX</code></p>
+<h4 id="7-防杀精灵一号防杀代码"><a href="#7-防杀精灵一号防杀代码" class="headerlink" title="7.防杀精灵一号防杀代码"></a>7.防杀精灵一号防杀代码</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>push -1</code></p>
+<p><code>push 666666</code></p>
+<p><code>push 888888</code></p>
+<p><code>mov eax,dword ptr fs:[0]</code></p>
+<p><code>push eax</code></p>
+<p><code>mov dword ptr fs:[0],esp</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov dword ptr fs:[0],eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov ebp,eax</code></p>
+<p><code>jmp 入口</code></p>
+<h4 id="8-防杀精灵二号防杀代码"><a href="#8-防杀精灵二号防杀代码" class="headerlink" title="8.防杀精灵二号防杀代码"></a>8.防杀精灵二号防杀代码</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>push -1</code></p>
+<p><code>push 0</code></p>
+<p><code>push 0</code></p>
+<p><code>mov eax,dword ptr fs:[0]</code></p>
+<p><code>push eax</code></p>
+<p><code>mov dword ptr fs:[0],esp</code></p>
+<p><code>sub esp,68</code></p>
+<p><code>push ebx</code></p>
+<p><code>push esi</code></p>
+<p><code>push edi</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>add esp,68</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov dword ptr fs:[0],eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov ebp,eax</code></p>
+<p><code>jmp 入口</code></p>
+<h4 id="9-防杀精灵终极防杀代码"><a href="#9-防杀精灵终极防杀代码" class="headerlink" title="9.防杀精灵终极防杀代码"></a>9.防杀精灵终极防杀代码</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>add esp,-0C</code></p>
+<p><code>add esp,0C</code></p>
+<p><code>push eax</code></p>
+<p><code>jmp入口</code></p>
+<h4 id="10-木马彩衣-金色鱼锦衣-花代码"><a href="#10-木马彩衣-金色鱼锦衣-花代码" class="headerlink" title="10.木马彩衣(金色鱼锦衣)花代码"></a>10.木马彩衣(金色鱼锦衣)花代码</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>add esp,-0C</code></p>
+<p><code>add esp,0C</code></p>
+<p><code>mov eax,原入口</code></p>
+<p><code>push eax</code></p>
+<p><code>retn</code></p>
+<h4 id="11-木马彩衣-虾米披风-花代码"><a href="#11-木马彩衣-虾米披风-花代码" class="headerlink" title="11.木马彩衣(虾米披风)花代码"></a>11.木马彩衣(虾米披风)花代码</h4><p><code>push ebp</code></p>
+<p><code>nop</code></p>
+<p><code>nop</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>inc ecx</code></p>
+<p><code>nop</code></p>
+<p><code>push edx</code></p>
+<p><code>nop</code></p>
+<p><code>nop</code></p>
+<p><code>pop edx</code></p>
+<p><code>nop</code></p>
+<p><code>pop ebp</code></p>
+<p><code>inc ecx</code></p>
+<p><code>loopd //跳转到下面那段代码地址去！</code></p>
+<hr>
+<p><code>nop //&quot;胡乱&quot;跳转的开始...</code></p>
+<p><code>jmp 下一个jmp的地址 //在附近随意跳</code></p>
+<p><code>jmp ... //...</code></p>
+<p><code>jmp 原入口的地址 //跳到原始oep</code></p>
+<h4 id="12-VC-5-0代码-木马彩衣无限复活袍"><a href="#12-VC-5-0代码-木马彩衣无限复活袍" class="headerlink" title="12.VC++5.0代码(木马彩衣无限复活袍):"></a>12.VC++5.0代码(木马彩衣无限复活袍):</h4><p><code>PUSH EBP</code></p>
+<p><code>MOV EBP,ESP</code></p>
+<p><code>PUSH -1</code></p>
+<p><code>push 415448 -\___</code></p>
+<p><code>PUSH 4021A8 -// 在这段代码中类似这样的操作数可以乱填</code></p>
+<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
+<p><code>PUSH EAX</code></p>
+<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
+<p><code>ADD ESP,-6C</code></p>
+<p><code>PUSH EBX</code></p>
+<p><code>PUSH ESI</code></p>
+<p><code>PUSH EDI</code></p>
+<p><code>ADD BYTE PTR DS:[EAX],AL //这条指令可以不要!</code></p>
+<p><code>jo 00401000 //原入口</code></p>
+<p><code>jno 00401000 //原入口</code></p>
+<p><code>db 0e8h //花代码</code></p>
+
+            </div>
+
+            <!-- Post Comments -->
+            
+    <!-- 使用 changyan -->
+<div id="changyan-comment">
+    <!--PC和WAP自适应版-->
+<div id="SOHUCS" sid="2020/01/14/花指令学习/"  ></div>
+<script type="text/javascript">
+(function(){
+var appid = '';
+var conf = '';
+var width = window.innerWidth || document.documentElement.clientWidth;
+if (width < 960) {
+window.document.write('<script id="changyan_mobile_js" charset="utf-8" type="text/javascript" src="https://changyan.sohu.com/upload/mobile/wap-js/changyan_mobile.js?client_id=' + appid + '&conf=' + conf + '"><\/script>'); } else { var loadJs=function(d,a){var c=document.getElementsByTagName("head")[0]||document.head||document.documentElement;var b=document.createElement("script");b.setAttribute("type","text/javascript");b.setAttribute("charset","UTF-8");b.setAttribute("src",d);if(typeof a==="function"){if(window.attachEvent){b.onreadystatechange=function(){var e=b.readyState;if(e==="loaded"||e==="complete"){b.onreadystatechange=null;a()}}}else{b.onload=a}}c.appendChild(b)};loadJs("https://changyan.sohu.com/upload/changyan.js",function(){window.changyan.api.config({appid:appid,conf:conf})}); } })(); </script>
+
+</div>
+<style>
+    #changyan-comment{
+        background-color: #eee;
+        padding: 2pc;
+    }
+</style>
+
+
+        </div>
+        <!-- Copyright 版权 start -->
+                <div id="copyright">
+            <ul>
+                <li>&copy;Powered By <a href="https://hexo.io/zh-cn/" target="_blank" rel="noopener" style="border-bottom: none;">hexo</a></li>
+                <li>Design: <a href="http://miccall.tech " target="_blank" rel="noopener" style="border-bottom: none;">miccall</a></li>
+            </ul>
+            
+                <span id="busuanzi_container_site_pv">本站总访问量<span id="busuanzi_value_site_pv"></span>次</span>
+			
+        </div>
+    </div>
+</body>
+
+
+
+ 	
+</html>
