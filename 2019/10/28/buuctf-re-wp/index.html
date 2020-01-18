@@ -149,6 +149,42 @@
 <blockquote>
 <p>PDB（Program Database File，程序数据库文件）文件物理结构在我们目前使用的掌上电脑中，Palm操作系统由于其功能强大、应用软件多等特点，占有很大的比例。PDB文件是Palm OS操作系统上数据文件类型。一般我们在使用Palm系统的电子书时都会遇到这种文件，一般用于电子书或手机电子书 pdb是Palm DataBase的缩写，Palm OS所用文件的扩展名为“.pdb”。还表示碳氧同位素标准样品以及可编程延迟模块，是DSP中的一种模块，可以用来计数和延时。<br>可以使用PalmReader打开。如果想把PDB文件转换成TXT文件查看，可以使用WavePDB转。<br><a href="https://baike.baidu.com/item/pdb/5357352" target="_blank" rel="noopener" title="具体内容">https://baike.baidu.com/item/pdb/5357352</a></p>
 </blockquote>
+<h2 id="GXYCTF2019-simple-CPP"><a href="#GXYCTF2019-simple-CPP" class="headerlink" title="[GXYCTF2019]simple CPP"></a>[GXYCTF2019]simple CPP</h2><p>先查看文件类型</p>
+<p><img src="https://s2.ax1x.com/2020/01/18/1pnoBd.png" alt></p>
+<p>用PEid看看是否有什么加密算法</p>
+<p><img src="https://s2.ax1x.com/2020/01/18/1pnInH.png" alt></p>
+<p>看来是没有</p>
+<p>直接拖进ida64查看内容吧</p>
+<p>有很多的函数，并且没有看到main函数，那就只能从字符串找找有什么突破口</p>
+<p><img src="https://s2.ax1x.com/2020/01/18/1pnHAI.png" alt></p>
+<p>看到congratulations了，看来这部分可能与flag有关系了，进去看看。</p>
+<p><img src="https://s2.ax1x.com/2020/01/18/1pnTHA.png" alt></p>
+<p>看到这个函数后，光读后面的部分就可以知道判断条件是什么，如下</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br></pre></td><td class="code"><pre><span class="line">// v20 = 1176889593874</span><br><span class="line">// v20 = v15[2]&amp;~v15[0]</span><br><span class="line">// v24 = 4483974544037412639</span><br><span class="line">// v24=(v15[2]&amp;~v15[0])|(v15[1]&amp;v15[0])|(v15[2]&amp;~v15[1])|(v15[0]&amp;~v15[1])</span><br><span class="line">// v27=577031497978884115</span><br><span class="line">// v27=((v15[2]&amp;~v15[1])&amp;v15[0])|(v15[2]&amp;((v15[0]&amp;v15[1])|(v15[1]&amp;~v15[0])|~(v15[1]|v15[0])))</span><br><span class="line">// (v24 ^ v15[3]) == 4483974543195470111</span><br><span class="line">// v15[2]&amp;~v15[0]|v15[0]&amp;v15[1]|v15[1]&amp;v15[2] = ~v15[0]&amp;v15[2]|864693332579200012</span><br></pre></td></tr></table></figure>
+
+<p>自己算的话不太可能，这时候可以借助z3求解器来解决计算问题代码如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br></pre></td><td class="code"><pre><span class="line">from z3 import *</span><br><span class="line">a,b,c,d=BitVecs(&apos;a b c d&apos;,64)</span><br><span class="line">s=Solver()</span><br><span class="line">s.add(~a&amp;c==1176889593874)</span><br><span class="line">s.add((c&amp;~a)|(b&amp;a)|(c&amp;~b)|(a&amp;~b)==4483974544037412639)</span><br><span class="line">s.add(((c&amp;~b)&amp;a)|(c&amp;((a&amp;b)|(b&amp;~a)|~(b|a)))==577031497978884115)</span><br><span class="line">s.add(((c&amp;~a)|(b&amp;a)|(c&amp;~b)|(a&amp;~b))^d==4483974543195470111)</span><br><span class="line">#print s.model()</span><br><span class="line">print s.check()</span><br><span class="line">print s.model()</span><br></pre></td></tr></table></figure>
+
+<p>算出来的答案如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br></pre></td><td class="code"><pre><span class="line">sat</span><br><span class="line">[w = 842073600,</span><br><span class="line"> y = 4483973367147818765,</span><br><span class="line"> x = 4483973367147818765,</span><br><span class="line"> z = 577031497978884115]</span><br></pre></td></tr></table></figure>
+
+<p>感觉Y有点问题，不过先不管了。</p>
+<p>把这几个数字转成十六进制再拼起来，后面会用到。</p>
+<p>Y的部分直接都改成0x0</p>
+<p><img src="https://s2.ax1x.com/2020/01/18/1pnX38.png" alt></p>
+<p>上图的最下面的循环是很重要的一部分，是判断用来你输入是否是答案，这个v3就是刚才的v15，v7是上面的Dst，但是你没办法判断Dst的值，这时候看交叉引用来判断是哪个函数为它赋值的。如下图：</p>
+<p><img src="https://s2.ax1x.com/2020/01/18/1pnvjg.png" alt></p>
+<p>进去查看该函数</p>
+<p><img src="https://s2.ax1x.com/2020/01/18/1pnzuQ.png" alt></p>
+<p>读几个关键部分其实就能够知道Dst被赋值为”i_will_check_is_debug_or_not”</p>
+<p>知道这些就够了，把我之前说的那个循环写个脚本就可以跑出来了。</p>
+<p>脚本如下：</p>
+<figure class="highlight plain"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">a=&quot;i_will_check_is_debug_or_not&quot;</span><br><span class="line">b = [0x3e,0x3a,0x46,0x05,0x33,0x28,0x6f,0x0d,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x0,0x08,0x2,0x07,0x17,0x15,0x3e,0x30,0x13,0x32,0x31,0x06,0x00,0x00]</span><br><span class="line">c=&apos;&apos;</span><br><span class="line">for i in range(0,27):</span><br><span class="line">        c += chr(ord(a[i%27])^b[i])</span><br><span class="line"></span><br><span class="line">print c</span><br></pre></td></tr></table></figure>
+
+<p>y刚才说有问题，后来看官方wp应该是给hint补充了，这样子flag就出来了</p>
+<blockquote>
+<p>flag{We1l_D0ne!P0or_algebra_am_i}</p>
+</blockquote>
 
             </div>
 
