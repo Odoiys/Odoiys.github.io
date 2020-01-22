@@ -185,6 +185,31 @@
 <blockquote>
 <p>flag{We1l_D0ne!P0or_algebra_am_i}</p>
 </blockquote>
+<h2 id="findkey"><a href="#findkey" class="headerlink" title="findkey"></a>findkey</h2><p>放入detect it 检查发现是32位程序，而且是个PDB文件。</p>
+<blockquote>
+<p>PDB（Program Database File，程序数据库文件）文件物理结构在我们目前使用的掌上电脑中，Palm操作系统由于其功能强大、应用软件多等特点，占有很大的比例。PDB文件是Palm OS操作系统上数据<a href="https://baike.baidu.com/item/文件类型" target="_blank" rel="noopener">文件类型</a>。一般我们在使用Palm系统的电子书时都会遇到这种文件，一般用于电子书或手机电子书 pdb是Palm DataBase的缩写，Palm OS所用文件的扩展名为“.pdb”。</p>
+</blockquote>
+<p>但这里并不是重点。</p>
+<p>再把它放到PEid中看一下有没有什么加密函数，</p>
+<p><img src="https://s2.ax1x.com/2020/01/22/1AAby8.png" alt></p>
+<p>点开细看可以看到是md5加密，md5的题目有需要爆破的可能性，再放到ida里看。</p>
+<p>进入ida可以看到函数窗口里有winmain，进入看函数伪代码，应该是程序主界面的参数调整等，这部分不是很重要，接着往下看，看完所有函数的伪代码，只发现有一部分像加密的部分，如下图：</p>
+<p><img src="https://s2.ax1x.com/2020/01/22/1AVeHg.png" alt></p>
+<p>尝试跳转外部引用发现会跳转到一块汇编语言，左边是红色的部分可以猜测可能是花指令扰乱了正常汇编，先把左边的红色部分的地址用P键创建函数，然后发现有三个地方无法生成伪代码，先不管那些那些部分，先把生成的正常的部分看一下，有没有重要的部分。在寻找的过程中找到这个函数，</p>
+<p><img src="https://s2.ax1x.com/2020/01/22/1AZ9qU.png" alt></p>
+<p>v14和v18是重要的变量，进入sub_401005这个函数，</p>
+<p><img src="https://s2.ax1x.com/2020/01/22/1AVeHg.png" alt></p>
+<p>函数的算法加密过程并不难理解，两个参数都是已知的，就是v14和v18，可以写出脚本看一下，</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br></pre></td><td class="code"><pre><span class="line">key1=[]</span><br><span class="line">key=<span class="string">''</span></span><br><span class="line">key2=<span class="string">'0kk`d1a`55k222k2a776jbfgd`06cjjb'</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(key2)):</span><br><span class="line">    key1.append(chr(ord(key2[i])^<span class="number">83</span>))</span><br><span class="line">    key+=chr(ord(key2[i])^<span class="number">83</span>)</span><br><span class="line">print(key)</span><br></pre></td></tr></table></figure>
+
+<p>结果是 c8837b23ff8aaa8a2dde915473ce0991（也就是v18）</p>
+<p>之后会经过一个strcmpi的函数进行比较</p>
+<p>相等的话说明string1也是这个值，string1经过了一次md5的加密，这时候打开百度，查找md5解密可以破解出来string1的值应该为‘123321’</p>
+<p>然后后面还有一个sub_401005，这次重点是v22和v13，v22是刚开始的string1也就是’123321’，v13就是那个byte_423030，然后根据这些可以写出脚本。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br></pre></td><td class="code"><pre><span class="line">key1=<span class="string">'123321'</span></span><br><span class="line">key2=[<span class="number">87</span>,<span class="number">94</span>,<span class="number">82</span>,<span class="number">84</span>,<span class="number">73</span>,<span class="number">95</span>,<span class="number">1</span>,<span class="number">109</span>,<span class="number">105</span>,<span class="number">70</span>,<span class="number">2</span>,<span class="number">110</span>,<span class="number">95</span>,<span class="number">2</span>,<span class="number">108</span>,<span class="number">87</span>,<span class="number">91</span>,<span class="number">84</span>,<span class="number">76</span>]</span><br><span class="line">key=<span class="string">''</span></span><br><span class="line"><span class="keyword">for</span> i <span class="keyword">in</span> range(len(key2)):</span><br><span class="line">    key += chr(key2[i]^ord(key1[i%len(key1)]))</span><br><span class="line">print(key)</span><br></pre></td></tr></table></figure>
+
+<p>结果是flag{n0_Zu0_n0_die}</p>
+<p>这就是本次的答案</p>
 
             </div>
 
