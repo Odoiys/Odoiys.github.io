@@ -210,6 +210,23 @@
 
 <p>结果是flag{n0_Zu0_n0_die}</p>
 <p>这就是本次的答案</p>
+<h2 id="SUCTF2019-SignIn"><a href="#SUCTF2019-SignIn" class="headerlink" title="[SUCTF2019]SignIn"></a>[SUCTF2019]SignIn</h2><p>本道题是一道RSA的题目有关RSA的算法可以上网查阅。</p>
+<p>放到detectit查看是64位linux的文件，放到peid中查看是否有算法，看到有大数后可以猜测是RSA的算法。</p>
+<p>进入ida查看程序</p>
+<p><img src="https://s2.ax1x.com/2020/01/22/1EPzXF.png" alt></p>
+<p>那个sub_96A不是重要的步骤，很容易懂，所以就不做分析了。</p>
+<p>重要的是gmpz_init_set_str和gmpz_pown这两个函数，前者是用来初始化变量，后一个是将M的E次方模N放入M中。这两个函数是开源的数据库中的函数</p>
+<blockquote>
+<p>GMP，是GNU MP Bignum库的缩写，意思是开源数学运算库。GMP是GNU MP Bignum库，是一个开源的数学运算库，它可以用于任意精度的数学运算，包括有符号整数，有理数和浮点数。</p>
+</blockquote>
+<p>看来可以用来算大数运算。</p>
+<p>前面分析了两个重要的函数的作用，再加上65537这些数字就已经可以确定是RSA了，直接按照破解rsa的流程就可以了。</p>
+<p>首先要把大数N分解了，用yafu就可以了如下图：</p>
+<p><img src="https://s2.ax1x.com/2020/01/22/1EFxZ4.png" alt></p>
+<p>这样P和Q就知道了，还需要求欧拉函数，私钥，其实已经显而易见了，写个脚本就能出来了。</p>
+<figure class="highlight python"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br></pre></td><td class="code"><pre><span class="line"><span class="keyword">import</span> gmpy2</span><br><span class="line"></span><br><span class="line">p = <span class="number">366669102002966856876605669837014229419</span></span><br><span class="line">q = <span class="number">282164587459512124844245113950593348271</span></span><br><span class="line">N = <span class="number">103461035900816914121390101299049044413950405173712170434161686539878160984549</span></span><br><span class="line">c = <span class="number">0xad939ff59f6e70bcbfad406f2494993757eee98b91bc244184a377520d06fc35</span></span><br><span class="line">e = <span class="number">65537</span></span><br><span class="line"></span><br><span class="line">d = gmpy2.invert(e,(p<span class="number">-1</span>)*(q<span class="number">-1</span>))</span><br><span class="line">m = gmpy2.powmod(c,d,p*q)</span><br><span class="line"></span><br><span class="line"><span class="keyword">print</span> hex(m)[<span class="number">2</span>:].decode(<span class="string">'hex'</span>)</span><br></pre></td></tr></table></figure>
+
+<p>（说一下gmpy2的安装好麻烦233333~。）</p>
 
             </div>
 
