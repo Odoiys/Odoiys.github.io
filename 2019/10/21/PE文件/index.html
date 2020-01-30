@@ -68,7 +68,7 @@
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(/img/cover.jpg);">
+                url(https://i.gzn.jp/img/2013/12/27/fate-stay-night/17.png);">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
@@ -85,7 +85,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    8.3k
+                    8.4k
                 </span>
                 
                 
@@ -129,12 +129,8 @@
 </blockquote>
 <h2 id="1）MS-DOS头部"><a href="#1）MS-DOS头部" class="headerlink" title="1）MS-DOS头部"></a>1）MS-DOS头部</h2><p>每个PE文件是以一个DOS程序开始的，有了它，一旦程序在DOS下执行，DOS就能辨别出这是个有效的执行体，然后运行紧随MZ header（后面会介绍）之后的DOS stub(DOS块)。DOS stub实际上是一个有效的EXE，在不支持PE文件格式的操作系统中，它将简单显示一个错误提示，类似于字符串“This Program cannot be run in MS-DOS”。用户通常对DOS stub 不感兴趣，因为大多数情况下他们由汇编器自动生成。平常把DOS stub和DOS MZ头部合称为DOS文件头。</p>
 <p>PE文件的第一个字节起始于一个传统的MS-DOS头部，被称作IMAGE_DOS_HEADER。其IMAGE_DOS_HEADER的结构如下（左边的数字是到文件头的偏移量）：</p>
-<pre><code>        IMAGE_DOS_HEADER STRUCT 
-
-
-{ 
-
-+0h WORD e_magic   // Magic DOS signature MZ(4Dh 5Ah) DOS可执行文件标记 
+<pre><code>        IMAGE_DOS_HEADER STRUCT </code></pre><p>​<br>    { </p>
+<pre><code>+0h WORD e_magic   // Magic DOS signature MZ(4Dh 5Ah) DOS可执行文件标记 
 
 +2h   WORD  e_cblp  // Bytes on last page of file
 
@@ -176,19 +172,11 @@
 <h2 id="2）PE文件头文件"><a href="#2）PE文件头文件" class="headerlink" title="2）PE文件头文件"></a>2）PE文件头文件</h2><p>紧跟着DOS头文件下面的就是peheader。PEheader是PE相关结构NT映像头（IMAGE_NT_HEADER）的简称，其中包含许多PE装载器用到的重要字段。执行体在支持PE文件结构的操作系统执行时，PE装载器将IMAGE_DOS_HEADER结构中的e_fanew字段找到PEheader的起始偏移量，加上基址得到PE文件头的指针：</p>
 <p>PNTHeader=IMAGBase+dosHeader-&gt;e_lfanewr(其实就是去字段e_lfanew的值)</p>
 <p>下面来讨论IMAGE_NT_HEADER的结构，它是由三个字段组成（左边的数字是PE文件头的偏移量）：<br>    STRUCT </p>
-<pre><code>{ 
+<pre><code>{ </code></pre><p>​<br>​<br>    +0h Signature  DWORD  //PE文件标志</p>
+<pre><code>+4h FileHeader IMAGE_FILE_HEADER  //文件头初始偏移地址
 
-
-
-+0h Signature  DWORD  //PE文件标志
-
-+4h FileHeader IMAGE_FILE_HEADER  //文件头初始偏移地址
-
-+18 optionalHeader IMAGE_OPTION_HEADER //另一个重要头部初始偏移地址
-
-
-
-} IMAGE_NT_HEADER ENDS</code></pre><p>Signature字段<br>这个字段是PE文件的标志字段，通常设置成00004550h，其ASCII码为PE00，这个字段是PE文件头的开始，前面的DOS_HEADER结构中的字段e_lfanew字段就是指向这里。<br><img src="https://i.imgur.com/K7MP7HM.png" alt><br>IMAGE_FILE_HEADER字段</p>
++18 optionalHeader IMAGE_OPTION_HEADER //另一个重要头部初始偏移地址</code></pre><p>​<br>​<br>    } IMAGE_NT_HEADER ENDS</p>
+<p>Signature字段<br>这个字段是PE文件的标志字段，通常设置成00004550h，其ASCII码为PE00，这个字段是PE文件头的开始，前面的DOS_HEADER结构中的字段e_lfanew字段就是指向这里。<br><img src="https://i.imgur.com/K7MP7HM.png" alt><br>IMAGE_FILE_HEADER字段</p>
 <p>这个字段也是包含几个字段结构，它包含了PE文件的一些基本信息，最重要的是其中一个域指出了IMAGE_OPTIONAL_HEADER的大小。<br>    typedef struct _IMAGE_FILE_HEADER {</p>
 <pre><code>WORD Machine;//运行平台
 
