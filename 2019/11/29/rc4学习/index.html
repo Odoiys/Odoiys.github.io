@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
-    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="keywords" content="odoiys,"> 
     <meta name="description" content="万物皆存于此,RC4是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一。流密码结构：
 大致流程下面这个图,"> 
     <meta name="author" content="archli"> 
@@ -96,11 +96,11 @@
                 </span>
                 
                 
-                
-                <span id="busuanzi_container_page_pv">
+                <span id="/2019/11/29/rc4学习/" class="leancloud_visitors" data-flag-title="rc4学习">
                     <b class="iconfont icon-read"></b> <i>Read count</i>
-                    <span id="busuanzi_value_page_pv">0</span>
+                    <span class="leancloud-visitors-count">1000000</span>
                 </span>
+                
                 
             </p>
             
@@ -204,7 +204,7 @@ printf(&quot;完成对S[i]的初始化，如下：\n\n&quot;);
 for(i=0;i&lt;256;i++)
 {
     printf(&quot;%02X&quot;,s[i]);
-    if(i&amp;&amp;(i+1)%16==0)putchar(&apos;\n&apos;);
+    if(i&amp;&amp;(i+1)%16==0)putchar(&#39;\n&#39;);
 }
 printf(&quot;\n\n&quot;);
 for(i=0;i&lt;256;i++)//用s2[i]暂时保留经过初始化的s[i]，很重要的！！！
@@ -274,7 +274,7 @@ int main()
     for (i = 0; i&lt;256; i++)
     {
         printf(&quot;%02X&quot;, s[i]);
-        if (i &amp;&amp; (i + 1) % 16 == 0)putchar(&apos;\n&apos;);
+        if (i &amp;&amp; (i + 1) % 16 == 0)putchar(&#39;\n&#39;);
     }
     printf(&quot;\n\n&quot;);
     for (i = 0; i&lt;256; i++)//用s2[i]暂时保留经过初始化的s[i]，很重要的！！！
@@ -300,39 +300,28 @@ int main()
             <ul id="audio-list" style="display:none">
                 
                 
-                <li title='0' data-url='/statics/chengdu.mp3'></li>
+                <li title='0' data-url='/statics/one.mp3'></li>
                 
                     
             </ul>
             
             
             
-    <div id='gitalk-container' class="comment link"
-        data-ae='true'
-        data-ci='ec894e2b66f752e8b7fb'
-        data-cs='3ccc2e92bb350688fe2c2dc2930189b62622bfb1'
-        data-r='blog-comments'
-        data-o='TriDiamond'
-        data-a='TriDiamond'
-        data-d=''
-    >Comments</div>
-
-
-            
+            <div id="vcomments"></div>
             
         </div>
         <div class="sidebar">
             <div class="box animated fadeInRight">
                 <div class="subbox">
-                    <img src="https://res.cloudinary.com/tridiamond/image/upload/v1573019751/TriDiamond_logo_ui_xeublz.jpg" height=300 width=300></img>
+                    <img src="https://s2.ax1x.com/2020/01/30/11ALjS.jpg" height=300 width=300></img>
                     <p>archli</p>
-                    <span>Think like an artist, develop like an artisan</span>
+                    <span>THINKING ABOUT ALL</span>
                     <dl>
-                        <dd><a href="https://github.com/TriDiamond" target="_blank"><span
+                        <dd><a href="https://github.com/Odoiys" target="_blank"><span
                                     class=" iconfont icon-github"></span></a></dd>
-                        <dd><a href="https://twitter.com/TriDiamond6" target="_blank"><span
+                        <dd><a href="" target="_blank"><span
                                     class=" iconfont icon-twitter"></span></a></dd>
-                        <dd><a href="https://stackoverflow.com/users/7602324/tridiamond?tab=profile" target="_blank"><span
+                        <dd><a href="" target="_blank"><span
                                     class=" iconfont icon-stack-overflow"></span></a></dd>
                     </dl>
                 </div>
@@ -438,9 +427,6 @@ int main()
 
 
 
-    <link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
-    <script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/js/plugin.js"></script>
 <script src="/js/obsidian.js"></script>
@@ -535,16 +521,6 @@ int main()
 
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="//www.googletagmanager.com/gtag/js?id=UA-149874671-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-149874671-1');
-    </script>
-
 
 
 
@@ -554,7 +530,7 @@ int main()
         var typedTextEl = $('.typed-text');
         if (typedTextEl && typedTextEl.length > 0) {
             var typed = new Typed('.typed-text', {
-                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                strings: ["THINKING ABOUT ALL", "24h do not stop"],
                 typeSpeed: 90,
                 loop: true,
                 loopCount: Infinity,
@@ -570,6 +546,38 @@ int main()
     }
 </script>
 
+
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+
+        var valine = new Valine();
+
+        function initValine(path) {
+            if (!path) path = window.location.pathname;
+            let language = 'ZH-Hans';
+            if (!language) {
+                language = 'en';
+            } else {
+                language = language.toLowerCase();
+            }
+            valine.init({
+                el: '#vcomments',
+                appId: 'GvcgBP8zocI92nH63lGso7oJ-gzGzoHsz',
+                appKey: 'VvgkuL5LBM0mvHQAGMgSLexP',
+                notify: 'false',
+                verify: 'false',
+                avatar: 'mp',
+                placeholder: 'Leave your throughs behind~',
+                visitor: 'true',
+                path: path,
+                lang: language
+            });
+        }
+
+        $(document).ready(function () {
+            initValine();
+        });
+    </script>
 
 
 

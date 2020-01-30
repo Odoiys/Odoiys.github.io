@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
-    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="keywords" content="odoiys,"> 
     <meta name="description" content="万物皆存于此,"> 
     <meta name="author" content="archli"> 
     <link rel="alternative" href="atom.xml" title="Odoiys学习历程" type="application/atom+xml"> 
@@ -103,6 +103,8 @@
             </li>
             
             
+            <li class="animated fadeInDown search-bar iconfont icon-search"></li>
+            
         </ul>
         <div class="iconfont icon-menu switchmenu gradient-text animated fadeInDown"></div>
     </div>
@@ -133,15 +135,20 @@
             
             <span>
                 <b class="iconfont icon-text2"></b> <i>Words count</i>
-                8.5k
+                1.7k
             </span>
             
             
             <span>
                 <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                8 mins.
+                2 mins.
             </span>
             
+            
+            <span id="/2020/01/29/xxtea学习/" class="leancloud_visitors" data-flag-title="">
+                <b class="iconfont icon-read"></b> <i>Read count</i>
+                <span class="leancloud-visitors-count">1000000</span>
+            </span>
             
         </p>
         
@@ -152,7 +159,9 @@
 <p>原理图如下：</p>
 <p></p>
 <p>加密解密代码如下：</p>
-<figure class="highlight c"><table><tr><td class="gutter"><pre><span class="line">1</span><br><span class="line">2</span><br><span class="line">3</span><br><span class="line">4</span><br><span class="line">5</span><br><span class="line">6</span><br><span class="line">7</span><br><span class="line">8</span><br><span class="line">9</span><br><span class="line">10</span><br><span class="line">11</span><br><span class="line">12</span><br><span class="line">13</span><br><span class="line">14</span><br><span class="line">15</span><br><span class="line">16</span><br><span class="line">17</span><br><span class="line">18</span><br><span class="line">19</span><br><span class="line">20</span><br><span class="line">21</span><br><span class="line">22</span><br><span class="line">23</span><br><span class="line">24</span><br><span class="line">25</span><br><span class="line">26</span><br><span class="line">27</span><br><span class="line">28</span><br><span class="line">29</span><br><span class="line">30</span><br><span class="line">31...</span></pre></td></tr></table></figure>
+<pre><code class="c">#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#define...</code></pre>
             
             <span class="read-more"><a href="/2020/01/29/xxtea%E5%AD%A6%E4%B9%A0/" title="Read article" class="posttitle">Read article</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
@@ -205,6 +214,11 @@
                         2 mins.
                     </span>
                 
+                
+                    <span id="/2020/01/16/RSA密码学习/" class="leancloud_visitors" data-flag-title="">
+                        <b class="iconfont icon-read"></b> <i>Read count</i>
+                        <span class="leancloud-visitors-count">1000000</span>
+                    </span>
                 
             </p>
             
@@ -299,17 +313,22 @@
                     </span>
                 
                 
+                    <span id="/2019/11/29/rc4学习/" class="leancloud_visitors" data-flag-title="">
+                        <b class="iconfont icon-read"></b> <i>Read count</i>
+                        <span class="leancloud-visitors-count">1000000</span>
+                    </span>
+                
             </p>
             
         
         <div class="md-content animated fadeIn">
             
                 <p>RC4是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一。<br>流密码结构：<br></p>
-<p>下面这个图是rc4的流程图：<br><br>1、先初始化状态向量S（256个字节，用来作为密钥流生成的种子1）</p>
+<h2 id="大致流程"><a href="#大致流程" class="headerlink" title="大致流程"></a>大致流程</h2><p>下面这个图是rc4的流程图：<br><br>1、先初始化状态向量S（256个字节，用来作为密钥流生成的种子1）</p>
 <p>按照升序，给每个字节赋值0,1,2,3,4,5,6…..,254,255</p>
 <p>2、初始密钥（由用户输入），长度任意</p>
 <p>如果输入长度小于256个字节，则进行轮转，直到填满</p>
-<p>例如输入密钥的是1,2,3,4,5   ,  那么填入的是1,2,...</p>
+<p>例如输入密钥的是1,2,3,4,5   ,  那么填入的是...</p>
             
             <span class="read-more"><a href="/2019/11/29/rc4%E5%AD%A6%E4%B9%A0/" title="Read article" class="posttitle">Read article</a> <b class="iconfont icon-arrow-right- gradient-text"></b></span>
         </div>
@@ -400,9 +419,6 @@
 </script>
 
 
-
-    <link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
-    <script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
 
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/js/plugin.js"></script>
@@ -498,16 +514,6 @@
 
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="//www.googletagmanager.com/gtag/js?id=UA-149874671-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-149874671-1');
-    </script>
-
 
 
 
@@ -517,7 +523,7 @@
         var typedTextEl = $('.typed-text');
         if (typedTextEl && typedTextEl.length > 0) {
             var typed = new Typed('.typed-text', {
-                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                strings: ["THINKING ABOUT ALL", "24h do not stop"],
                 typeSpeed: 90,
                 loop: true,
                 loopCount: Infinity,
@@ -533,6 +539,38 @@
     }
 </script>
 
+
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+
+        var valine = new Valine();
+
+        function initValine(path) {
+            if (!path) path = window.location.pathname;
+            let language = 'ZH-Hans';
+            if (!language) {
+                language = 'en';
+            } else {
+                language = language.toLowerCase();
+            }
+            valine.init({
+                el: '#vcomments',
+                appId: 'GvcgBP8zocI92nH63lGso7oJ-gzGzoHsz',
+                appKey: 'VvgkuL5LBM0mvHQAGMgSLexP',
+                notify: 'false',
+                verify: 'false',
+                avatar: 'mp',
+                placeholder: 'Leave your throughs behind~',
+                visitor: 'true',
+                path: path,
+                lang: language
+            });
+        }
+
+        $(document).ready(function () {
+            initValine();
+        });
+    </script>
 
 
 

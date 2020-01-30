@@ -9,7 +9,7 @@
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
-    <meta name="keywords" content="TriDiamond Obsidian,"> 
+    <meta name="keywords" content="odoiys,"> 
     <meta name="description" content="万物皆存于此,"> 
     <meta name="author" content="archli"> 
     <link rel="alternative" href="atom.xml" title="Odoiys学习历程" type="application/atom+xml"> 
@@ -103,6 +103,8 @@
             </li>
             
             
+            <li class="animated fadeInDown search-bar iconfont icon-search"></li>
+            
         </ul>
         <div class="iconfont icon-menu switchmenu gradient-text animated fadeInDown"></div>
     </div>
@@ -143,14 +145,19 @@
             </span>
             
             
+            <span id="/2019/10/26/Windows下的异常处理/" class="leancloud_visitors" data-flag-title="">
+                <b class="iconfont icon-read"></b> <i>Read count</i>
+                <span class="leancloud-visitors-count">1000000</span>
+            </span>
+            
         </p>
         
         
         <div class="md-content animated fadeIn">
             
             <p>本章介绍两中技术，一是SEH(结构化异常处理),二是VEH(向量化异常处理)</p>
-<p>中断：是由外部硬件设备或异步事件产生的。<br>异常：是由内部事件产生的，又可分为故障，陷阱和终止。</p>
-<p>除了CPU能够捕获一个事件并...</p>
+<h1 id="一，异常处理的基本概念"><a href="#一，异常处理的基本概念" class="headerlink" title="一，异常处理的基本概念"></a>一，异常处理的基本概念</h1><p>中断：是由外部硬件设备或异步事件产生的。<br>异常：是由内部事件产生的，又可分为故障，陷阱和终止。</p>
+<h2 id="1-异常列表"><a href="#1-异常列表" class="headerlink" title="1)异常列表"></a>1)异...</h2>
             
             <span class="read-more"><a href="/2019/10/26/Windows%E4%B8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/" title="Read article" class="posttitle">Read article</a>
                 <b class="iconfont icon-arrow-right- gradient-text"></b></span>
@@ -257,9 +264,6 @@
 
 
 
-    <link rel="stylesheet" href="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.css">
-    <script src="//cdn.bootcss.com/gitalk/1.5.0/gitalk.min.js"></script>
-
 <script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
 <script src="/js/plugin.js"></script>
 <script src="/js/obsidian.js"></script>
@@ -354,16 +358,6 @@
 
 
 
-    <!-- Global site tag (gtag.js) - Google Analytics -->
-    <script async src="//www.googletagmanager.com/gtag/js?id=UA-149874671-1"></script>
-    <script>
-        window.dataLayer = window.dataLayer || [];
-        function gtag(){dataLayer.push(arguments);}
-        gtag('js', new Date());
-
-        gtag('config', 'UA-149874671-1');
-    </script>
-
 
 
 
@@ -373,7 +367,7 @@
         var typedTextEl = $('.typed-text');
         if (typedTextEl && typedTextEl.length > 0) {
             var typed = new Typed('.typed-text', {
-                strings: ["Think like an artist, develop like an artisan", "艺术家思维去思考问题，工匠创造精神去开发"],
+                strings: ["THINKING ABOUT ALL", "24h do not stop"],
                 typeSpeed: 90,
                 loop: true,
                 loopCount: Infinity,
@@ -389,6 +383,38 @@
     }
 </script>
 
+
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+
+        var valine = new Valine();
+
+        function initValine(path) {
+            if (!path) path = window.location.pathname;
+            let language = 'ZH-Hans';
+            if (!language) {
+                language = 'en';
+            } else {
+                language = language.toLowerCase();
+            }
+            valine.init({
+                el: '#vcomments',
+                appId: 'GvcgBP8zocI92nH63lGso7oJ-gzGzoHsz',
+                appKey: 'VvgkuL5LBM0mvHQAGMgSLexP',
+                notify: 'false',
+                verify: 'false',
+                avatar: 'mp',
+                placeholder: 'Leave your throughs behind~',
+                visitor: 'true',
+                path: path,
+                lang: language
+            });
+        }
+
+        $(document).ready(function () {
+            initValine();
+        });
+    </script>
 
 
 
