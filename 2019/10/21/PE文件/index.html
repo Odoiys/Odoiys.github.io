@@ -1,0 +1,503 @@
+
+<!DOCTYPE html>
+<html lang="ZH-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>PE文件 - Odoiys</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="odoiys,"> 
+    <meta name="description" content="万物皆存于此,PE文件的全称是便携式可执行文件，意为可移植的替换的文件，常见的EXE，DLL，OCX，SYS，COM都是PE文件，PE文件是Microsoft Windows操作系统上的程序文件（可能是间接被执行,"> 
+    <meta name="author" content="archli"> 
+    <link rel="alternative" href="atom.xml" title="Odoiys" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+    <link rel="stylesheet" href="/css/obsidian.css">
+    <link rel="stylesheet" href="/css/ball-atom.min.css">
+</head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">Odoiys</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="http://yoursite.com">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">PE文件</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(https://i.gzn.jp/img/2013/12/27/fate-stay-night/17.png);">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/逆向工程"><b>「
+                    </b>逆向工程<b> 」</b></a>
+                
+                October 21, 2019
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2019/10/21/PE%E6%96%87%E4%BB%B6/" title="PE文件" class="">PE文件</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    8.4k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    8 mins.
+                </span>
+                
+                
+                <span id="/2019/10/21/PE文件/" class="leancloud_visitors" data-flag-title="PE文件">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span class="leancloud-visitors-count">1000000</span>
+                </span>
+                
+                
+            </p>
+            
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <p>PE文件的全称是便携式可执行文件，意为可移植的替换的文件，常见的EXE，DLL，OCX，SYS，COM都是PE文件，PE文件是Microsoft Windows操作系统上的程序文件（可能是间接被执行，如DLL）<br><img src="https://i.imgur.com/RfcvH1I.jpg" alt></p>
+<blockquote>
+<p>基地址定义：当PE文件通过Windows加载器被装入内存后，内存中的版本被称作模块（Module）。映射文件的起始地址被称作模块句柄（hMoudule），可以通过模块句柄访问其他的数据结构。这个初始内存弟子就是基地址。<br>内存中的模块代表着进程从这个可执行文件中所需要的代码，数据，资源，输入表，输出表以及其他有用的数据结构所使用的内存都放在一个连续的内存块中，编程人员只要知道装载程序文件映像到内存的基地址即可。在32位系统中可以直接调用GetModuleHandle以取得指向DLL的指针，通过指针访问DLL module的内容，例如：<br>HMODULE GetmoduleHandle（LPCTSRT lpModuleName）；<br>当调用该函数时，传递一个可执行文件或者DLL文件名字字符串。如果系统找到该文件，则返回该可执行文件的或者DLL文件映像加载到的基地址。也可以调用GetModuleHandle,传递NULL参数，则返回调用的可执行文件的基地址。<br>相对虚拟地址:在可执行文件中，有相当多的地方需要指定内存的地址。例如：引用全局变量时，需要指定它的地址。PE文件尽管有一个首选的载入地址（基地址）,但是他们可以载入到进程空间的任意地方，所以不能依赖与PE的载入点。由于这个原因，必须有一个方法来指定一个地址而不是依赖于PE载入点。<br>为了在PE文件中避免有确定的内存地址，出现了相对虚拟地址(Relative Virtual Addres,简称RVA)的概念。RVA只是内存中的一个简单的相对于PE文件装入地址的偏移地址，它是一个“相对”地址，或者称位“偏移量”地址。例如：假设一个EXE文件从地址40000h处载入，并且它的代码区块开始于4010000h，代码区的RVA将是：<br>目标地址401000h ——转入地址400000h则RVA=1000h。<br>将RVA地址转换成真实地址，只需简单的翻转这个过程：将实际装入地址加上RVA即可得到实际的内存地址。顺便一提，在PE用语里，实际的内存地址被称作虚拟地址(Vritual Address，简称VA)，另外也可以把虚拟地址想象为加上首选装入地址的RVA。不要忘了前面提到的装入地址等同于模块句柄，它们之间的关系如下：<br>虚拟地址(VA)=基地址（ImageBase）+相对虚拟地址(RVA)</p>
+</blockquote>
+<h2 id="1）MS-DOS头部"><a href="#1）MS-DOS头部" class="headerlink" title="1）MS-DOS头部"></a>1）MS-DOS头部</h2><p>每个PE文件是以一个DOS程序开始的，有了它，一旦程序在DOS下执行，DOS就能辨别出这是个有效的执行体，然后运行紧随MZ header（后面会介绍）之后的DOS stub(DOS块)。DOS stub实际上是一个有效的EXE，在不支持PE文件格式的操作系统中，它将简单显示一个错误提示，类似于字符串“This Program cannot be run in MS-DOS”。用户通常对DOS stub 不感兴趣，因为大多数情况下他们由汇编器自动生成。平常把DOS stub和DOS MZ头部合称为DOS文件头。</p>
+<p>PE文件的第一个字节起始于一个传统的MS-DOS头部，被称作IMAGE_DOS_HEADER。其IMAGE_DOS_HEADER的结构如下（左边的数字是到文件头的偏移量）：</p>
+<pre><code>        IMAGE_DOS_HEADER STRUCT </code></pre><p>​<br>    { </p>
+<pre><code>+0h WORD e_magic   // Magic DOS signature MZ(4Dh 5Ah) DOS可执行文件标记 
+
++2h   WORD  e_cblp  // Bytes on last page of file
+
++4h WORD  e_cp   // Pages in file 
+
++6h WORD  e_crlc   // Relocations 
+
++8h WORD  e_cparhdr   // Size of header in paragraphs 
+
++0ah WORD  e_minalloc  // Minimun extra paragraphs needs 
+
++0ch WORD  e_maxalloc  // Maximun extra paragraphs needs 
+
++0eh WORD  e_ss// intial(relative)SS value  DOS代码的初始化堆栈SS 
+
++10h WORD  e_sp// intial SP value DOS代码的初始化堆栈指针SP 
+
++12h WORD  e_csum// Checksum 
+
++14h WORD  e_ip//intial IP value DOS代码的初始化指令入口[指针IP] 
+
++16h WORD  e_cs// intial(relative)CS valueDOS代码的初始堆栈入口 
+
++18h WORD  e_lfarlc// File Address of relocation table 
+
++1ah WORD  e_ovno//Overlay number 
+
++1ch WORD  e_res[4]// Reserved words 
+
++24h WORD  e_oemid//OEM identifier(for e_oeminfo) 
+
++26h WORD  e_oeminfo   //OEM information;e_oemid specific  
+
++29h WORD  e_res2[10]   //Reserved words 
+
++3ch DWORD   e_lfanew // Offset to start of PE header 指向PE文件头 
+
+} IMAGE_DOS_HEADER ENDS</code></pre><p>这个结构中有两字段很重要，一个是e_magic,一个是e_lfanew。e_magic（一个字大小）字段需要被设置为5A4Dh这个也是PE程序载入的重要标志，这个值非常有意思，他们对应的字符分别位Z和M，是为了纪念MS-DOS的最初创建者Mark Zbikowski而专门设置的，由于在hex编辑器中显示是由低位到高位故显示为4D5Ah,刚好是创建者的名字缩写。另一个字段是e_lfanew。这个字段表示的是真正的PE文件头部相对偏移地址（RVA），它指出了真正PE头部文件偏移位置。它占用四个字节，位于文件开始偏移的3ch字节中。<br><img src="https://i.imgur.com/502a8sl.png" alt><br><img src="https://i.imgur.com/1gQk60T.png" alt></p>
+<h2 id="2）PE文件头文件"><a href="#2）PE文件头文件" class="headerlink" title="2）PE文件头文件"></a>2）PE文件头文件</h2><p>紧跟着DOS头文件下面的就是peheader。PEheader是PE相关结构NT映像头（IMAGE_NT_HEADER）的简称，其中包含许多PE装载器用到的重要字段。执行体在支持PE文件结构的操作系统执行时，PE装载器将IMAGE_DOS_HEADER结构中的e_fanew字段找到PEheader的起始偏移量，加上基址得到PE文件头的指针：</p>
+<p>PNTHeader=IMAGBase+dosHeader-&gt;e_lfanewr(其实就是去字段e_lfanew的值)</p>
+<p>下面来讨论IMAGE_NT_HEADER的结构，它是由三个字段组成（左边的数字是PE文件头的偏移量）：<br>    STRUCT </p>
+<pre><code>{ </code></pre><p>​<br>​<br>    +0h Signature  DWORD  //PE文件标志</p>
+<pre><code>+4h FileHeader IMAGE_FILE_HEADER  //文件头初始偏移地址
+
++18 optionalHeader IMAGE_OPTION_HEADER //另一个重要头部初始偏移地址</code></pre><p>​<br>​<br>    } IMAGE_NT_HEADER ENDS</p>
+<p>Signature字段<br>这个字段是PE文件的标志字段，通常设置成00004550h，其ASCII码为PE00，这个字段是PE文件头的开始，前面的DOS_HEADER结构中的字段e_lfanew字段就是指向这里。<br><img src="https://i.imgur.com/K7MP7HM.png" alt><br>IMAGE_FILE_HEADER字段</p>
+<p>这个字段也是包含几个字段结构，它包含了PE文件的一些基本信息，最重要的是其中一个域指出了IMAGE_OPTIONAL_HEADER的大小。<br>    typedef struct _IMAGE_FILE_HEADER {</p>
+<pre><code>WORD Machine;//运行平台
+
+WORD NumberOfSections;//文件的区块数目
+
+DWORD TimeDateStamp;//文件创建的用时间戳标识的日期
+
+DWORD PointerToSymbolTable;//指向符号表（用于调试）
+
+DWORD NumberOfSymbols;//符号表中符号的个数
+
+WORD SizeOfOptionalHeader;//IMAGE_OPTIONAL_HEADER32结构大小
+
+WORD Characteristics;//文件属性
+
+} IMAGE_FILE_HEADER, *PIMAGE_FILE_HEADER;</code></pre><p><img src="https://i.imgur.com/ao7iSVJ.png" alt></p>
+<p>上图标出七个字段的位置及各自的值。</p>
+<p>1）Machine字段，表示目标CPU 的类型。</p>
+<p>几个常见的及其标识如下：</p>
+<p>机器              标识     </p>
+<p>Intel I386          14ch</p>
+<p>MIPS R3000        162h</p>
+<p>Alpha AXP          184h</p>
+<p>Power PC           1F0h</p>
+<p>MIPS R4000         184h</p>
+<p>根据以上信息我们知道这个PE文件要运行在Intel I386机器上。</p>
+<p>2）NumberOfSection，标识区块的数目，关于区块后面会详细讲。</p>
+<p>3）TimeDateStamp</p>
+<p>这个字段没啥好说的，指的就是PE文件创建的事件，这个时间是指从1970年1月1日到创建该文件的所有的秒数。</p>
+<p>4）PointerToSymbolTable。这个字段用的比较少，略</p>
+<p>5）NumberOfSymbol。这个字段也用得很少，略</p>
+<p>6）SizeOfOptionalHeader：紧跟着IMAGE_FILE_HEADER后面的数据大小，这也是一个数据结构，它叫做IMAGE_OPTIONAL_HEADER,其大小依赖于是64位还是32位文件。32位文件值通常是00EOh，对于64位值通常为00F0h。</p>
+<p>7）Characteristics：文件属性，普通EXE文件这个字段值为010fh，DLL文件这个字段一般是0210h。</p>
+<h2 id="3）IMAGE-OPTIONAL-HEADER概述"><a href="#3）IMAGE-OPTIONAL-HEADER概述" class="headerlink" title="3）IMAGE_OPTIONAL_HEADER概述"></a>3）IMAGE_OPTIONAL_HEADER概述</h2><p>这个结构是IMAGE_FILE_HEADER结构的补充。这个结构异常复杂，但真正我们用得到的其实不多。看下面的代码：<br>    typedef struct _IMAGE_OPTIONAL_HEADER<br>    {<br>    //<br>    // Standard fields.<br>    //<br>    +18hWORDMagic; // 标志字, ROM 映像（0107h）,普通可执行文件（010Bh）<br>    +1AhBYTE  MajorLinkerVersion; // 链接程序的主版本号<br>    +1BhBYTE  MinorLinkerVersion; // 链接程序的次版本号<br>    +1ChDWORD   SizeOfCode; // 所有含代码的节的总大小<br>    +20hDWORD   SizeOfInitializedData;// 所有含已初始化数据的节的总大小<br>    +24hDWORD   SizeOfUninitializedData; // 所有含未初始化数据的节的大小<br>    +28hDWORD   AddressOfEntryPoint;// 程序执行入口RVA<br>    +2ChDWORD   BaseOfCode;  // 代码的区块的起始RVA<br>    +30hDWORD   BaseOfData;  // 数据的区块的起始RVA<br>    //<br>    // NT additional fields.以下是属于NT结构增加的领域。<br>    //<br>    +34hDWORD   ImageBase;  // 程序的首选装载地址                                  !<br>    +38hDWORD   SectionAlignment;  // 内存中的区块的对齐大小                        !<br>    +3ChDWORD   FileAlignment;  // 文件中的区块的对齐大小                           !<br>    +40hWORDMajorOperatingSystemVersion;  // 要求操作系统最低版本号的主版本号<br>    +42hWORDMinorOperatingSystemVersion;  // 要求操作系统最低版本号的副版本号<br>    +44hWORDMajorImageVersion;   // 可运行于操作系统的主版本号<br>    +46hWORDMinorImageVersion;   // 可运行于操作系统的次版本号<br>    +48hWORDMajorSubsystemVersion;  // 要求最低子系统版本的主版本号<br>    +4AhWORDMinorSubsystemVersion;  // 要求最低子系统版本的次版本号<br>    +4ChDWORD   Win32VersionValue;   // 莫须有字段，不被病毒利用的话一般为0<br>    +50hDWORD   SizeOfImage;   // 映像装入内存后的总尺寸<br>    +54hDWORD   SizeOfHeaders;   // 所有头 + 区块表的尺寸大小<br>    +58hDWORD   CheckSum;   // 映像的校检和<br>    +5ChWORDSubsystem;   // 可执行文件期望的子系统<br>    +5EhWORDDllCharacteristics;   // DllMain()函数何时被调用，默认为 0<br>    +60hDWORD   SizeOfStackReserve;   // 初始化时的栈大小<br>    +64hDWORD   SizeOfStackCommit;   // 初始化时实际提交的栈大小<br>    +68hDWORD   SizeOfHeapReserve;// 初始化时保留的堆大小<br>    +6ChDWORD   SizeOfHeapCommit;// 初始化时实际提交的堆大小<br>    +70hDWORD   LoaderFlags;// 与调试有关，默认为 0<br>    +74hDWORD   NumberOfRvaAndSizes;  // 下边数据目录的项数，这个字段自Windows NT 发布以来// 一直是16<br>    +78hDWORD   DataDirctory[16];                                                !<br>       // 数据目录表<br>    } IMAGE_OPTIONAL_HEADER32, *PIMAGE_OPTIONAL_HEADER32;</p>
+<p>最常用的是用后面叹号标注的<img src="https://i.imgur.com/bTSe4rn.png" alt></p>
+<p>前面我们已经知道了PE文件头在40h的位置，则上面的偏移量推断IMAGE_OPTIONAL_HEADER字段的首个字段在40h+18h=58h的地方，我们还是用hexwrokshop打开那个PE文件。Ctrl+G打开转移窗口，输入58则找到了第一个字段位置，如下图：<br><img src="https://i.imgur.com/cg9zve8.png" alt><br>下面是DataDirctory[16]即数据目录表的各个成员：<br><img src="https://i.imgur.com/YNQ7DmF.png" alt><br>这张表的16个成员中第一个成员IMAGE_DIRECTORY_ENTRY_EXPORT（导出表）和第二个成员IMAGE_DIRECTORY_ENTRY_EXPORT（导入表）非常重要。<br>用Hexwrokshop打开文件，首先找到PE文件头位置，一般都是在载入起始位+3ch处，如下图所示。<br><img src="https://i.imgur.com/LplosQw.png" alt><br>找到了PE文件头的位置，接下来我们来找DataDirctory[16]各个成员位置。第一个成员输出表位于PE文件头+78h位置即100h+78h=178h处，如下图：<br><img src="https://i.imgur.com/JEYwswl.png" alt></p>
+<p>由于每个结构都占8个字节，所以可以知道输出表的其实位置在4000h处，大小为45h</p>
+<p>输入表的位置位100h+80h=180h处，如下图：<br><img src="https://i.imgur.com/NUAg0g4.png" alt><br>由上图可知输入表的起始位置在3000h处，大小为52h。</p>
+<blockquote>
+<p>查找输入表和输出表的方法还可以用peid或是lordpe</p>
+</blockquote>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/one.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+            <div id="vcomments"></div>
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://s2.ax1x.com/2020/01/30/11ALjS.jpg" height=300 width=300></img>
+                    <p>archli</p>
+                    <span>THINKING ABOUT ALL</span>
+                    <dl>
+                        <dd><a href="https://github.com/Odoiys" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                        <dd><a href="" target="_blank"><span
+                                    class=" iconfont icon-stack-overflow"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">14 <p>Articles</p></a></li>
+                    <li><a href="/categories">4 <p>Categories</p></a></li>
+                    <li><a href="/tags">0 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#1）MS-DOS头部"><span class="toc-number">1.</span> <span class="toc-text">1）MS-DOS头部</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2）PE文件头文件"><span class="toc-number">2.</span> <span class="toc-text">2）PE文件头文件</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#3）IMAGE-OPTIONAL-HEADER概述"><span class="toc-number">3.</span> <span class="toc-text">3）IMAGE_OPTIONAL_HEADER概述</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2020
+        <span class="gradient-text">
+            archli
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["THINKING ABOUT ALL", "24h do not stop"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+
+        var valine = new Valine();
+
+        function initValine(path) {
+            if (!path) path = window.location.pathname;
+            let language = 'ZH-Hans';
+            if (!language) {
+                language = 'en';
+            } else {
+                language = language.toLowerCase();
+            }
+            valine.init({
+                el: '#vcomments',
+                appId: 'GvcgBP8zocI92nH63lGso7oJ-gzGzoHsz',
+                appKey: 'VvgkuL5LBM0mvHQAGMgSLexP',
+                notify: 'false',
+                verify: 'false',
+                avatar: 'mm',
+                placeholder: 'Leave your throughs behind~',
+                visitor: 'true',
+                path: path,
+                lang: language
+            });
+        }
+
+        $(document).ready(function () {
+            initValine();
+        });
+    </script>
+
+
+
+</html>

@@ -1,0 +1,595 @@
+
+<!DOCTYPE html>
+<html lang="ZH-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>花指令学习 - Odoiys</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="odoiys,"> 
+    <meta name="description" content="万物皆存于此,定义在原来的汇编程序中加入一些干扰阅读的代码，这些代码可以看做是花指令。
+这类题在ctf中很常见，但是要多加练习。
+分类总体上花指令分为两类，一类是可履行式花指令，另一类为不可履行式花指令（废物指令,"> 
+    <meta name="author" content="archli"> 
+    <link rel="alternative" href="atom.xml" title="Odoiys" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+    <link rel="stylesheet" href="/css/obsidian.css">
+    <link rel="stylesheet" href="/css/ball-atom.min.css">
+</head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">Odoiys</span>
+    <div id="loader"></div>
+    <div id="single">
+    <div class="scrollbar gradient-bg-rev"></div>
+<div id="top" style="display: block;">
+    <div class="bar" style="width: 0;"></div>
+    <div class="navigation animated fadeIn fast delay-1s">
+        <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="http://yoursite.com">
+        <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
+        <h3 class="subtitle">花指令学习</h3>
+        <div class="social">
+            <!--        <div class="like-icon">-->
+            <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
+            <!--        </div>-->
+            <div>
+                <div class="share">
+                    
+                        <a href="javascript:;" class="iconfont icon-share1"></a>
+                        <div class="share-component-cc" data-disabled="facebook,douban,linkedin,diandian,tencent,google"></div>
+                    
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div class="section">
+        <div class=article-header-wrapper>
+    <div class="article-header">
+        <div class="article-cover animated fadeIn" style="
+            animation-delay: 600ms;
+            animation-duration: 1.2s;
+            background-image: 
+                radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
+                url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579592181&di=ab4e05da9d32f5e40fd5cf44410e61e5&imgtype=jpg&er=1&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F81fbae7162675ef9c9627c47fc283a964a9f0c87.png);">
+        </div>
+        <div class="else">
+            <p class="animated fadeInDown">
+                
+                <a href="/categories/逆向工程"><b>「
+                    </b>逆向工程<b> 」</b></a>
+                
+                January 14, 2020
+            </p>
+            <h3 class="post-title animated fadeInDown"><a href="/2020/01/14/%E8%8A%B1%E6%8C%87%E4%BB%A4%E5%AD%A6%E4%B9%A0/" title="花指令学习" class="">花指令学习</a>
+            </h3>
+            
+            <p class="post-count animated fadeInDown">
+                
+                <span>
+                    <b class="iconfont icon-text2"></b> <i>Words count</i>
+                    7.5k
+                </span>
+                
+                
+                <span>
+                    <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
+                    7 mins.
+                </span>
+                
+                
+                <span id="/2020/01/14/花指令学习/" class="leancloud_visitors" data-flag-title="花指令学习">
+                    <b class="iconfont icon-read"></b> <i>Read count</i>
+                    <span class="leancloud-visitors-count">1000000</span>
+                </span>
+                
+                
+            </p>
+            
+            
+        </div>
+    </div>
+</div>
+
+<div class="screen-gradient-after">
+    <div class="screen-gradient-content">
+        <div class="screen-gradient-content-inside">
+            <div class="bold-underline-links screen-gradient-sponsor">
+                <p>
+                    <span class="animated fadeIn delay-1s"></span>
+                </p>
+            </div>
+        </div>
+    </div>
+</div>
+
+<div class="article">
+    <div class='main'>
+        <div class="content markdown animated fadeIn">
+            <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在原来的汇编程序中加入一些干扰阅读的代码，这些代码可以看做是花指令。</p>
+<p>这类题在ctf中很常见，但是要多加练习。</p>
+<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>总体上花指令分为两类，一类是可履行式花指令，另一类为不可履行式花指令（废物指令）。</p>
+<p>对于可履行式花指令，望文生义就是能够正常运转的但又不改动原始程序逻辑性的一组无用指令。这类花指令有如下特色：</p>
+<p>①能够正常运转；</p>
+<p>②不改动任何寄存器的值；</p>
+<p>③反汇编器能够正确反汇编该指令。</p>
+<p>对于不可履行式花指令，是指被刺进到原始代码中但又不改动原始程序逻辑性的一组无用字节。这类花指令有如下特色：</p>
+<p>①不行以正常运转；</p>
+<p>②不改动任何寄存器的值；</p>
+<p>③反汇编器或许会过错反汇编这些字节。</p>
+<h3 id="花指令的经典模型"><a href="#花指令的经典模型" class="headerlink" title="花指令的经典模型"></a>花指令的经典模型</h3><h4 id="1-伪装-vc"><a href="#1-伪装-vc" class="headerlink" title="1.伪装 vc"></a>1.伪装 vc</h4><p><code>VC++程序的入口代码:</code></p>
+<p><code>PUSH EBP</code></p>
+<p><code>MOV EBP,ESP</code></p>
+<p><code>PUSH -1</code></p>
+<p><code>push 415448 -\___</code></p>
+<p><code>PUSH 4021A8 // 在这段代码中类似这样的[操作数](https://baike.baidu.com/item/操作数)可以乱填</code></p>
+<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
+<p><code>PUSH EAX</code></p>
+<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
+<p><code>ADD ESP,-6C</code></p>
+<p><code>PUSH EBX</code></p>
+<p><code>PUSH ESI</code></p>
+<p><code>PUSH EDI</code></p>
+<p><code>ADD BYTE PTR DS:[EAX],AL //这条指令可以不要!</code></p>
+<p><code>jmp 跳转到程序原来的入口点</code></p>
+<h4 id="2-跳转"><a href="#2-跳转" class="headerlink" title="2.跳转"></a>2.跳转</h4><p><code>somewhere:</code><br><code>nop //&quot;胡乱&quot;跳转的开始...</code><br><code>jmp 下一个jmp的地址 /在附近随意跳</code><br><code>jmp ... //...</code><br><code>jmp 原入口的地址 //跳到原始oep</code></p>
+<hr>
+<p><code>新入口: push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>inc ecx</code></p>
+<p><code>push edx</code></p>
+<p><code>nop</code></p>
+<p><code>pop edx</code></p>
+<p><code>dec ecx</code></p>
+<p><code>pop ebp</code></p>
+<p><code>inc ecx</code></p>
+<p><code>loop somewhere //跳转到上面那段代码地址去！</code></p>
+<h4 id="3-伪装c"><a href="#3-伪装c" class="headerlink" title="3.伪装c"></a>3.伪装c</h4><p><code>融合</code></p>
+<p><code>把A的代码换成B的</code></p>
+<p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>push -1</code></p>
+<p><code>push 111111</code></p>
+<p><code>push 222222</code></p>
+<p><code>mov eax,fs:[0]</code></p>
+<p><code>push eax</code></p>
+<p><code>mov fs:[0],esp</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov fs:[0],eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov ebp,eax</code></p>
+<p><code>jmp 老入口</code></p>
+<h4 id="4-c"><a href="#4-c" class="headerlink" title="4.c ++"></a>4.c ++</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>push -1</code></p>
+<p><code>push 111111</code></p>
+<p><code>push 222222</code></p>
+<p><code>mov eax,fs:[0]</code></p>
+<p><code>push eax</code></p>
+<p><code>mov fs:[0],esp</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov fs:[0],eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov ebp,eax</code></p>
+<h4 id="5-Microsoft-Visual-C-6-0"><a href="#5-Microsoft-Visual-C-6-0" class="headerlink" title="5.Microsoft Visual C++ 6.0"></a>5.Microsoft Visual C++ 6.0</h4><p><code>PUSH -1</code></p>
+<p><code>PUSH 0</code></p>
+<p><code>PUSH 0</code></p>
+<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
+<p><code>PUSH EAX</code></p>
+<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
+<p><code>SUB ESP,68</code></p>
+<p><code>PUSH EBX</code></p>
+<p><code>PUSH ESI</code></p>
+<p><code>PUSH EDI</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>ADD ESP,68</code></p>
+<p><code>POP EAX</code></p>
+<p><code>MOV DWORD PTR FS:[0],EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>POP EAX</code></p>
+<p><code>MOV EBP,EAX</code></p>
+<p><code>JMP 原入口</code></p>
+<h4 id="6"><a href="#6" class="headerlink" title="6."></a>6.</h4><p><code>在mov ebp,eax</code></p>
+<p><code>后面加上</code></p>
+<p><code>PUSH EAX</code></p>
+<p><code>POP EAX</code></p>
+<h4 id="7-防杀精灵一号防杀代码"><a href="#7-防杀精灵一号防杀代码" class="headerlink" title="7.防杀精灵一号防杀代码"></a>7.防杀精灵一号防杀代码</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>push -1</code></p>
+<p><code>push 666666</code></p>
+<p><code>push 888888</code></p>
+<p><code>mov eax,dword ptr fs:[0]</code></p>
+<p><code>push eax</code></p>
+<p><code>mov dword ptr fs:[0],esp</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov dword ptr fs:[0],eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov ebp,eax</code></p>
+<p><code>jmp 入口</code></p>
+<h4 id="8-防杀精灵二号防杀代码"><a href="#8-防杀精灵二号防杀代码" class="headerlink" title="8.防杀精灵二号防杀代码"></a>8.防杀精灵二号防杀代码</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>push -1</code></p>
+<p><code>push 0</code></p>
+<p><code>push 0</code></p>
+<p><code>mov eax,dword ptr fs:[0]</code></p>
+<p><code>push eax</code></p>
+<p><code>mov dword ptr fs:[0],esp</code></p>
+<p><code>sub esp,68</code></p>
+<p><code>push ebx</code></p>
+<p><code>push esi</code></p>
+<p><code>push edi</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>add esp,68</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov dword ptr fs:[0],eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>pop eax</code></p>
+<p><code>mov ebp,eax</code></p>
+<p><code>jmp 入口</code></p>
+<h4 id="9-防杀精灵终极防杀代码"><a href="#9-防杀精灵终极防杀代码" class="headerlink" title="9.防杀精灵终极防杀代码"></a>9.防杀精灵终极防杀代码</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>add esp,-0C</code></p>
+<p><code>add esp,0C</code></p>
+<p><code>push eax</code></p>
+<p><code>jmp入口</code></p>
+<h4 id="10-木马彩衣-金色鱼锦衣-花代码"><a href="#10-木马彩衣-金色鱼锦衣-花代码" class="headerlink" title="10.木马彩衣(金色鱼锦衣)花代码"></a>10.木马彩衣(金色鱼锦衣)花代码</h4><p><code>push ebp</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>add esp,-0C</code></p>
+<p><code>add esp,0C</code></p>
+<p><code>mov eax,原入口</code></p>
+<p><code>push eax</code></p>
+<p><code>retn</code></p>
+<h4 id="11-木马彩衣-虾米披风-花代码"><a href="#11-木马彩衣-虾米披风-花代码" class="headerlink" title="11.木马彩衣(虾米披风)花代码"></a>11.木马彩衣(虾米披风)花代码</h4><p><code>push ebp</code></p>
+<p><code>nop</code></p>
+<p><code>nop</code></p>
+<p><code>mov ebp,esp</code></p>
+<p><code>inc ecx</code></p>
+<p><code>nop</code></p>
+<p><code>push edx</code></p>
+<p><code>nop</code></p>
+<p><code>nop</code></p>
+<p><code>pop edx</code></p>
+<p><code>nop</code></p>
+<p><code>pop ebp</code></p>
+<p><code>inc ecx</code></p>
+<p><code>loopd //跳转到下面那段代码地址去！</code></p>
+<hr>
+<p><code>nop //&quot;胡乱&quot;跳转的开始...</code></p>
+<p><code>jmp 下一个jmp的地址 //在附近随意跳</code></p>
+<p><code>jmp ... //...</code></p>
+<p><code>jmp 原入口的地址 //跳到原始oep</code></p>
+<h4 id="12-VC-5-0代码-木马彩衣无限复活袍"><a href="#12-VC-5-0代码-木马彩衣无限复活袍" class="headerlink" title="12.VC++5.0代码(木马彩衣无限复活袍):"></a>12.VC++5.0代码(木马彩衣无限复活袍):</h4><p><code>PUSH EBP</code></p>
+<p><code>MOV EBP,ESP</code></p>
+<p><code>PUSH -1</code></p>
+<p><code>push 415448 -\___</code></p>
+<p><code>PUSH 4021A8 -// 在这段代码中类似这样的操作数可以乱填</code></p>
+<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
+<p><code>PUSH EAX</code></p>
+<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
+<p><code>ADD ESP,-6C</code></p>
+<p><code>PUSH EBX</code></p>
+<p><code>PUSH ESI</code></p>
+<p><code>PUSH EDI</code></p>
+<p><code>ADD BYTE PTR DS:[EAX],AL //这条指令可以不要!</code></p>
+<p><code>jo 00401000 //原入口</code></p>
+<p><code>jno 00401000 //原入口</code></p>
+<p><code>db 0e8h //花代码</code></p>
+
+            <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
+            <audio id="audio" loop="1" preload="auto" controls="controls"
+                data-autoplay="false">
+                <source type="audio/mpeg" src="">
+            </audio>
+            
+            <ul id="audio-list" style="display:none">
+                
+                
+                <li title='0' data-url='/statics/one.mp3'></li>
+                
+                    
+            </ul>
+            
+            
+            
+            <div id="vcomments"></div>
+            
+        </div>
+        <div class="sidebar">
+            <div class="box animated fadeInRight">
+                <div class="subbox">
+                    <img src="https://s2.ax1x.com/2020/01/30/11ALjS.jpg" height=300 width=300></img>
+                    <p>archli</p>
+                    <span>THINKING ABOUT ALL</span>
+                    <dl>
+                        <dd><a href="https://github.com/Odoiys" target="_blank"><span
+                                    class=" iconfont icon-github"></span></a></dd>
+                        <dd><a href="" target="_blank"><span
+                                    class=" iconfont icon-twitter"></span></a></dd>
+                        <dd><a href="" target="_blank"><span
+                                    class=" iconfont icon-stack-overflow"></span></a></dd>
+                    </dl>
+                </div>
+                <ul>
+                    <li><a href="/">14 <p>Articles</p></a></li>
+                    <li><a href="/categories">4 <p>Categories</p></a></li>
+                    <li><a href="/tags">0 <p>Tags</p></a></li>
+                </ul>
+            </div>
+            
+            
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#花指令的经典模型"><span class="toc-number">3.</span> <span class="toc-text">花指令的经典模型</span></a></li></ol>
+                </div>
+            </div>
+            
+            
+        </div>
+    </div>
+</div>
+
+    </div>
+</div>
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2020
+        <span class="gradient-text">
+            archli
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["THINKING ABOUT ALL", "24h do not stop"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+
+        var valine = new Valine();
+
+        function initValine(path) {
+            if (!path) path = window.location.pathname;
+            let language = 'ZH-Hans';
+            if (!language) {
+                language = 'en';
+            } else {
+                language = language.toLowerCase();
+            }
+            valine.init({
+                el: '#vcomments',
+                appId: 'GvcgBP8zocI92nH63lGso7oJ-gzGzoHsz',
+                appKey: 'VvgkuL5LBM0mvHQAGMgSLexP',
+                notify: 'false',
+                verify: 'false',
+                avatar: 'mm',
+                placeholder: 'Leave your throughs behind~',
+                visitor: 'true',
+                path: path,
+                lang: language
+            });
+        }
+
+        $(document).ready(function () {
+            initValine();
+        });
+    </script>
+
+
+
+</html>

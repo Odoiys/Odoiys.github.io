@@ -1,0 +1,593 @@
+
+<!DOCTYPE html>
+<html lang="ZH-Hans" class="loading">
+<head>
+    <meta charset="UTF-8" />
+    <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
+    <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
+    <title>Archive: 2019/11</title>
+    <meta name="apple-mobile-web-app-capable" content="yes" />
+    <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
+    <meta name="google" content="notranslate" />
+    <meta name="keywords" content="odoiys,"> 
+    <meta name="description" content="万物皆存于此,"> 
+    <meta name="author" content="archli"> 
+    <link rel="alternative" href="atom.xml" title="Odoiys" type="application/atom+xml"> 
+    <link rel="icon" href="/img/favicon.png"> 
+    <link href="https://fonts.loli.net/css?family=Roboto+Mono|Rubik&display=swap" rel="stylesheet">
+    <link rel="stylesheet" href="//at.alicdn.com/t/font_1429596_nzgqgvnmkjb.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/animate.css/3.7.2/animate.min.css">
+    <link rel="stylesheet" href="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/css/share.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/codemirror.min.css">
+    <link rel="stylesheet" href="//cdn.bootcss.com/codemirror/5.48.4/theme/dracula.css">
+    <link rel="stylesheet" href="/css/obsidian.css">
+    <link rel="stylesheet" href="/css/ball-atom.min.css">
+</head>
+
+
+<body class="loading">
+    <div class="loader">
+        <div class="la-ball-atom la-2x">
+            <div></div>
+            <div></div>
+            <div></div>
+            <div></div>
+        </div>
+    </div>
+    <span id="config-title" style="display:none">Odoiys</span>
+    <div id="loader"></div>
+    <div id="single" class="page">
+    <div id="top">
+        <a class="iconfont icon-left image-icon" href="javascript:history.back()"></a>
+    </div>
+    <div class="dark-obsidian section">
+        <div class="article animated fadeIn">
+            <div class="main">
+                <div class="content animated fadeIn">
+                    <div class="set">
+                        <h1 style="text-align: center">Archived</h1>
+                        <p style="text-align: center">「 14 」</p>
+                        <ul class="timeline timeline-centered">
+                            
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">January 2020</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 29, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/29/xxtea%E5%AD%A6%E4%B9%A0/">xxtea学习</a>
+                                        <p>
+                                            大概介绍一下xxtea的原理，发现最近re的题目很喜欢出
+原理图如下：
+
+加密解密代码如下：
+#include &lt;stdio.h&gt;
+#include &lt;stdint.h&gt;
+#define DELTA 0x9e3779b9
+#define MX (((z&gt;&gt;5^y&lt;&lt;2) + (y&gt;&gt;3^z&lt;&lt;4)) ^ ((sum^y)...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 16, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/16/RSA%E5%AF%86%E7%A0%81%E5%AD%A6%E4%B9%A0/">RSA密码学习</a>
+                                        <p>
+                                            
+
+
+步骤
+描述
+注释
+
+
+
+找出两个质数
+P,Q
+
+
+
+计算公共模数
+N=P*Q
+
+
+
+欧拉函数
+φ(N)=(P-1)(Q-1)
+
+
+
+计算公钥E
+1&lt;E&lt;φ(N)
+E的取值必须是整数   E和φ(N)必须是互质数
+
+
+计算私钥D
+E*D%φ(N)=1
+
+
+
+加密
+C=M的E次方 mod N
+C：密文 M：明文
+
+
+解密
+M=C的D次方 mod N
+C：密文 M：明文
+
+
+公钥...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">January 14, 2020</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2020/01/14/%E8%8A%B1%E6%8C%87%E4%BB%A4%E5%AD%A6%E4%B9%A0/">花指令学习</a>
+                                        <p>
+                                            定义在原来的汇编程序中加入一些干扰阅读的代码，这些代码可以看做是花指令。
+这类题在ctf中很常见，但是要多加练习。
+分类总体上花指令分为两类，一类是可履行式花指令，另一类为不可履行式花指令（废物指令）。
+对于可履行式花指令，望文生义就是能够正常运转的但又不改动原始程序逻辑性的一组无用指令。这类花指令有如下特色：
+①能够正常运转；
+②不改动任何寄存器的值；
+③反汇编器能够正确反汇编该指令。
+对...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">November 2019</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">November 29, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/11/29/rc4%E5%AD%A6%E4%B9%A0/">rc4学习</a>
+                                        <p>
+                                            RC4是一种流加密算法，密钥长度可变。它加解密使用相同的密钥，因此也属于对称加密算法。RC4是有线等效加密（WEP）中采用的加密算法，也曾经是TLS可采用的算法之一。流密码结构：
+大致流程下面这个图是rc4的流程图：1、先初始化状态向量S（256个字节，用来作为密钥流生成的种子1）
+按照升序，给每个字节赋值0,1,2,3,4,5,6…..,254,255
+2、初始密钥（由用户输入），长度任意...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">November 29, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/11/29/2019-nctf-wp/">2019 nctf wp</a>
+                                        <p>
+                                            DEBUG动态调试即可，发现函数最后要和s比较，s经过多次加密。上图cmp dl,al就是比较过程.动态调试看寄存中的值就可以得到flag。本道题有一个值得学习的算法在rc4上
+
+https://odoiys.github.io/2019/11/29/rc4%E5%AD%A6%E4%B9%A0/
+
+签到题使用z3求解器
+from z3 import *
+a = [12, 83, 78, 39...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">November 13, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/11/13/2019-%E8%B5%9B%E5%8D%9Actf-wp/">2019 赛博ctf wp</a>
+                                        <p>
+                                            TEA放到detectit看一下文件MFC类型
+
+微软基础类库（英语：Microsoft Foundation Classes，简称MFC）是微软公司提供的一个类库（class libraries），以C++类的形式封装了Windows API，并且包含一个应用程序框架，以减少应用程序开发人员的工作量。其中包含大量Windows句柄封装类和很多Windows的内建控件和组件的封装类。
+
+直接...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">November 12, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/11/12/i%E6%98%A5%E7%A7%8B-%E7%AB%9E%E8%B5%9B%E8%AE%AD%E7%BB%83%E8%90%A5/">i春秋 竞赛训练营</a>
+                                        <p>
+                                            CrackMe01打开字符串的话很难找到我们想要的函数的位置，所以不采取这个方法。我们可以通过找api函数的办法来找到我们加密的位置。这个时候需要打开输入函数，找到defwindowproc，这个api的功能是：
+
+调用重定向的窗口过程来为应用程序没有处理的任何窗口消息提供转换的处理。该函数确保每一个消息得到处理。
+
+这样我们双击来到这里右键查看外部引用一个一个查看，发现我们所需要的加密函数...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">November 11, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/11/11/%E4%B8%89%E5%8F%B6%E8%8D%89syc-ctf/">三叶草syc ctf </a>
+                                        <p>
+                                            jiang’s fan放入ida中，shift+f12查看字符串，就可以看到flag
+secret放入ida当中，查看主函数，看到base函数，函数中是对你输入的字符串进行base16加密，base16你可以理解为将字符串转换为16进制数字。main函数最后，将你输入的字符加密后和字符串比较，如果相同则输出正确。输入的字符为flag。可以用网上的base16进行解密，我当时做的时候用的爆破（...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">November 06, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/11/06/2019-hectf-re-wp/">2019 hectf re wp</a>
+                                        <p>
+                                            官方wphttps://www.yuque.com/docs/share/e6c5d1fd-8d27-456a-88ab-823226503f56#helloRE
+qiandao放在od中
+helloRe放在ida中，反编译main函数：输入字符串，长度不能超过25，通过一个if语句即可获得success查看sub_401080sub_401080是对输入a1进行了处理sub_401080的...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item period">
+                                    <div class="timeline-info"></div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <h2 class="timeline-title">October 2019</h2>
+                                    </div>
+                                </li>
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">October 28, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/10/28/buuctf-re-wp/">buuctf re wp</a>
+                                        <p>
+                                            youngter-drivehttps://hx1997.github.io/2018/07/22/anheng-july-re-youngter-drive/
+crackRTFhttps://www.52pojie.cn/thread-994588-1-1.html补充一些知识点：有个PDB文件的类型
+
+PDB（Program Database File，程序数据库文件）文件物理结构在我们...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">October 26, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/10/26/Windows%E4%B8%8B%E7%9A%84%E5%BC%82%E5%B8%B8%E5%A4%84%E7%90%86/">Windows下的异常处理</a>
+                                        <p>
+                                            本章介绍两中技术，一是SEH(结构化异常处理),二是VEH(向量化异常处理)
+一，异常处理的基本概念中断：是由外部硬件设备或异步事件产生的。异常：是由内部事件产生的，又可分为故障，陷阱和终止。
+1)异常列表除了CPU能够捕获一个事件并引发一个硬件异常外，在代码中可以主动引发一个软件异常，这只需要调用RaiseException()函数，实例如下：void RaiseException(DWO...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">October 21, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/10/21/PE%E6%96%87%E4%BB%B6/">PE文件</a>
+                                        <p>
+                                            PE文件的全称是便携式可执行文件，意为可移植的替换的文件，常见的EXE，DLL，OCX，SYS，COM都是PE文件，PE文件是Microsoft Windows操作系统上的程序文件（可能是间接被执行，如DLL）
+
+基地址定义：当PE文件通过Windows加载器被装入内存后，内存中的版本被称作模块（Module）。映射文件的起始地址被称作模块句柄（hMoudule），可以通过模块句柄访问其他的...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">October 20, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/10/20/linux%E6%8C%87%E4%BB%A4%E8%AE%B0%E5%BD%95/">linux指令记录</a>
+                                        <p>
+                                            编译汇编代码：vim hello.asmnasm -f hello.asmld -m  elf_i386 -s -o hello hello.o
+
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                                
+                                <li class="timeline-item">
+                                    <div class="timeline-info">
+                                        <span class="gradient-text">October 17, 2019</span>
+                                    </div>
+                                    <div class="timeline-marker"></div>
+                                    <div class="timeline-content">
+                                        <a class="timeline-title" target="_self" href="/2019/10/17/DLL%E5%AD%A6%E4%B9%A0/">DLL学习</a>
+                                        <p>
+                                            库文件:DLL(Dynamic Link Library),是动态链接库文件，又称“应用程序拓展”，是软文件类型。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。DLL 的编制与具体的编程语言及编译器无关
+
+只要遵循约定的DLL接口规范和调用方式，用各种语言编写的DLL都可以相互调用。譬如Windows提供的系统D...
+                                        </p>
+                                    </div>
+                                </li>
+                            
+                        </ul>
+                    </div>
+                </div>
+            </div>
+        </div>
+    </div>
+</div>
+
+    <div id="back-to-top" class="animated fadeIn faster">
+        <div class="flow"></div>
+        <span class="percentage animated fadeIn faster">0%</span>
+        <span class="iconfont icon-top02 animated fadeIn faster"></span>
+    </div>
+</body>
+<footer>
+    <p class="copyright" id="copyright">
+        &copy; 2020
+        <span class="gradient-text">
+            archli
+        </span>.
+        Powered by <a href="http://hexo.io/" title="Hexo" target="_blank" rel="noopener">Hexo</a>
+        Theme
+        <span class="gradient-text">
+            <a href="https://github.com/TriDiamond/hexo-theme-obsidian" title="Obsidian" target="_blank" rel="noopener">Obsidian</a>
+        </span>
+        <small><a href="https://github.com/TriDiamond/hexo-theme-obsidian/blob/master/CHANGELOG.md" title="v1.4.3" target="_blank" rel="noopener">v1.4.3</a></small>
+    </p>
+</footer>
+
+<script type="text/javascript" src="https://cdn.bootcss.com/mathjax/2.7.6/MathJax.js?config=TeX-AMS-MML_HTMLorMML">
+</script>
+<script>
+  MathJax.Hub.Config({
+    "HTML-CSS": {
+      preferredFont: "TeX",
+      availableFonts: ["STIX", "TeX"],
+      linebreaks: {
+        automatic: true
+      },
+      EqnChunk: (MathJax.Hub.Browser.isMobile ? 10 : 50)
+    },
+    tex2jax: {
+      inlineMath: [
+        ["$", "$"],
+        ["\\(", "\\)"]
+      ],
+      processEscapes: true,
+      ignoreClass: "tex2jax_ignore|dno",
+      skipTags: ['script', 'noscript', 'style', 'textarea', 'pre', 'code']
+    },
+    TeX: {
+      noUndefined: {
+        attributes: {
+          mathcolor: "red",
+          mathbackground: "#FFEEEE",
+          mathsize: "90%"
+        }
+      },
+      Macros: {
+        href: "{}"
+      }
+    },
+    messageStyle: "none"
+  });
+</script>
+<script>
+  function initialMathJax() {
+    MathJax.Hub.Queue(function () {
+      var all = MathJax.Hub.getAllJax(),
+        i;
+      // console.log(all);
+      for (i = 0; i < all.length; i += 1) {
+        console.log(all[i].SourceElement().parentNode)
+        all[i].SourceElement().parentNode.className += ' has-jax';
+      }
+    });
+  }
+
+  function reprocessMathJax() {
+    if (typeof MathJax !== 'undefined') {
+      MathJax.Hub.Queue(["Typeset", MathJax.Hub]);
+    }
+  }
+</script>
+
+
+
+<script src="//cdnjs.cloudflare.com/ajax/libs/jquery/3.4.1/jquery.min.js"></script>
+<script src="/js/plugin.js"></script>
+<script src="/js/obsidian.js"></script>
+<script src="/js/jquery.truncate.js"></script>
+<script src="/js/search.js"></script>
+<script src="//cdn.bootcss.com/typed.js/2.0.10/typed.min.js"></script>
+<script src="//cdn.bootcss.com/blueimp-md5/2.12.0/js/md5.min.js"></script>
+<script src="//cdnjs.cloudflare.com/ajax/libs/social-share.js/1.0.16/js/social-share.min.js"></script>
+
+<script src="https://cdn.bootcss.com/codemirror/5.48.4/codemirror.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/javascript/javascript.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/css/css.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/xml/xml.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/htmlmixed/htmlmixed.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/clike/clike.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/php/php.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/shell/shell.min.js"></script>
+
+    <script src="//cdn.bootcss.com/codemirror/5.48.4/mode/python/python.min.js"></script>
+
+
+
+
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.css">
+<link rel="stylesheet" href="//cdn.bootcss.com/photoswipe/4.1.3/default-skin/default-skin.min.css">
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe.min.js"></script>
+<script src="//cdn.bootcss.com/photoswipe/4.1.3/photoswipe-ui-default.min.js"></script>
+
+<!-- Root element of PhotoSwipe. Must have class pswp. -->
+<div class="pswp" tabindex="-1" role="dialog" aria-hidden="true">
+    <!-- Background of PhotoSwipe. 
+         It's a separate element as animating opacity is faster than rgba(). -->
+    <div class="pswp__bg"></div>
+    <!-- Slides wrapper with overflow:hidden. -->
+    <div class="pswp__scroll-wrap">
+        <!-- Container that holds slides. 
+            PhotoSwipe keeps only 3 of them in the DOM to save memory.
+            Don't modify these 3 pswp__item elements, data is added later on. -->
+        <div class="pswp__container">
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+            <div class="pswp__item"></div>
+        </div>
+        <!-- Default (PhotoSwipeUI_Default) interface on top of sliding area. Can be changed. -->
+        <div class="pswp__ui pswp__ui--hidden">
+            <div class="pswp__top-bar">
+                <!--  Controls are self-explanatory. Order can be changed. -->
+                <div class="pswp__counter"></div>
+                <button class="pswp__button pswp__button--close" title="Close (Esc)"></button>
+                <button class="pswp__button pswp__button--share" title="Share"></button>
+                <button class="pswp__button pswp__button--fs" title="Toggle fullscreen"></button>
+                <button class="pswp__button pswp__button--zoom" title="Zoom in/out"></button>
+                <!-- Preloader demo http://codepen.io/dimsemenov/pen/yyBWoR -->
+                <!-- element will get class pswp__preloader--active when preloader is running -->
+                <div class="pswp__preloader">
+                    <div class="pswp__preloader__icn">
+                      <div class="pswp__preloader__cut">
+                        <div class="pswp__preloader__donut"></div>
+                      </div>
+                    </div>
+                </div>
+            </div>
+            <div class="pswp__share-modal pswp__share-modal--hidden pswp__single-tap">
+                <div class="pswp__share-tooltip"></div> 
+            </div>
+            <button class="pswp__button pswp__button--arrow--left" title="Previous (arrow left)">
+            </button>
+            <button class="pswp__button pswp__button--arrow--right" title="Next (arrow right)">
+            </button>
+            <div class="pswp__caption">
+                <div class="pswp__caption__center"></div>
+            </div>
+        </div>
+    </div>
+</div>
+
+
+
+
+
+
+
+<script>
+    function initialTyped () {
+        var typedTextEl = $('.typed-text');
+        if (typedTextEl && typedTextEl.length > 0) {
+            var typed = new Typed('.typed-text', {
+                strings: ["THINKING ABOUT ALL", "24h do not stop"],
+                typeSpeed: 90,
+                loop: true,
+                loopCount: Infinity,
+                backSpeed: 20,
+            });
+        }
+    }
+
+    if ($('.article-header') && $('.article-header').length) {
+        $(document).ready(function () {
+            initialTyped();
+        });
+    }
+</script>
+
+
+    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
+    <script>
+
+        var valine = new Valine();
+
+        function initValine(path) {
+            if (!path) path = window.location.pathname;
+            let language = 'ZH-Hans';
+            if (!language) {
+                language = 'en';
+            } else {
+                language = language.toLowerCase();
+            }
+            valine.init({
+                el: '#vcomments',
+                appId: 'GvcgBP8zocI92nH63lGso7oJ-gzGzoHsz',
+                appKey: 'VvgkuL5LBM0mvHQAGMgSLexP',
+                notify: 'false',
+                verify: 'false',
+                avatar: 'mm',
+                placeholder: 'Leave your throughs behind~',
+                visitor: 'true',
+                path: path,
+                lang: language
+            });
+        }
+
+        $(document).ready(function () {
+            initValine();
+        });
+    </script>
+
+
+
+</html>
