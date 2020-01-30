@@ -96,11 +96,6 @@ secret放入ida当中，查看主函数，看到base函数，函数中是对你�
                 </span>
                 
                 
-                <span id="/2019/11/11/三叶草syc-ctf/" class="leancloud_visitors" data-flag-title="三叶草syc ctf ">
-                    <b class="iconfont icon-read"></b> <i>Read count</i>
-                    <span class="leancloud-visitors-count">1000000</span>
-                </span>
-                
                 
             </p>
             
@@ -270,8 +265,6 @@ if __name__ == &#39;__main__&#39;:
             </ul>
             
             
-            
-            <div id="vcomments"></div>
             
         </div>
         <div class="sidebar">
@@ -501,38 +494,6 @@ if __name__ == &#39;__main__&#39;:
     }
 </script>
 
-
-    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-    <script>
-
-        var valine = new Valine();
-
-        function initValine(path) {
-            if (!path) path = window.location.pathname;
-            let language = 'ZH-Hans';
-            if (!language) {
-                language = 'en';
-            } else {
-                language = language.toLowerCase();
-            }
-            valine.init({
-                el: '#vcomments',
-                appId: 'GvcgBP8zocI92nH63lGso7oJ-gzGzoHsz',
-                appKey: 'VvgkuL5LBM0mvHQAGMgSLexP',
-                notify: 'false',
-                verify: 'false',
-                avatar: 'mp',
-                placeholder: 'Leave your throughs behind~',
-                visitor: 'true',
-                path: path,
-                lang: language
-            });
-        }
-
-        $(document).ready(function () {
-            initValine();
-        });
-    </script>
 
 
 

@@ -556,38 +556,6 @@ PDB（Program Database File，程序数据库文件）文件物理结构在我�
 </script>
 
 
-    <script src="//unpkg.com/valine/dist/Valine.min.js"></script>
-    <script>
-
-        var valine = new Valine();
-
-        function initValine(path) {
-            if (!path) path = window.location.pathname;
-            let language = 'ZH-Hans';
-            if (!language) {
-                language = 'en';
-            } else {
-                language = language.toLowerCase();
-            }
-            valine.init({
-                el: '#vcomments',
-                appId: 'GvcgBP8zocI92nH63lGso7oJ-gzGzoHsz',
-                appKey: 'VvgkuL5LBM0mvHQAGMgSLexP',
-                notify: 'false',
-                verify: 'false',
-                avatar: 'mp',
-                placeholder: 'Leave your throughs behind~',
-                visitor: 'true',
-                path: path,
-                lang: language
-            });
-        }
-
-        $(document).ready(function () {
-            initValine();
-        });
-    </script>
-
 
 
 </html>
