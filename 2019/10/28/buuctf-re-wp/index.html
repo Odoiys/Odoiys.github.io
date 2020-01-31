@@ -86,13 +86,13 @@ crackRTFhttps://ww,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    6.7k
+                    9.2k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    6 mins.
+                    8 mins.
                 </span>
                 
                 
@@ -244,6 +244,65 @@ m = gmpy2.powmod(c,d,p*q)
 
 print hex(m)[2:].decode(&#39;hex&#39;)</code></pre>
 <p>（说一下gmpy2的安装好麻烦233333~。）</p>
+<h2 id="2019红帽杯-xx"><a href="#2019红帽杯-xx" class="headerlink" title="[2019红帽杯]xx"></a>[2019红帽杯]xx</h2><p>这题目花了我好长时间复现（因为真的是做不出来），不愧是最菜选手(哭)</p>
+<p>放到detectit查看是64位PE文件，去peid中查看算法，发现是这么描述的</p>
+<blockquote>
+<p>A single DWORD, used in multiple crypto algorithms (TEA/N, RC 5/6, SERPENT, ISAAC, etc).</p>
+</blockquote>
+<p>看来有可能是tea类的或是RC类的算法加密等等。</p>
+<p>进入ida细看一下吧</p>
+<p>发现又是一堆函数，这时候只能查看字符串了，发现you win这个地方有可能和flag有关系，进入查看伪代码。</p>
+<p>很长。。。。。。。</p>
+<p>一部分一部分看吧</p>
+<p>第一部分</p>
+<p><img src="https://s2.ax1x.com/2020/01/31/133qhT.png" alt></p>
+<p>这一部分是用来取出输入的flag的前四个字母，这个应该是众所周知的‘flag’的这四个字母，然后与code这个变量进行比较，是否是这个变量中的字母或数字。</p>
+<p>第二部分：</p>
+<p><img src="https://s2.ax1x.com/2020/01/31/13GlZR.png" alt></p>
+<p>这一部分是进行xxtea的加密，其中sub_140001ab0就是加密的过程，这里就不放出来了，里面写的很复杂，不是很容易懂，这里放一个链接，大概了解一下xxtea原理</p>
+<blockquote>
+<p><a href="https://odoiys.github.io/2020/01/29/xxtea学习/" target="_blank" rel="noopener">https://odoiys.github.io/2020/01/29/xxtea%E5%AD%A6%E4%B9%A0/</a></p>
+</blockquote>
+<p>继续往下看第三部分：</p>
+<p><img src="https://s2.ax1x.com/2020/01/31/13G5oq.png" alt></p>
+<p>主要进行了将xxtea加密后的数组进行打乱，然后进行异或操作，最后进行和给出的&amp;v31,&amp;v31+1,&amp;v32,v33进行比较，这里是小端序，所以需要把它倒过拼接起来，拼接后的结果为：</p>
+<p>CEBC406B7C3A95C0EF9B202091F70235231802C8E75656FA</p>
+<p>过程清楚后写脚本来得到flag吧</p>
+<pre><code class="python">import xxtea
+data0 = &quot;CEBC406B7C3A95C0EF9B202091F70235231802C8E75656FA&quot;#为提取出来的v29,v29+1,v30,v31
+data = []
+for i in range(0,len(data0),2):
+    data.append(int(data0[i]+data0[i+1],16))#每两位为整体，将16进制转换为10进制
+print(data)
+for i in range(len(data)-1,-1,-1):
+    for j in range(i//3):
+        data[i] ^= data[j]
+        #进行的异或操作
+print(data)
+change=[2,0,3,1,6,4,7,5,10,8,11,9,14,12,15,13,18,16,19,17,22,20,23,21]
+data1=[0 for i in range(24)]
+#print(data1)
+for i in range(24):
+    data1[change[i]]=data[i]
+print(data1)
+#encrypt_data=&#39;bca5ce40f4b2b2e7a9129d12ae10c85b3dd7061ddc70f8dc&#39;.decode(&#39;hex&#39;)
+#print(encrypt_data)
+key = &quot;flag&quot;
+encrypt_data=&#39;&#39;
+for i in range(len(data1)):
+    encrypt_data+=str(hex(data1[i]))
+print(encrypt_data)
+#bca5ce40f4b2b2e7a9129d12ae10c85b3dd761ddc70f8dc
+encrypt_data=&#39;bca5ce40f4b2b2e7a9129d12ae10c85b3dd7061ddc70f8dc&#39;.decode(&#39;hex&#39;)
+print(encrypt_data)
+key=&#39;flag\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00\x00&#39;
+decrypt_data = xxtea.decrypt(encrypt_data,key,padding=False)
+#decrypt_data = xxtea.decrypt(encrypt_data,key)
+print decrypt_data
+</code></pre>
+<p>这样就可以得到flag了</p>
+<p>那阵还看到脚本更强的，还有把xxtea直接写出来，还有动态调试读流程的，简直无敌。</p>
+<p>flag{CXX_and_++tea}</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -291,7 +350,7 @@ print hex(m)[2:].decode(&#39;hex&#39;)</code></pre>
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#youngter-drive"><span class="toc-number">1.</span> <span class="toc-text">youngter-drive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crackRTF"><span class="toc-number">2.</span> <span class="toc-text">crackRTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF2019-simple-CPP"><span class="toc-number">3.</span> <span class="toc-text">[GXYCTF2019]simple CPP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#findkey"><span class="toc-number">4.</span> <span class="toc-text">findkey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUCTF2019-SignIn"><span class="toc-number">5.</span> <span class="toc-text">[SUCTF2019]SignIn</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#youngter-drive"><span class="toc-number">1.</span> <span class="toc-text">youngter-drive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crackRTF"><span class="toc-number">2.</span> <span class="toc-text">crackRTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF2019-simple-CPP"><span class="toc-number">3.</span> <span class="toc-text">[GXYCTF2019]simple CPP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#findkey"><span class="toc-number">4.</span> <span class="toc-text">findkey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUCTF2019-SignIn"><span class="toc-number">5.</span> <span class="toc-text">[SUCTF2019]SignIn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019红帽杯-xx"><span class="toc-number">6.</span> <span class="toc-text">[2019红帽杯]xx</span></a></li></ol>
                 </div>
             </div>
             
