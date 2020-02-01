@@ -86,13 +86,13 @@ crackRTFhttps://ww,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    11k
+                    12k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    10 mins.
+                    11 mins.
                 </span>
                 
                 
@@ -324,6 +324,51 @@ print(flag)</code></pre>
 <blockquote>
 <p><a href="https://odoiys.github.io/2020/02/01/AES加密学习/" target="_blank" rel="noopener">https://odoiys.github.io/2020/02/01/AES%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0/</a></p>
 </blockquote>
+<h2 id="GUET-CTF2019-re"><a href="#GUET-CTF2019-re" class="headerlink" title="[GUET-CTF2019]re"></a>[GUET-CTF2019]re</h2><p>用detectit查看是个elf64并且有UPX壳，用UPX工具自动脱壳，用PEID查看没有加密算法。进入ida查看代码。</p>
+<p>并没有发现main函数，只能查找字符串来寻找信息。发现input your flag，correct等，就进到这里查看伪代码。</p>
+<p><img src="https://s2.ax1x.com/2020/02/01/1GAbsf.png" alt></p>
+<p>查看if判断的那个函数，参数是&amp;v1</p>
+<p><img src="https://s2.ax1x.com/2020/02/01/1GEiLT.png" alt></p>
+<p>直接写脚本就可以求得</p>
+<pre><code class="python">a=[0 for i in range(31)]
+a[0] = 166163712//1629056
+a[1] = 731332800//6771600
+a[2] = 357245568//3682944
+a[3] = 1074393000//10431000
+a[4] = 489211344//3977328
+a[5] = 518971936//5138336
+a[6] = 406741500//7532250
+a[7] = 294236496//5551632
+a[8] = 177305856//3409728
+a[9] = 650683500//13013670
+a[10] = 298351053//6088797
+a[11] = 386348487//7884663
+a[12] = 438258597//8944053
+a[13] = 249527520//5198490
+a[14] = 445362764//4544518
+a[15] = 981182160//10115280
+a[16] = 174988800//3645600
+a[17] = 493042704//9667504
+a[18] = 257493600//5364450
+a[19] = 767478780//13464540
+a[20] = 312840624//5488432
+a[21] = 1404511500//14479500
+a[22] = 316139670//6451830
+a[23] = 619005024//6252576
+a[24] = 372641472//7763364
+a[25] = 373693320//7327320
+a[26] = 498266640//8741520
+a[27] = 452465676//8871876
+a[28] = 208422720//4086720
+a[29] = 515592000//9374400
+a[30] = 719890500//5759124
+#a[31] = 357245568//3682944
+flag=&#39;&#39;
+for i in range(len(a)):
+    flag+=chr(a[i])
+print(flag)</code></pre>
+<p>注意原函数中并没有a1[6]，所以我选择一个一个试出来发现1是答案。</p>
+<p>flag{e165421110ba03099a1c039337}</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -371,7 +416,7 @@ print(flag)</code></pre>
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#youngter-drive"><span class="toc-number">1.</span> <span class="toc-text">youngter-drive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crackRTF"><span class="toc-number">2.</span> <span class="toc-text">crackRTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF2019-simple-CPP"><span class="toc-number">3.</span> <span class="toc-text">[GXYCTF2019]simple CPP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#findkey"><span class="toc-number">4.</span> <span class="toc-text">findkey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUCTF2019-SignIn"><span class="toc-number">5.</span> <span class="toc-text">[SUCTF2019]SignIn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019红帽杯-xx"><span class="toc-number">6.</span> <span class="toc-text">[2019红帽杯]xx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GWCTF-2019-re3"><span class="toc-number">7.</span> <span class="toc-text">[GWCTF 2019]re3</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#youngter-drive"><span class="toc-number">1.</span> <span class="toc-text">youngter-drive</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#crackRTF"><span class="toc-number">2.</span> <span class="toc-text">crackRTF</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GXYCTF2019-simple-CPP"><span class="toc-number">3.</span> <span class="toc-text">[GXYCTF2019]simple CPP</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#findkey"><span class="toc-number">4.</span> <span class="toc-text">findkey</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#SUCTF2019-SignIn"><span class="toc-number">5.</span> <span class="toc-text">[SUCTF2019]SignIn</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#2019红帽杯-xx"><span class="toc-number">6.</span> <span class="toc-text">[2019红帽杯]xx</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GWCTF-2019-re3"><span class="toc-number">7.</span> <span class="toc-text">[GWCTF 2019]re3</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#GUET-CTF2019-re"><span class="toc-number">8.</span> <span class="toc-text">[GUET-CTF2019]re</span></a></li></ol>
                 </div>
             </div>
             
