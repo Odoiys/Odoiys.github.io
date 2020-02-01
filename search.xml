@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>AES加密学习</title>
+      <link href="/2020/02/01/AES%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0/"/>
+      <url>/2020/02/01/AES%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0/</url>
+      
+        <content type="html"><![CDATA[<h3 id="AES原理"><a href="#AES原理" class="headerlink" title="AES原理:"></a>AES原理:</h3><blockquote><p><a href="https://blog.csdn.net/gulang03/article/details/81175854" target="_blank" rel="noopener">https://blog.csdn.net/gulang03/article/details/81175854</a></p></blockquote><h3 id="AES的四种模式"><a href="#AES的四种模式" class="headerlink" title="AES的四种模式:"></a>AES的四种模式:</h3><blockquote><p><a href="https://www.cnblogs.com/liangxuehui/p/4651351.html" target="_blank" rel="noopener">https://www.cnblogs.com/liangxuehui/p/4651351.html</a></p></blockquote><h3 id="AES的算法代码"><a href="#AES的算法代码" class="headerlink" title="AES的算法代码:"></a>AES的算法代码:</h3><blockquote><p><a href="https://blog.csdn.net/shaosunrise/article/details/80219950" target="_blank" rel="noopener">https://blog.csdn.net/shaosunrise/article/details/80219950</a></p></blockquote><p>感觉这几篇说的都很详细，网上的关于AES的介绍都挺清晰，都可以用来学习。</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> crypto </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 密码学 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>xxtea学习</title>
       <link href="/2020/01/29/xxtea%E5%AD%A6%E4%B9%A0/"/>
       <url>/2020/01/29/xxtea%E5%AD%A6%E4%B9%A0/</url>
