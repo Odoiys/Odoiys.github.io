@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>jarvisoj-re-wp</title>
+      <link href="/2020/02/05/jarvisoj-re-wp/"/>
+      <url>/2020/02/05/jarvisoj-re-wp/</url>
+      
+        <content type="html"><![CDATA[<h2 id="软件密码破解-1"><a href="#软件密码破解-1" class="headerlink" title="软件密码破解-1"></a>软件密码破解-1</h2><p>放到detectit中查看文件的类型，发现是MFC微软的win32编程，建议od动态调试，放到peid中查询，没有加密函数。</p><p>放到ida中只能看到有一堆的函数，winmain也没有足够的信息。字符串中也没有找到有关flag的字符。只能转战od动态调试。</p><p>在od中右键中文搜索引擎中的智能搜索有意外的发现。</p><p><img src="https://s2.ax1x.com/2020/02/05/1rfKvF.png" alt></p><p>发现了可能有关flag的地方，在这里下一个断点，然后向上寻找线索。</p><p><img src="https://s2.ax1x.com/2020/02/05/1rfXMF.png" alt></p><p>这时候需要运行然后顺着断点的地方向上找到输入的地方，在这里</p><p><img src="https://s2.ax1x.com/2020/02/05/1r5mCt.png" alt></p><p>解读下上面的汇编，输入的地址放入了ebx中，ptr ds:[ebx]可以调用你输入的字符串，然后把ebx赋给eax,重点是60到67的循环，用ptr ds:[ecx+eax]的字符串放到dl中（查看ptr ds:[eax+ecx]的方法是先把鼠标放到你要查的位置上然后右键数据窗口中跟随，选择内存地址便可以再左下角的内存窗口上查看），然后让dl与ptr ds:[eax]的字符串进行异或，eax刚才被ebx赋值了，也就是说ptr ds:[eax]就是你所输入的字符串，它与系统中的某组字符串进行了异或。再往下有几个cmp的比较，是用你输入的经过异或变换的字符串与所显示的字符串进行比较，这些所显示出来的数字因为是小端序排列的所以，要进行变换顺序才能进行正常比较（写脚本的时候注意）。</p><p>脚本如下：</p><pre><code class="python">flag=&#39;&#39;a=[0x28,0x57,0x64,0x6b,0x93,0x8f,0x65,0x51,0xe3,0x53,0xe4,0x4e,0x1a,0xff]b=[0x1b,0x1c,0x17,0x46,0xf4,0xfd,0x20,0x30,0xb7,0xc,0x8e,0x7e,0x78,0xde]for i in range(len(a)):    flag+=chr(a[i]^b[i])print(flag)</code></pre><p>flag是3Ks-grEaT_j0b!</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> re wp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> writeup </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>AES加密学习</title>
       <link href="/2020/02/01/AES%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0/"/>
       <url>/2020/02/01/AES%E5%8A%A0%E5%AF%86%E5%AD%A6%E4%B9%A0/</url>
