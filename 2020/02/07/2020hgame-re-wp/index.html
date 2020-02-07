@@ -5,12 +5,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>DLL学习 - Odoiys</title>
+    <title>2020hgame-re-wp - Odoiys</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="odoiys,"> 
-    <meta name="description" content="万物皆存于此,库文件:DLL(Dynamic Link Library),是动态链接库文件，又称“应用程序拓展”，是软文件类型。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立,"> 
+    <meta name="description" content="万物皆存于此,WEEK2:unpack:这道题有两种思路都要学会，官方给的那种方法（第一种方法）更好一些，直接给这两个链接。
+第一种方法：
+
+https://www.52pojie.cn/thread-10486,"> 
     <meta name="author" content="archli"> 
     <link rel="alternative" href="atom.xml" title="Odoiys" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -43,7 +46,7 @@
     <div class="navigation animated fadeIn fast delay-1s">
         <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="http://yoursite.com">
         <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
-        <h3 class="subtitle">DLL学习</h3>
+        <h3 class="subtitle">2020hgame-re-wp</h3>
         <div class="social">
             <!--        <div class="like-icon">-->
             <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -68,23 +71,24 @@
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(http://img01.sogoucdn.com/app/a/200863/img_411029_157103249997545);">
+                url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1581067104883&di=d212e01dc5e597a2e5222a0db9199138&imgtype=0&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2Fa2e0fee105f67a7d947fde04758298210e766c75.jpg);">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
                 
-                <a href="javascript:;"><b>「 </b>Article<b> 」</b></a>
+                <a href="/categories/re wp"><b>「
+                    </b>RE WP<b> 」</b></a>
                 
-                October 17, 2019
+                February 07, 2020
             </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2019/10/17/DLL%E5%AD%A6%E4%B9%A0/" title="DLL学习" class="">DLL学习</a>
+            <h3 class="post-title animated fadeInDown"><a href="/2020/02/07/2020hgame-re-wp/" title="2020hgame-re-wp" class="">2020hgame-re-wp</a>
             </h3>
             
             <p class="post-count animated fadeInDown">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    808
+                    631
                 </span>
                 
                 
@@ -94,7 +98,7 @@
                 </span>
                 
                 
-                <span id="/2019/10/17/DLL学习/" class="leancloud_visitors" data-flag-title="DLL学习">
+                <span id="/2020/02/07/2020hgame-re-wp/" class="leancloud_visitors" data-flag-title="2020hgame-re-wp">
                     <b class="iconfont icon-read"></b> <i>Read count</i>
                     <span class="leancloud-visitors-count">1000000</span>
                 </span>
@@ -102,6 +106,8 @@
                 
             </p>
             
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/UPX-dump-re/" rel="tag">-UPX -dump -re</a></li></ul>
             
         </div>
     </div>
@@ -122,11 +128,16 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <p>库文件:DLL(Dynamic Link Library),是动态链接库文件，又称“应用程序拓展”，是软文件类型。在Windows中，许多应用程序并不是一个完整的可执行文件，它们被分割成一些相对独立的动态链接库，即DLL文件，放置于系统中。<br>DLL 的编制与具体的编程语言及编译器无关</p>
-<ol>
-<li>只要遵循约定的DLL接口规范和调用方式，用各种语言编写的DLL都可以相互调用。譬如Windows提供的系统DLL（其中包括了Windows的API），在任何开发环境中都能被调用，不在乎其是Visual Basic、Visual C++还是Delphi。</li>
-<li>动态链接库随处可见<br>我们在Windows目录下的system32文件夹中会看到kernel32.dll、user32.dll和gdi32.dll，windows的大多数API都包含在这些DLL中。kernel32.dll中的函数主要处理内存管理和进程调度；user32.dll中的函数主要控制用户界面；gdi32.dll中的函数则负责图形方面的操作。<br>一般的程序员都用过类似MessageBox的函数，其实它就包含在user32.dll这个动态链接库中。由此可见DLL对我们来说其实并不陌生。<br>要使用加载时动态链接，请在编译和链接应用程序时提供头文件 (.h) 和导入库文件 (.lib)。当您这样做时，链接器将向系统提供加载 DLL 所需的信息，并在加载时解析导出的 DLL 函数的位置。 运行时动态链接在运行时动态链接中，应用程序调用 LoadLibrary 函数或 LoadLibraryEx 函数以在运行时加载 DLL。成功加载 DLL 后，可以使用 GetProcAddress 函数获得要调用的导出的 DLL 函数的地址。在使用运行时动态链接时，无需使用导入库文件。</li>
-</ol>
+            <h2 id="WEEK2"><a href="#WEEK2" class="headerlink" title="WEEK2:"></a>WEEK2:</h2><h3 id="unpack"><a href="#unpack" class="headerlink" title="unpack:"></a>unpack:</h3><p>这道题有两种思路都要学会，官方给的那种方法（第一种方法）更好一些，直接给这两个链接。</p>
+<p>第一种方法：</p>
+<blockquote>
+<p><a href="https://www.52pojie.cn/thread-1048649-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1048649-1-1.html</a></p>
+</blockquote>
+<p>第二种方法：</p>
+<blockquote>
+<p><a href="https://blog.csdn.net/Palmer9/article/details/104119621" target="_blank" rel="noopener">https://blog.csdn.net/Palmer9/article/details/104119621</a></p>
+</blockquote>
+<p>flag脚本在第二种方法里有给</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -170,6 +181,13 @@
             </div>
             
             
+            
+            <div class="box sticky animated fadeInRight faster">
+                <div id="toc" class="subbox">
+                    <h4>Contents</h4>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#WEEK2"><span class="toc-number">1.</span> <span class="toc-text">WEEK2:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unpack"><span class="toc-number">1.1.</span> <span class="toc-text">unpack:</span></a></li></ol></li></ol>
+                </div>
+            </div>
             
             
         </div>

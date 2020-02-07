@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>2020hgame-re-wp</title>
+      <link href="/2020/02/07/2020hgame-re-wp/"/>
+      <url>/2020/02/07/2020hgame-re-wp/</url>
+      
+        <content type="html"><![CDATA[<h2 id="WEEK2"><a href="#WEEK2" class="headerlink" title="WEEK2:"></a>WEEK2:</h2><h3 id="unpack"><a href="#unpack" class="headerlink" title="unpack:"></a>unpack:</h3><p>这道题有两种思路都要学会，官方给的那种方法（第一种方法）更好一些，直接给这两个链接。</p><p>第一种方法：</p><blockquote><p><a href="https://www.52pojie.cn/thread-1048649-1-1.html" target="_blank" rel="noopener">https://www.52pojie.cn/thread-1048649-1-1.html</a></p></blockquote><p>第二种方法：</p><blockquote><p><a href="https://blog.csdn.net/Palmer9/article/details/104119621" target="_blank" rel="noopener">https://blog.csdn.net/Palmer9/article/details/104119621</a></p></blockquote><p>flag脚本在第二种方法里有给</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> re wp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -UPX -dump -re </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>jarvisoj-re-wp</title>
       <link href="/2020/02/05/jarvisoj-re-wp/"/>
       <url>/2020/02/05/jarvisoj-re-wp/</url>
