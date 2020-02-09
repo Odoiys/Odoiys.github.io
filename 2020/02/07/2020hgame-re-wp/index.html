@@ -87,13 +87,13 @@ WEEK2:unpack:这道题有两种思路都要学会，官方给的那种方法（�
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    3.6k
+                    4.5k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    3 mins.
+                    4 mins.
                 </span>
                 
                 
@@ -202,6 +202,34 @@ if __name__ == &#39;__main__&#39;:
 </code></pre>
 </blockquote>
 <p>这次真的哭了。</p>
+<h3 id="babypy"><a href="#babypy" class="headerlink" title="babypy"></a>babypy</h3><p>这个题目是阅读python的字节码，然后写出python源码，再解密。</p>
+<p>可以看着官方文档来阅读：</p>
+<blockquote>
+<p><a href="https://docs.python.org/3/library/dis.html#python-bytecode-instructions" target="_blank" rel="noopener">https://docs.python.org/3/library/dis.html#python-bytecode-instructions</a></p>
+</blockquote>
+<p>源码如下：</p>
+<pre><code class="python">def encrypt(OOo):
+ O0O = OOo[::-1]
+ O0o = list(O0O)
+ for O0 in range(1, len(O0o)):
+  Oo = O0o[O0-1] ^ O0o[O0]
+  O0o[O0] = Oo
+ O = bytes(O0o)
+ return O.hex()</code></pre>
+<p>解密脚本如下：</p>
+<pre><code class="python">a=&quot;\x7d\x03\x7d\x04\x57\x17\x72\x2d\x62\x11\x4e\x6a\x5b\x04\x4f\x2c\x18\x4c\x3f\x44\x21\x4c\x2d\x4a\x22&quot;
+#print(len(a))
+b=a[::-1]
+print(len(b))
+d=[0 for i in range(0,len(b))]
+for i in range(0,len(b)-1):
+    c=ord(b[i])^ord(b[i+1])
+    d[i]=c
+print(d)
+flag=&#39;&#39;
+for i in range(0,len(b)):
+    flag+=chr(d[i])
+print(flag)</code></pre>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -249,7 +277,7 @@ if __name__ == &#39;__main__&#39;:
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#WEEK2"><span class="toc-number">1.</span> <span class="toc-text">WEEK2:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unpack"><span class="toc-number">1.1.</span> <span class="toc-text">unpack:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classic-CrackMe："><span class="toc-number">1.2.</span> <span class="toc-text">Classic_CrackMe：</span></a></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#WEEK2"><span class="toc-number">1.</span> <span class="toc-text">WEEK2:</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#unpack"><span class="toc-number">1.1.</span> <span class="toc-text">unpack:</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#Classic-CrackMe："><span class="toc-number">1.2.</span> <span class="toc-text">Classic_CrackMe：</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#babypy"><span class="toc-number">1.3.</span> <span class="toc-text">babypy</span></a></li></ol></li></ol>
                 </div>
             </div>
             
