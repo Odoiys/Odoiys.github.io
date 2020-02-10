@@ -315,9 +315,15 @@
       <link href="/2019/10/20/linux%E6%8C%87%E4%BB%A4%E8%AE%B0%E5%BD%95/"/>
       <url>/2019/10/20/linux%E6%8C%87%E4%BB%A4%E8%AE%B0%E5%BD%95/</url>
       
-        <content type="html"><![CDATA[<p>编译汇编代码：<br><code>vim hello.asm</code><br><code>nasm -f hello.asm</code><br><code>ld -m  elf_i386 -s -o hello hello.o</code></p>]]></content>
+        <content type="html"><![CDATA[<h2 id="更换Unbuntu的源："><a href="#更换Unbuntu的源：" class="headerlink" title="更换Unbuntu的源："></a>更换Unbuntu的源：</h2><pre><code class="shell">sudo gedit /etc/apt/sources.list-----------------------------------------------------------------------------#阿里云的源：deb http://mirrors.aliyun.com/ubuntu/ xenial maindeb-src http://mirrors.aliyun.com/ubuntu/ xenial maindeb http://mirrors.aliyun.com/ubuntu/ xenial-updates maindeb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates maindeb http://mirrors.aliyun.com/ubuntu/ xenial universedeb-src http://mirrors.aliyun.com/ubuntu/ xenial universedeb http://mirrors.aliyun.com/ubuntu/ xenial-updates universedeb-src http://mirrors.aliyun.com/ubuntu/ xenial-updates universedeb http://mirrors.aliyun.com/ubuntu/ xenial-security maindeb-src http://mirrors.aliyun.com/ubuntu/ xenial-security maindeb http://mirrors.aliyun.com/ubuntu/ xenial-security universedeb-src http://mirrors.aliyun.com/ubuntu/ xenial-security universe-----------------------------------------------------------------------------sudo apt-get updatesudo apt-get upgrade</code></pre><h2 id="设置中文的方法："><a href="#设置中文的方法：" class="headerlink" title="设置中文的方法："></a>设置中文的方法：</h2><pre><code class="shell">sudo apt-get install  language-pack-zh-han*</code></pre><p>然后再在语言设置中修改语言即可</p><h2 id="安装中文输入法"><a href="#安装中文输入法" class="headerlink" title="安装中文输入法:"></a>安装中文输入法:</h2><pre><code class="shell">sudo apt-get install fcitxsudo dpkg -i sogoupinyin_2.3.1.0112_amd64.deb</code></pre><p>再到语言设置中改一下就可以了</p><h2 id="更换主题："><a href="#更换主题：" class="headerlink" title="更换主题："></a>更换主题：</h2><p>首先要安装下gnom-tweaks-tool:</p><pre><code class="shell">sudo add-apt-repository universesudo apt install gnome-tweak-tool</code></pre><p>解决没有安装gnome的方法：</p><blockquote><p><a href="https://blog.csdn.net/m0_37407587/article/details/87911749" target="_blank" rel="noopener">https://blog.csdn.net/m0_37407587/article/details/87911749</a></p></blockquote><p>最后就可以安装主题了</p><h2 id="编译汇编代码："><a href="#编译汇编代码：" class="headerlink" title="编译汇编代码："></a>编译汇编代码：</h2><pre><code class="shell">vim hello.asmnasm -f hello.asmld -m  elf_i386 -s -o hello hello.o</code></pre>]]></content>
       
       
+      
+        <tags>
+            
+            <tag> linux </tag>
+            
+        </tags>
       
     </entry>
     
