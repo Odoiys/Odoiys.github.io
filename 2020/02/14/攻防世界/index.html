@@ -87,7 +87,7 @@ int __cdecl main(int argc, const char **argv, co,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    1.8k
+                    2.6k
                 </span>
                 
                 
@@ -183,6 +183,33 @@ for i in range(0,18,3):
     flag+=chr(a[i+2]^key^6)
 print(flag)
 </code></pre>
+<h2 id="流浪者"><a href="#流浪者" class="headerlink" title="流浪者"></a>流浪者</h2><p>是一个elf的文件，程序逻辑很简单，因为找不到main函数，所以直接用字符串找到有加密的地方就好了。</p>
+<p>直接给出脚本</p>
+<pre><code class="python">a=&#39;abcdefghiABCDEFGHIJKLMNjklmn0123456789opqrstuvwxyzOPQRSTUVWXYZ&#39;
+b=&#39;KanXueCTF2019JustForhappy&#39;
+c=[]
+for i in range(len(b)):
+    for j in range(len(a)):
+        if a[j] == b[i]:
+            c.append(j)
+print(c)
+
+for i in range(0,len(c)):
+    if c[i]&gt;9 or c[i]&lt;0:
+        if c[i]&gt;35 or c[i]&lt;10:
+            if c[i]&gt;61 or c[i]&lt;36:
+                print(&quot;error&quot;)
+            else:
+                c[i] = c[i]+29    
+        else:
+            c[i]=c[i]+87
+    else:
+        c[i]=c[i]+48
+print(c)
+flag=&#39;&#39;
+for i in range(len(c)):
+    flag+=chr(c[i])
+print(flag)</code></pre>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -230,7 +257,7 @@ print(flag)
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li></ol>
                 </div>
             </div>
             
