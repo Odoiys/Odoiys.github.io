@@ -4,6 +4,31 @@
   
     
     <entry>
+      <title>攻防世界</title>
+      <link href="/2020/02/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/"/>
+      <url>/2020/02/14/%E6%94%BB%E9%98%B2%E4%B8%96%E7%95%8C/</url>
+      
+        <content type="html"><![CDATA[<h2 id="666"><a href="#666" class="headerlink" title="666"></a>666</h2><p>放入detectit查看发现是64位elf文件，peid什么都没发现。</p><p>看看ida中的伪代码：</p><pre><code class="c">int __cdecl main(int argc, const char **argv, const char **envp){  char s; // [rsp+0h] [rbp-1E0h]  char v5; // [rsp+F0h] [rbp-F0h]  memset(&amp;s, 0, 0x1EuLL);  printf(&quot;Please Input Key: &quot;, 0LL);  __isoc99_scanf(&quot;%s&quot;, &amp;v5);  encode(&amp;v5, &amp;s);  if ( strlen(&amp;v5) == key )  {    if ( !strcmp(&amp;s, enflag) )      puts(&quot;You are Right&quot;);    else      puts(&quot;flag{This_1s_f4cker_flag}&quot;);  }  return 0;}</code></pre><p>结构很简单，输入的flag放到v5里面，然后再encode中加密，加密后的变量是s，然后比较长度，长度是key，key的值给出来了是18，然后加密后的s与系统中的变量enflag进行比较，相同则答案正确。</p><p>再看看encode中的加密过程：</p><pre><code class="c">int __fastcall encode(const char *a1, __int64 a2){  char v3[32]; // [rsp+10h] [rbp-70h]  char v4[32]; // [rsp+30h] [rbp-50h]  char v5[40]; // [rsp+50h] [rbp-30h]  int v6; // [rsp+78h] [rbp-8h]  int i; // [rsp+7Ch] [rbp-4h]  i = 0;  v6 = 0;  if ( strlen(a1) != key )    return puts(&quot;Your Length is Wrong&quot;);  for ( i = 0; i &lt; key; i += 3 )  {    v5[i] = key ^ (a1[i] + 6);    v4[i + 1] = (a1[i + 1] - 6) ^ key;    v3[i + 2] = a1[i + 2] ^ 6 ^ key;    *(_BYTE *)(a2 + i) = v5[i];    *(_BYTE *)(a2 + i + 1LL) = v4[i + 1];    *(_BYTE *)(a2 + i + 2LL) = v3[i + 2];  }  return a2;}</code></pre><p>将输入的字符串每三个为一组，第一个字母加6异或key的值也就是18，第二个字母减6异或key，第三个异或6异或key</p><p>然后逆向写出脚本：</p><pre><code class="python">a=[0x69,0x7a,0x77,0x68,0x72,0x6f,0x7a,0x22,0x22,0x77,0x22,0x76,0x2e,0x4b,0x22,0x2e,0x4e,0x69]key=18flag=&#39;&#39;for i in range(0,18,3):    flag+=chr((a[i]^key)-6)    flag+=chr((a[i+1]^key)+6)    flag+=chr(a[i+2]^key^6)print(flag)</code></pre>]]></content>
+      
+      
+      <categories>
+          
+          <category> re wp </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> -writeup -re </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>re入门简介</title>
       <link href="/2020/02/13/re%E5%85%A5%E9%97%A8%E7%AE%80%E4%BB%8B/"/>
       <url>/2020/02/13/re%E5%85%A5%E9%97%A8%E7%AE%80%E4%BB%8B/</url>
