@@ -87,13 +87,13 @@ int __cdecl main(int argc, const char **argv, co,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    6.5k
+                    16k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    6 mins.
+                    15 mins.
                 </span>
                 
                 
@@ -344,6 +344,265 @@ print(flag)</code></pre>
 }</code></pre>
 <p>找到这一段后，可以发现有两块是虚假的，函数中都标注出来了。</p>
 <p>直接使用base58解码就好了</p>
+<h2 id="key"><a href="#key" class="headerlink" title="key"></a>key</h2><p>本题是对动态调试的考察，ida中的main函数如下：</p>
+<pre><code class="c">int sub_401100()
+{
+  signed int v0; // esi
+  signed int v1; // esi
+  unsigned int v2; // edi
+  void **v3; // ebx
+  void **v4; // eax
+  int v5; // ecx
+  int v6; // ST04_4
+  int v7; // ST08_4
+  int v8; // ST0C_4
+  int v9; // eax
+  char *v10; // esi
+  int v11; // ecx
+  void **v12; // eax
+  signed int v13; // eax
+  int v14; // ecx
+  int v15; // eax
+  int v16; // eax
+  int v17; // eax
+  int v18; // eax
+  int v19; // eax
+  int v20; // eax
+  int v21; // eax
+  const char *v22; // edx
+  int v23; // eax
+  int result; // eax
+  int Dst; // [esp+14h] [ebp-124h]
+  char v26[4]; // [esp+20h] [ebp-118h]
+  char v27; // [esp+24h] [ebp-114h]
+  int v28; // [esp+5Ch] [ebp-DCh]
+  char v29; // [esp+61h] [ebp-D7h]
+  int v30; // [esp+64h] [ebp-D4h]
+  int v31; // [esp+68h] [ebp-D0h]
+  char v32; // [esp+6Ch] [ebp-CCh]
+  FILE *File; // [esp+70h] [ebp-C8h]
+  char v34; // [esp+84h] [ebp-B4h]
+  void *v35; // [esp+CCh] [ebp-6Ch]
+  int v36; // [esp+DCh] [ebp-5Ch]
+  unsigned int v37; // [esp+E0h] [ebp-58h]
+  void *v38; // [esp+E4h] [ebp-54h]
+  unsigned int v39; // [esp+F4h] [ebp-44h]
+  unsigned int v40; // [esp+F8h] [ebp-40h]
+  void *Memory[4]; // [esp+FCh] [ebp-3Ch]
+  unsigned int v42; // [esp+10Ch] [ebp-2Ch]
+  unsigned int v43; // [esp+110h] [ebp-28h]
+  __int128 v44; // [esp+114h] [ebp-24h]
+  __int16 v45; // [esp+124h] [ebp-14h]
+  char v46; // [esp+126h] [ebp-12h]
+  int v47; // [esp+134h] [ebp-4h]
+
+  v40 = 15;
+  v39 = 0;
+  LOBYTE(v38) = 0;
+  v47 = 0;
+  v37 = 15;
+  v36 = 0;
+  LOBYTE(v35) = 0;
+  LOBYTE(v47) = 1;
+  v0 = 0;
+  v42 = 1684630885;
+  LOWORD(v43) = 97;
+  *Memory = xmmword_40528C;
+  v45 = &#39;.&lt;&#39;;
+  v46 = 0;
+  v44 = xmmword_4052A4;
+  do
+  {
+    sub_4021E0(&amp;v35, 1u, (*(Memory + v0) ^ *(&amp;v44 + v0)) + 22);
+    ++v0;
+  }
+  while ( v0 &lt; 18 );
+  v1 = 0;
+  v43 = 15;
+  v42 = 0;
+  LOBYTE(Memory[0]) = 0;
+  LOBYTE(v47) = 2;
+  v2 = v37;
+  v3 = v35;
+  do
+  {
+    v4 = &amp;v35;
+    if ( v2 &gt;= 16 )
+      v4 = v3;
+    sub_4021E0(Memory, 1u, *(v4 + v1++) + 9);
+  }
+  while ( v1 &lt; 18 );
+  memset(&amp;Dst, 0, 184u);
+  sub_401620(&amp;Dst, v5, v6, v7, v8);
+  LOBYTE(v47) = 3;
+  if ( v26[*(Dst + 4)] &amp; 6 )
+  {
+    v9 = sub_402A00(std::cerr, &quot;?W?h?a?t h?a?p?p?e?n?&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v9, sub_402C50);
+    exit(-1);
+  }
+  sub_402E90(&amp;Dst, &amp;v38);
+  v10 = &amp;v27;
+  if ( File )
+  {
+    if ( !sub_4022F0(&amp;v27) )
+      v10 = 0;
+    if ( fclose(File) )
+      v10 = 0;
+  }
+  else
+  {
+    v10 = 0;
+  }
+  v32 = 0;
+  v29 = 0;
+  std::basic_streambuf&lt;char,std::char_traits&lt;char&gt;&gt;::_Init(&amp;v27);
+  v30 = dword_408590;
+  File = 0;
+  v31 = dword_408594;
+  v28 = 0;
+  if ( !v10 )
+    std::basic_ios&lt;char,std::char_traits&lt;char&gt;&gt;::setstate(&amp;Dst + *(Dst + 4), 2, 0);
+  v12 = Memory;
+  if ( v43 &gt;= 16 )
+    v12 = Memory[0];
+  v13 = sub_4020C0(&amp;v38, v11, v39, v12, v42);
+  v14 = std::cout;
+  if ( v13 )
+  {
+    v22 = &quot;=W=r=o=n=g=K=e=y=&quot;;
+  }
+  else
+  {
+    v15 = sub_402A00(std::cout, &quot;|------------------------------|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v15, sub_402C50);
+    v16 = sub_402A00(std::cout, &quot;|==============================|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v16, sub_402C50);
+    v17 = sub_402A00(std::cout, &quot;|==============================|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v17, sub_402C50);
+    v18 = sub_402A00(std::cout, &quot;|==============================|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v18, sub_402C50);
+    v19 = sub_402A00(std::cout, &quot;\\  /\\  /\\  /\\  /\\==============|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v19, sub_402C50);
+    v20 = sub_402A00(std::cout, &quot; \\/  \\/  \\/  \\/  \\=============|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v20, sub_402C50);
+    v21 = sub_402A00(std::cout, &quot;                 |-------------|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v21, sub_402C50);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(std::cout, sub_402C50);
+    v14 = std::cout;
+    v22 = &quot;Congrats You got it!&quot;;
+  }
+  v23 = sub_402A00(v14, v22);
+  std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v23, sub_402C50);
+  sub_401570(&amp;v34);
+  std::basic_ios&lt;char,std::char_traits&lt;char&gt;&gt;::~basic_ios&lt;char,std::char_traits&lt;char&gt;&gt;(&amp;v34);
+  if ( v43 &gt;= 0x10 )
+    sub_402630(Memory[0], v43 + 1);
+  if ( v2 &gt;= 0x10 )
+    sub_402630(v3, v2 + 1);
+  result = v40;
+  if ( v40 &gt;= 0x10 )
+    result = sub_402630(v38, v40 + 1);
+  return result;
+}</code></pre>
+<p>该程序是要在指定的位置建立一个规定的内容文件，程序才能通过。</p>
+<p>先建立好一个文本文件里面随便输入一些内容，然后在od中动态调试</p>
+<p>用智能搜索字符串找到?W?h?a?t h?a?p?p?e?n?，然后对照ida反汇编找到main函数的入口位置，从头开始调试。</p>
+<p>伪代码这个位置</p>
+<pre><code class="c">v0 = 0;
+  v42 = 1684630885;
+  LOWORD(v43) = 97;
+  *Memory = xmmword_40528C;
+  v45 = &#39;.&lt;&#39;;
+  v46 = 0;
+  v44 = xmmword_4052A4;
+  do
+  {
+    sub_4021E0(&amp;v35, 1u, (*(Memory + v0) ^ *(&amp;v44 + v0)) + 22);
+    ++v0;
+  }
+  while ( v0 &lt; 18 );</code></pre>
+<p>这段是系统内的两个变量生成的字符串，输入不影响。</p>
+<p>对应的反汇编的位置是</p>
+<pre><code class="assembly">.text:004011A0 loc_4011A0:                             ; CODE XREF: sub_401100+C4↓j
+.text:004011A0                 mov     al, byte ptr [ebp+esi+var_24]
+.text:004011A4                 lea     ecx, [ebp+var_6C]
+.text:004011A7                 xor     al, byte ptr [ebp+esi+Memory]
+.text:004011AB                 add     al, 16h
+.text:004011AD                 mov     [ebp+var_128], al
+.text:004011B3                 push    dword ptr [ebp+var_128] ; char
+.text:004011B9                 push    1               ; Size
+.text:004011BB                 call    sub_4021E0
+.text:004011C0                 inc     esi
+.text:004011C1                 cmp     esi, 12h
+.text:004011C4                 jl      short loc_4011A0</code></pre>
+<p>继续往下看</p>
+<pre><code class="c">do
+  {
+    v4 = &amp;v35;
+    if ( v2 &gt;= 16 )
+      v4 = v3;
+    sub_4021E0(Memory, 1u, *(v4 + v1++) + 9);
+  }
+  while ( v1 &lt; 18 );</code></pre>
+<p>这一段和上面的函数调用相同，同样生成了一组字符串</p>
+<p>反汇编</p>
+<pre><code class="assembly">.text:004011E0 loc_4011E0:                             ; CODE XREF: sub_401100+108↓j
+.text:004011E0                 cmp     edi, 10h
+.text:004011E3                 lea     eax, [ebp+var_6C]
+.text:004011E6                 lea     ecx, [ebp+Memory]
+.text:004011E9                 cmovnb  eax, ebx
+.text:004011EC                 mov     al, [eax+esi]
+.text:004011EF                 add     al, 9
+.text:004011F1                 mov     [ebp+var_128], al
+.text:004011F7                 push    dword ptr [ebp+var_128] ; char
+.text:004011FD                 push    1               ; Size
+.text:004011FF                 call    sub_4021E0
+.text:00401204                 inc     esi
+.text:00401205                 cmp     esi, 12h
+.text:00401208                 jl      short loc_4011E0</code></pre>
+<p>经过动态调试后，sub_401620这个函数是用来读取建立的文件中的内容的</p>
+<p>再往下走</p>
+<pre><code class="c"> if ( v43 &gt;= 16 )
+    v12 = Memory[0];
+  v13 = sub_4020C0(&amp;v38, v11, v39, v12, v42);
+  v14 = std::cout;
+  if ( v13 )
+  {
+    v22 = &quot;=W=r=o=n=g=K=e=y=&quot;;
+  }
+  else
+  {
+    v15 = sub_402A00(std::cout, &quot;|------------------------------|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v15, sub_402C50);
+    v16 = sub_402A00(std::cout, &quot;|==============================|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v16, sub_402C50);
+    v17 = sub_402A00(std::cout, &quot;|==============================|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v17, sub_402C50);
+    v18 = sub_402A00(std::cout, &quot;|==============================|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v18, sub_402C50);
+    v19 = sub_402A00(std::cout, &quot;\\  /\\  /\\  /\\  /\\==============|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v19, sub_402C50);
+    v20 = sub_402A00(std::cout, &quot; \\/  \\/  \\/  \\/  \\=============|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v20, sub_402C50);
+    v21 = sub_402A00(std::cout, &quot;                 |-------------|&quot;);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(v21, sub_402C50);
+    std::basic_ostream&lt;char,std::char_traits&lt;char&gt;&gt;::operator&lt;&lt;(std::cout, sub_402C50);
+    v14 = std::cout;
+    v22 = &quot;Congrats You got it!&quot;;
+  }</code></pre>
+<p>这一段是比较字符串的地方，用动态调试通过寄存器监视可以看出来，一个部分是你输入的字符串，另一个是第二个循环出来的字符串。如果正确就会输出congrats,如果不通过就输出wrong</p>
+<p>对应的反汇编是</p>
+<pre><code class="assembly">.text:00401310 loc_401310:                             ; CODE XREF: sub_401100+1F4↑j
+.text:00401310                 cmp     [ebp+var_28], 10h
+.text:00401314                 lea     eax, [ebp+Memory]
+.text:00401317                 push    [ebp+var_2C]
+.text:0040131A                 cmovnb  eax, [ebp+Memory]
+.text:0040131E                 push    eax
+.text:0040131F                 push    [ebp+var_44]
+.text:00401322                 push    ecx
+.text:00401323                 lea     ecx, [ebp+var_54]</code></pre>
+<p>最后</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -391,7 +650,7 @@ print(flag)</code></pre>
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li></ol>
                 </div>
             </div>
             
