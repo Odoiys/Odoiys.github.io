@@ -87,13 +87,13 @@ int __cdecl main(int argc, const char **argv, co,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    16k
+                    18k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    15 mins.
+                    16 mins.
                 </span>
                 
                 
@@ -602,7 +602,55 @@ print(flag)</code></pre>
 .text:0040131F                 push    [ebp+var_44]
 .text:00401322                 push    ecx
 .text:00401323                 lea     ecx, [ebp+var_54]</code></pre>
-<p>最后</p>
+<p>最后的flag就是第二次的循环的字符串</p>
+<h2 id="BabyXor"><a href="#BabyXor" class="headerlink" title="BabyXor"></a>BabyXor</h2><p>本题考查的是手动脱壳。</p>
+<p>先把文件放入ida中看源代码，反汇编是成堆的数据，显然是加壳了，但是又在查壳软件中找不到壳，可能是作者手动改文件头了，官方的wp中给的是把段地址改了。</p>
+<p>把文件放到od中看看有什么突破口，</p>
+<pre><code class="assembly">0043F000 &gt;  60              pushad
+0043F001    B9 00100300     mov ecx,0x31000
+0043F006    BB 00100000     mov ebx,0x1000
+0043F00B    BA 00004000     mov edx,babyXor.00400000
+0043F010    03DA            add ebx,edx                              ; babyXor.&lt;ModuleEntryPoint&gt;
+0043F012    8033 23         xor byte ptr ds:[ebx],0x23
+0043F015    43              inc ebx
+0043F016    E0 FA           loopdne short babyXor.0043F012
+0043F018    61              popad
+0043F019    E9 82D4FCFF     jmp babyXor.0040C4A0
+
+</code></pre>
+<p>pushad和popad都在眼前，直接试试esp定律脱壳好了</p>
+<p>先单走一个F8执行以下pushad，然后再右边的寄存器监视一栏右键esp点击HW break[ESP]再单走一个f9，来到了jmp处，再F8来到一个一堆数据的地方，使用ctrl+a这就是原文件本来的入口处，然后再push ebp的地方右键点击用olldump脱壳调试进程，进去后再点击脱壳。</p>
+<p>生成新的文件后，程序内容很简单，有两种做法，一种是用ida写脚本输出flag，另一种是动态调试，这边给出ida脚本。</p>
+<pre><code class="python">a=[0x66,0x6d,0x63,0x64,0x7f,0x37,0x35,0x30,0x30,0x6b,0x3a,0x3c,0x3b,0x20]
+b=[]
+e=[0x1a,0x0,0x0,0x51,0x5,0x11,0x54,0x56,0x55,0x59,0x1d,0x9,0x5d,0x12,0x0,0x0,0x0,0x0]
+c=[0x37,0x6f,0x38,0x62,0x36,0x7c,0x37,0x33,0x34,0x76,0x33,0x62,0x64,0x7a]
+for i in range(14):
+    b.append(i^a[i])
+print(b)
+flag1=&#39;&#39;
+for i in range(14):
+    flag1+=chr(b[i])
+print(flag1)
+d=[0x37]
+flag2=&#39;&#39;
+for i in range(1,14):
+    d.append(a[i]^c[i]^a[i-1])
+for i in range(len(d)):
+    flag2+=chr(d[i])
+print(flag2)
+#print(len(d))
+f=[]
+for i in range(13):
+    f.append(e[i+1]^d[i]^i)
+flag3=chr(0x37^0x1a)
+for i in range(13):
+    flag3+=chr(f[i])
+print(flag3)
+flag=flag1+flag2+flag3
+print(flag)
+</code></pre>
+<p>动态调试比较简单，可以自己尝试。</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -650,7 +698,7 @@ print(flag)</code></pre>
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BabyXor"><span class="toc-number">5.</span> <span class="toc-text">BabyXor</span></a></li></ol>
                 </div>
             </div>
             
