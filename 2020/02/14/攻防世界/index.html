@@ -87,13 +87,13 @@ int __cdecl main(int argc, const char **argv, co,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    18k
+                    22k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    16 mins.
+                    20 mins.
                 </span>
                 
                 
@@ -651,6 +651,130 @@ flag=flag1+flag2+flag3
 print(flag)
 </code></pre>
 <p>动态调试比较简单，可以自己尝试。</p>
+<h2 id="Replace"><a href="#Replace" class="headerlink" title="Replace"></a>Replace</h2><p>本题是AES的算法题</p>
+<p>先把程序放入detectit里，然后发现有UPX的壳在里面，可以直接用软件脱掉不需要手脱。</p>
+<p>脱完壳后放入ida查看源代码，有main函数就进入main函数。</p>
+<p>代码如下</p>
+<pre><code class="c">int __cdecl main(int argc, const char **argv, const char **envp)
+{
+  int v3; // kr00_4
+  char Buf; // [esp+4h] [ebp-2Ch]
+  char Dst; // [esp+5h] [ebp-2Bh]
+
+  Buf = 0;
+  memset(&amp;Dst, 0, 0x27u);
+  printf(&quot;Welcome The System\nPlease Input Key:&quot;);
+  gets_s(&amp;Buf, 40u);
+  v3 = strlen(&amp;Buf);
+  if ( (v3 - 35) &lt;= 2 )
+  {
+    if ( sub_401090(&amp;Buf, v3) == 1 )
+      printf(&quot;Well Done!\n&quot;);
+    else
+      printf(&quot;Your Wrong!\n&quot;);
+  }
+  return 0;
+}</code></pre>
+<p>进入if比较的那个函数sub_401090。</p>
+<p>如下：</p>
+<pre><code class="c">signed int __fastcall sub_401090(int a1, int a2)
+{
+  int v2; // ebx
+  int v4; // edx
+  char v5; // al
+  int v6; // esi
+  int v7; // edi
+  char v8; // al
+  int v9; // eax
+  char v10; // cl
+  int v11; // eax
+  int v12; // ecx
+
+  v2 = a1;
+  if ( a2 != 35 )
+    return -1;
+  v4 = 0;
+  while ( 1 )
+  {
+    v5 = *(v4 + v2);
+    v6 = (v5 &gt;&gt; 4) % 16;
+    v7 = (16 * v5 &gt;&gt; 4) % 16;
+    v8 = byte_402150[2 * v4];
+    if ( v8 &lt; 48 || v8 &gt; &#39;9&#39; )
+      v9 = v8 - 87;
+    else
+      v9 = v8 - 48;
+    v10 = byte_402151[2 * v4];
+    v11 = 16 * v9;
+    if ( v10 &lt; &#39;0&#39; || v10 &gt; &#39;9&#39; )
+      v12 = v10 - 87;
+    else
+      v12 = v10 - 48;
+    if ( byte_4021A0[16 * v6 + v7] != ((v11 + v12) ^ 25) )
+      break;
+    if ( ++v4 &gt;= 35 )
+      return 1;
+  }
+  return -1;
+}</code></pre>
+<p>有点像AES，但是可以发现可以写个脚本求出16*v6+v7，flag就是这个，就是要把最后一个字符变成}</p>
+<p>脚本如下：</p>
+<pre><code class="python">a=&#39;2a49f69c38395cde96d6de96d6f4e025484954d6195448def6e2dad67786e21d5adae6&#39;
+#print(len(a)//2)
+v8=[]
+v9=[]
+for i in range(len(a)//2):
+    v8.append(ord(a[2*i]))
+for i in range(len(v8)):
+    if v8[i] &lt; 48 or v8[i] &gt; 57:
+        v9.append(v8[i]-87) 
+    else:
+        v9.append(v8[i]-48)
+#print(v9)
+v11=[]
+v10=&#39;a49f69c38395cde96d6de96d6f4e025484954d6195448def6e2dad67786e21d5adae6&#39;
+for i in range(len(v9)):
+    v11.append(16*v9[i])
+print(v11)
+v12=[]
+v13=[]
+print(len(v10)//2)
+for i in range(len(v10)//2):
+    v13.append(ord(v10[2*i]))
+for i in range(len(v13)):
+    if v13[i] &lt; 48 or v13[i] &gt; 57:
+        v12.append(v13[i]-87) 
+    else:
+        v12.append(v13[i]-48)
+v12.append(0)
+for i in range(len(v11)):
+    print((v11[i]+v12[i])^25)
+sbox=[99, 124, 119, 123, 242, 107, 111, 197,   48,   1, 103,  43, 254, 215, 171, 118,
+202, 130, 201, 125, 250,  89, 71, 240,  173, 212, 162, 175, 156, 164, 114, 192,
+183, 253, 147,  38,  54,  63, 247, 204,   52, 165, 229, 241, 113, 216,  49,  21,
+  4, 199,  35, 195,  24, 150,   5, 154, 7, 18, 128, 226, 235,  39, 178, 117,
+  9, 131,  44,  26,  27, 110,  90, 160,   82,  59, 214, 179,  41, 227,  47, 132,
+ 83, 209,   0, 237,  32, 252, 177,  91,  106, 203, 190,  57,  74,  76,  88, 207,
+208, 239, 170, 251,  67,  77,  51, 133,   69 ,249,   2, 127,  80,  60, 159, 168,
+ 81, 163,  64, 143, 146, 157,  56 ,245,  188 ,182, 218 , 33,  16 ,255, 243 ,210,
+205,  12 , 19, 236,  95, 151 , 68 , 23,  196 ,167, 126 , 61, 100 , 93 , 25 ,115,
+ 96, 129 , 79, 220 , 34,  42 ,144 ,136,   70 ,238, 184 , 20, 222 , 94  ,11, 219,
+224,  50,  58,  10,  73,   6 , 36 , 92,  194 ,211, 172  ,98, 145 ,149, 228 ,121,
+231, 200,  55, 109, 141, 213 , 78 ,169,  108 , 86, 244 ,234, 101 ,122, 174,   8,
+186, 120,  37,  46,  28, 166 ,180 ,198,  232 ,221, 116  ,31,  75, 189, 139, 138,
+112,  62, 181, 102,  72,   3 ,246 , 14,   97 , 53,  87 ,185, 134, 193,  29, 158,
+225, 248, 152,  17, 105, 217 ,142 ,148,  155,  30, 135, 233, 206,  85,  40 ,223,
+140, 161, 137,  13, 191, 230 , 66 ,104,   65 ,153,  45,  15, 176,  84, 187,  22,]
+number=[]
+for i in range(len(v11)):
+    for j in range(256):
+        if sbox[j] == ((v11[i]+v12[i])^25):
+            number.append(j)
+print(number)
+flag1=&#39;&#39;
+for i in range(len(number)):
+    flag1+=chr(number[i])
+print(flag1)</code></pre>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -698,7 +822,7 @@ print(flag)
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BabyXor"><span class="toc-number">5.</span> <span class="toc-text">BabyXor</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BabyXor"><span class="toc-number">5.</span> <span class="toc-text">BabyXor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replace"><span class="toc-number">6.</span> <span class="toc-text">Replace</span></a></li></ol>
                 </div>
             </div>
             
