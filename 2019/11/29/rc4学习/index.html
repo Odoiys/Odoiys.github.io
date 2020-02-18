@@ -86,7 +86,7 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    5.6k
+                    5.7k
                 </span>
                 
                 
@@ -104,6 +104,8 @@
                 
             </p>
             
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a></li></ul>
             
         </div>
     </div>
@@ -134,27 +136,28 @@
 <p>3、开始对状态向量S进行置换操作（用来打乱初始种子1）</p>
 <p>按照下列规则进行</p>
 <p>从第零个字节开始，执行256次，保证每个字节都得到处理</p>
-<p>　j = 0;</p>
-<p>　　for (i = 0 ; i &lt; 256 ; i++){</p>
-<p>　　　　j = (j + S[i] + T[i]) mod 256;</p>
-<p>　　　　swap(S[i] , S[j]);</p>
-<p>　　}</p>
+<pre><code class="c">j = 0;
+for (i = 0 ; i &lt; 256 ; i++){
+j = (j + S[i] + T[i]) mod 256;
+swap(S[i] , S[j]);
+}</code></pre>
 <p>这样处理后的状态向量S几乎是带有一定的随机性了<br>4、最后是秘钥流的生成与加密，很多人在这里不是特别理解，别的博客也没有写的很简洁明了</p>
 <p>假设我的明文字节数是datalength=1024个字节（当然可以是任意个字节）</p>
 <p>i=0;</p>
 <p>j=0;</p>
 <p>while(datalength–){//相当于执行1024次，这样生成的秘钥流也是1024个字节</p>
-<p>　　　i = (i + 1) mod 256;</p>
-<p>　　　　j = (j + S[i]) mod 256;</p>
-<p>　　　　swap(S[i] , S[j]);</p>
-<p>　　　　t = (S[i] + S[j]) mod 256;</p>
-<p>　　　　k = S[t];这里的K就是当前生成的一个秘钥流中的一位</p>
+<p>　　</p>
+<pre><code class="c">i = (i + 1) mod 256;
+j = (j + S[i]) mod 256;
+swap(S[i] , S[j]);
+t = (S[i] + S[j]) mod 256;
+k = S[t];这里的K就是当前生成的一个秘钥流中的一位</code></pre>
 <p>　　　　//可以直接在这里进行加密，当然也可以将密钥流保存在数组中，最后进行异或就ok</p>
-<p>　　　　data[]=data[]^k； //进行加密，”^”是异或运算符</p>
+<pre><code class="c">data[]=data[]^k； //进行加密，&quot;^&quot;是异或运算符</code></pre>
 <p>}</p>
 <p>解密按照前面写的，异或两次就是原文，所以只要把密钥流重新拿过来异或一次就能得到原文了</p>
 <h2 id="代码部分"><a href="#代码部分" class="headerlink" title="代码部分"></a>代码部分</h2><p>RC4算法的原理很简单，包括初始化算法（KSA）和伪随机子密码生成算法（PRGA)两大部分。假设S-box的长度为256，密钥长度为Len。先来看看算法的初始化部分（用C代码表示）： [1]<br>其中，参数1是一个256长度的char型数组，定义为: unsigned char sBox[256];<br>参数2是密钥，其内容可以随便定义：char key[256];<br>参数3是密钥的长度，Len = strlen(key);</p>
-<pre><code>/*初始化函数*/
+<pre><code class="c">/*初始化函数*/
 void rc4_init(unsigned char*s,unsigned char*key, unsigned long Len)
 {
     int i=0,j=0;
@@ -172,8 +175,9 @@ void rc4_init(unsigned char*s,unsigned char*key, unsigned long Len)
         s[i]=s[j];//交换s[i]和s[j]
         s[j]=tmp;
     }
-}</code></pre><p>在初始化的过程中，密钥的主要功能是将S-box搅乱，i确保S-box的每个元素都得到处理，j保证S-box的搅乱是随机的。而不同的S-box在经过伪随机子密码生成算法的处理后可以得到不同的子密钥序列，将S-box和明文进行xor运算，得到密文，解密过程也完全相同。<br>再来看看算法的加密部分（用C代码表示）：<br>其中，参数1是上边rc4_init函数中，被搅乱的S-box;<br>参数2是需要加密的数据data;<br>参数3是data的长度.</p>
-<pre><code>/*加解密*/
+}</code></pre>
+<p>在初始化的过程中，密钥的主要功能是将S-box搅乱，i确保S-box的每个元素都得到处理，j保证S-box的搅乱是随机的。而不同的S-box在经过伪随机子密码生成算法的处理后可以得到不同的子密钥序列，将S-box和明文进行xor运算，得到密文，解密过程也完全相同。<br>再来看看算法的加密部分（用C代码表示）：<br>其中，参数1是上边rc4_init函数中，被搅乱的S-box;<br>参数2是需要加密的数据data;<br>参数3是data的长度.</p>
+<pre><code class="c">/*加解密*/
 void rc4_crypt(unsigned char*s,unsigned char*Data,unsigned long Len)
 {
     int i=0,j=0,t=0;
@@ -189,8 +193,9 @@ void rc4_crypt(unsigned char*s,unsigned char*Data,unsigned long Len)
         t=(s[i]+s[j])%256;
         Data[k]^=s[t];
     }
-}</code></pre><p>最后，在main函数中，调用顺序如下：</p>
-<pre><code>int main()
+}</code></pre>
+<p>最后，在main函数中，调用顺序如下：</p>
+<pre><code class="c">int main()
 {
 unsigned char s[256]={0},s2[256]={0};//S-box
 char key[256]={&quot;justfortest&quot;};
@@ -219,8 +224,9 @@ printf(&quot;已经加密，现在解密:\n\n&quot;);
 rc4_crypt(s2,(unsigned char*)pData,len);//解密
 printf(&quot;pData=%s\n\n&quot;,pData);
 return0;
-}</code></pre><p>最终的完整程序是：</p>
-<pre><code>//程序开始
+}</code></pre>
+<p>最终的完整程序是：</p>
+<pre><code class="c">//程序开始
 #include&lt;stdio.h&gt;
 #include&lt;string.h&gt;
 typedef unsigned longULONG; 
@@ -291,6 +297,7 @@ int main()
     return 0;
 }
 //程序完</code></pre>
+
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
                 data-autoplay="false">
