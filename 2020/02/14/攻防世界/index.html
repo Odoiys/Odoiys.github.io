@@ -87,13 +87,13 @@ int __cdecl main(int argc, const char **argv, co,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    22k
+                    24k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    20 mins.
+                    21 mins.
                 </span>
                 
                 
@@ -106,7 +106,7 @@ int __cdecl main(int argc, const char **argv, co,">
             </p>
             
             
-            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/re/" rel="tag">re</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/writeup/" rel="tag">writeup</a></li></ul>
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/crc16/" rel="tag">crc16</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/re/" rel="tag">re</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/writeup/" rel="tag">writeup</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/xxtea/" rel="tag">xxtea</a></li></ul>
             
         </div>
     </div>
@@ -775,6 +775,54 @@ flag1=&#39;&#39;
 for i in range(len(number)):
     flag1+=chr(number[i])
 print(flag1)</code></pre>
+<h2 id="babyre1"><a href="#babyre1" class="headerlink" title="babyre1"></a>babyre1</h2><p>xxtea加上CRC16的加密</p>
+<p>进入main函数看加密的部分：</p>
+<pre><code class="c">else if ( v6 == 16 )
+  {
+    v7 = sub_556D83F90C00(&amp;v14, 16, &amp;ptr);
+    if ( v7
+      &amp;&amp; (v8 = sub_556D83F91180(ptr, v7, &amp;byte_556D84192010, 16, &amp;v12), (v9 = v8) != 0LL)
+      &amp;&amp; v12 &gt; 0
+      &amp;&amp; sub_556D83F913D0(v8, v12) == 0x69E2 )
+    {
+      for ( i = 0LL; v12 &gt; i; ++i )
+        v9[i] ^= 0x17u;
+      puts(v9);
+      if ( ptr )
+        free(ptr);
+      free(v9);
+    }</code></pre>
+<p>题目中说答案对了会输出Bingo!</p>
+<p>可以看到后面的puts(v9),在这之前v9还进行了和0x17的异或。</p>
+<p>可以求出v9的变换之前的答案。</p>
+<p>这是前六位还有10位不清楚</p>
+<p>原题目还给出了MD5(rctf{your answer}) == 5f8243a662cf71bf31d2b2602638dc1d</p>
+<p>还有第一个函数是说把你输入的字符转换为十六进制比如输入‘1234567890’就变成了0x12,0x34,0x56,0x78,0x90</p>
+<p>第二个函数是xxtea加密。</p>
+<p>第三个函数是经过两个函数变换之后的CRC校验</p>
+<p>看一下脚本：</p>
+<pre><code class="python">from hashlib import md5
+import xxtea
+
+def cmd5():
+  hh = &#39;5f8243a662cf71bf31d2b2602638dc1d&#39;
+  s = &#39;557e79707836%02x%02x&#39;
+  for j in range(256):
+     for i in range(256):
+         t = s%(i,j)
+         enc = xxtea.encrypt_hex(t.decode(&#39;hex&#39;),&#39;C7E0C7E0D7D3F1C6D3C6D3C6CED2D0C4&#39;.decode(&#39;hex&#39;),padding = False)
+         flag = &#39;rctf{&#39;+enc+&#39;}&#39;
+         if md5(flag).hexdigest() == hh:
+            print flag,t
+            break
+
+def main():
+  cmd5()
+  print &#39;end.&#39;
+
+if __name__ == &#39;__main__&#39;:
+  main()
+</code></pre>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -813,7 +861,7 @@ print(flag1)</code></pre>
                 <ul>
                     <li><a href="/">20 <p>Articles</p></a></li>
                     <li><a href="/categories">5 <p>Categories</p></a></li>
-                    <li><a href="/tags">8 <p>Tags</p></a></li>
+                    <li><a href="/tags">10 <p>Tags</p></a></li>
                 </ul>
             </div>
             
@@ -822,7 +870,7 @@ print(flag1)</code></pre>
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BabyXor"><span class="toc-number">5.</span> <span class="toc-text">BabyXor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replace"><span class="toc-number">6.</span> <span class="toc-text">Replace</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BabyXor"><span class="toc-number">5.</span> <span class="toc-text">BabyXor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replace"><span class="toc-number">6.</span> <span class="toc-text">Replace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babyre1"><span class="toc-number">7.</span> <span class="toc-text">babyre1</span></a></li></ol>
                 </div>
             </div>
             
