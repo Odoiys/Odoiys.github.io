@@ -87,13 +87,13 @@ int __cdecl main(int argc, const char **argv, co,">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    24k
+                    26k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    21 mins.
+                    23 mins.
                 </span>
                 
                 
@@ -823,6 +823,78 @@ def main():
 if __name__ == &#39;__main__&#39;:
   main()
 </code></pre>
+<h2 id="just-reverse-it"><a href="#just-reverse-it" class="headerlink" title="just reverse it"></a>just reverse it</h2><p>一道md5的密码题目，关键看一下关键部分</p>
+<pre><code class="c">signed int __cdecl sub_4025E3(int a1, unsigned __int8 *a2)
+{
+  char v2; // al
+  char v3; // al
+  char v4; // al
+  char v5; // al
+  int v7; // [esp+4h] [ebp-1Ch]
+  int v8; // [esp+8h] [ebp-18h]
+  int v9; // [esp+Ch] [ebp-14h]
+  int v10; // [esp+10h] [ebp-10h]
+  int v11; // [esp+14h] [ebp-Ch]
+  int j; // [esp+18h] [ebp-8h]
+  int i; // [esp+1Ch] [ebp-4h]
+
+  v8 = 0;
+  v9 = 0;
+  v10 = 0;
+  v11 = 0;
+  v7 = 0;
+  if ( *a2 &gt;&gt; 4 &lt;= 9 )
+    v2 = (*a2 &gt;&gt; 4) + 48;
+  else
+    v2 = (*a2 &gt;&gt; 4) + 87;
+  HIBYTE(v7) = v2;
+  if ( (*a2 &amp; 0xF) &lt;= 9 )
+    v3 = (*a2 &amp; 0xF) + 48;
+  else
+    v3 = (*a2 &amp; 0xF) + 87;
+  BYTE1(v7) = v3;
+  if ( a2[1] &gt;&gt; 4 &lt;= 9 )
+    v4 = (a2[1] &gt;&gt; 4) + 48;
+  else
+    v4 = (a2[1] &gt;&gt; 4) + 87;
+  LOBYTE(v7) = v4;
+  if ( (a2[1] &amp; 0xF) &lt;= 9 )
+    v5 = (a2[1] &amp; 0xF) + 48;
+  else
+    v5 = (a2[1] &amp; 0xF) + 87;
+  BYTE2(v7) = v5;
+  for ( i = 0; i &lt;= 3; ++i )
+  {
+    if ( !*(&amp;v8 + i) &amp;&amp; *(&amp;v7 + i) == *(i + a1) )
+      *(&amp;v8 + i) = 1;
+  }
+  for ( j = 0; j &lt;= 3; ++j )
+  {
+    if ( !*(&amp;v8 + j) )
+      return 0;
+  }
+  return 1;
+}</code></pre>
+<p>主要是对前面输入的值进行了变换位置然后变形，官方wp说是MD5加密。</p>
+<p>位置变换如下abcd-&gt;dbac</p>
+<p>看下解密脚本：</p>
+<pre><code class="python">import hashlib
+for i in &quot;0123456789abcdef&quot;:
+        for j in &quot;0123456789abcdef&quot;:
+                for k in &quot;0123456789abcdef&quot;:
+                        for l in &quot;0123456789abcdef&quot;:
+                                md5=hashlib.md5()
+                                md5.update((i+j+k+l).encode())
+                                #print(md5.hexdigest())
+                                if md5.hexdigest()[:4]==l+j+i+k:
+                                        print(i+j+k+l)
+#31795a469327c6e6
+answer=&#39;31795a469327c6e6&#39;
+flag=&#39;&#39;
+box=[100,1,64,102,108,81,65,105,122,65,83,84,8,105,84,66]
+for i in range(16):
+        flag+=chr(box[i]^ord(answer[i]))
+print(flag)</code></pre>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -870,7 +942,7 @@ if __name__ == &#39;__main__&#39;:
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BabyXor"><span class="toc-number">5.</span> <span class="toc-text">BabyXor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replace"><span class="toc-number">6.</span> <span class="toc-text">Replace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babyre1"><span class="toc-number">7.</span> <span class="toc-text">babyre1</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#666"><span class="toc-number">1.</span> <span class="toc-text">666</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#流浪者"><span class="toc-number">2.</span> <span class="toc-text">流浪者</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#testre"><span class="toc-number">3.</span> <span class="toc-text">testre</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#key"><span class="toc-number">4.</span> <span class="toc-text">key</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#BabyXor"><span class="toc-number">5.</span> <span class="toc-text">BabyXor</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#Replace"><span class="toc-number">6.</span> <span class="toc-text">Replace</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#babyre1"><span class="toc-number">7.</span> <span class="toc-text">babyre1</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#just-reverse-it"><span class="toc-number">8.</span> <span class="toc-text">just reverse it</span></a></li></ol>
                 </div>
             </div>
             
