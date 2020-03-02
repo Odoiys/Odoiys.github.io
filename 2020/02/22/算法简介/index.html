@@ -85,13 +85,13 @@
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    3.3k
+                    5.1k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    3 mins.
+                    5 mins.
                 </span>
                 
                 
@@ -217,6 +217,22 @@ void main(void) {
     }
 }</code></pre>
 <h3 id="时间复杂度-1"><a href="#时间复杂度-1" class="headerlink" title="时间复杂度"></a>时间复杂度</h3><p>Θ(nlgn)</p>
+<h2 id="主方法"><a href="#主方法" class="headerlink" title="主方法"></a>主方法</h2><p>$$<br>T(n)=aT(n/b)+f(n)<br>$$</p>
+<p><img src="https://s2.ax1x.com/2020/03/02/3RVIte.png" alt></p>
+<h2 id="二分法"><a href="#二分法" class="headerlink" title="二分法"></a>二分法</h2><p><img src="https://s2.ax1x.com/2020/03/02/3RZK39.png" alt></p>
+<h2 id="斐波那契数列"><a href="#斐波那契数列" class="headerlink" title="斐波那契数列"></a>斐波那契数列</h2><h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p><img src="https://s2.ax1x.com/2020/03/02/3RZH5F.png" alt></p>
+<h3 id="1，递归平方算法"><a href="#1，递归平方算法" class="headerlink" title="1，递归平方算法"></a>1，递归平方算法</h3><p>Time=Θ(lgn)</p>
+<h3 id="2，标准算法"><a href="#2，标准算法" class="headerlink" title="2，标准算法"></a>2，标准算法</h3><p>其实就是矩阵相乘，用for循环一个个乘然后赋值</p>
+<h4 id="伪代码-1"><a href="#伪代码-1" class="headerlink" title="伪代码"></a>伪代码</h4><pre><code class="c">for i &lt;--1 to n
+    do for j &lt;-- 1 to n
+        do cij &lt;-- 0
+            for k &lt;-- 1 to n
+                do cij &lt;-- cij + aik*bkj</code></pre>
+<h4 id="时间复杂度-2"><a href="#时间复杂度-2" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>Θ(n^3)</p>
+<h3 id="3，D-amp-C-算法"><a href="#3，D-amp-C-算法" class="headerlink" title="3，D&amp;C 算法"></a>3，D&amp;C 算法</h3><h4 id="原理"><a href="#原理" class="headerlink" title="原理"></a>原理</h4><p><img src="https://s2.ax1x.com/2020/03/02/3RnH58.png" alt></p>
+<h4 id="时间复杂度-3"><a href="#时间复杂度-3" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>$$<br>T(n)=8T(n/2)+Θ(n^2)<br>$$</p>
+<h3 id="4，strassen算法"><a href="#4，strassen算法" class="headerlink" title="4，strassen算法"></a>4，strassen算法</h3><h4 id="原理-1"><a href="#原理-1" class="headerlink" title="原理"></a>原理</h4><p><img src="https://s2.ax1x.com/2020/03/02/3Ruyss.png" alt></p>
+<h4 id="时间复杂度-4"><a href="#时间复杂度-4" class="headerlink" title="时间复杂度"></a>时间复杂度</h4><p>$$<br>T(n)=7T(n/2)+Θ(n^2)<br>$$</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -264,7 +280,7 @@ void main(void) {
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#时间复杂度"><span class="toc-number">1.</span> <span class="toc-text">时间复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排序算法"><span class="toc-number">2.</span> <span class="toc-text">排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#插入排序"><span class="toc-number">2.1.</span> <span class="toc-text">插入排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#伪代码"><span class="toc-number">2.1.1.</span> <span class="toc-text">伪代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言"><span class="toc-number">2.1.2.</span> <span class="toc-text">C语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间复杂度为"><span class="toc-number">2.1.3.</span> <span class="toc-text">时间复杂度为</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并法排序"><span class="toc-number">2.2.</span> <span class="toc-text">合并法排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">C语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间复杂度-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">时间复杂度</span></a></li></ol></li></ol></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-1"><a class="toc-link" href="#时间复杂度"><span class="toc-number">1.</span> <span class="toc-text">时间复杂度</span></a></li><li class="toc-item toc-level-1"><a class="toc-link" href="#排序算法"><span class="toc-number">2.</span> <span class="toc-text">排序算法</span></a><ol class="toc-child"><li class="toc-item toc-level-2"><a class="toc-link" href="#插入排序"><span class="toc-number">2.1.</span> <span class="toc-text">插入排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#伪代码"><span class="toc-number">2.1.1.</span> <span class="toc-text">伪代码</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言"><span class="toc-number">2.1.2.</span> <span class="toc-text">C语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间复杂度为"><span class="toc-number">2.1.3.</span> <span class="toc-text">时间复杂度为</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#合并法排序"><span class="toc-number">2.2.</span> <span class="toc-text">合并法排序</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#C语言-1"><span class="toc-number">2.2.1.</span> <span class="toc-text">C语言</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#时间复杂度-1"><span class="toc-number">2.2.2.</span> <span class="toc-text">时间复杂度</span></a></li></ol></li><li class="toc-item toc-level-2"><a class="toc-link" href="#主方法"><span class="toc-number">2.3.</span> <span class="toc-text">主方法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#二分法"><span class="toc-number">2.4.</span> <span class="toc-text">二分法</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#斐波那契数列"><span class="toc-number">2.5.</span> <span class="toc-text">斐波那契数列</span></a><ol class="toc-child"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">2.5.1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#1，递归平方算法"><span class="toc-number">2.5.2.</span> <span class="toc-text">1，递归平方算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#2，标准算法"><span class="toc-number">2.5.3.</span> <span class="toc-text">2，标准算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#3，D-amp-C-算法"><span class="toc-number">2.5.4.</span> <span class="toc-text">3，D&amp;C 算法</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#4，strassen算法"><span class="toc-number">2.5.5.</span> <span class="toc-text">4，strassen算法</span></a></li></ol></li></ol></li></ol>
                 </div>
             </div>
             
