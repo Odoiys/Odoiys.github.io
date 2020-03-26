@@ -4,6 +4,33 @@
   
     
     <entry>
+      <title>base64加密解密</title>
+      <link href="/2020/03/26/base64%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/"/>
+      <url>/2020/03/26/base64%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/</url>
+      
+        <content type="html"><![CDATA[<h2 id="base64原理："><a href="#base64原理：" class="headerlink" title="base64原理："></a>base64原理：</h2><p>下面是对照表：</p><p><img src="https://s1.ax1x.com/2020/03/26/GpzgUJ.png" alt></p><p>原理如下：</p><p>上表中总共有64个字符，2^6=64所以只需要6个bit位就足够描述所有的表中字符了。计算机中1个字节8个bit，一个ASCII码占1个字节。因此多出来的两位用0填充。比如我用00000110来表示表中数值为6的字符即G</p><p>计算机中1个字节8个bit，一个ASCII码占1个字节。因此多出来的两位用0填充。比如我用00000110来表示表中数值为6的字符即G</p><p>那么如何用上表中的字符来表达所有的字符呢？</p><p>Base64在编码时，首先将所有的待转换字符转成二进制的形式。</p><p>例如将”abc”转成110000111000101100011 之后在每个6位比特之前加上00也就是将3个8位字节转换成4个6位字节</p><p>由于base64编码是将3个8位字节变成4个6位字节因此最后所得到的字节数目一定是4的倍数。如果不是4的倍数要用=填充</p><p>我们从一个例子当中来具体体会一下转换过程</p><p>假设待转化的字符是 “example”</p><p>转化成二进制之后得到</p><p>01100101 01111000 01100001 01101101 01110000 01101100 01100101</p><p>example的长度是7因此为了使得最后得到的字符是4的倍数我们要再添上两个字符</p><p>01100101 01111000 01100001 01101101 01110000 01101100 01100101 00000000 00000000</p><p>然后我们将其按照6位1字符排好</p><p>011001 010111 100001 100001 011011 010111 000001 101100 011001 010000 000000 000000</p><p>填充00之后得到</p><p>00011001 00010111 00100001 00100001 00011011 00010111 00000001 00101100 00011001 00010000 00000000 00000000</p><p>再将这些二进制转换成十进制</p><p>25 23 33 33 27 23 1 44 25 16 0 0</p><p>对照表用字符替换之后得到</p><p>ZXhhbXBsZQAA</p><p>再将最后的AA换成==即可</p><p>ZXhhbXBsZQ==</p><h2 id="C代码：（部分）"><a href="#C代码：（部分）" class="headerlink" title="C代码：（部分）"></a>C代码：（部分）</h2><pre><code class="c">unsigned char *base64_encode(unsigned char *str)  {      long len;      long str_len;      unsigned char *res;      int i,j;  //定义base64编码表      unsigned char *base64_table=&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;  //计算经过base64编码后的字符串长度      str_len=strlen(str);      if(str_len % 3 == 0)          len=str_len/3*4;      else          len=(str_len/3+1)*4;      res=malloc(sizeof(unsigned char)*len+1);      res[len]=&#39;\0&#39;;  //以3个8位字符为一组进行编码      for(i=0,j=0;i&lt;len-2;j+=3,i+=4)      {          res[i]=base64_table[str[j]&gt;&gt;2]; //取出第一个字符的前6位并找出对应的结果字符          res[i+1]=base64_table[(str[j]&amp;0x3)&lt;&lt;4 | (str[j+1]&gt;&gt;4)]; //将第一个字符的后位与第二个字符的前4位进行组合并找到对应的结果字符          res[i+2]=base64_table[(str[j+1]&amp;0xf)&lt;&lt;2 | (str[j+2]&gt;&gt;6)]; //将第二个字符的后4位与第三个字符的前2位组合并找出对应的结果字符          res[i+3]=base64_table[str[j+2]&amp;0x3f]; //取出第三个字符的后6位并找出结果字符      }      switch(str_len % 3)      {          case 1:              res[i-2]=&#39;=&#39;;              res[i-1]=&#39;=&#39;;              break;          case 2:              res[i-1]=&#39;=&#39;;              break;      }      return res;  }  unsigned char *base64_decode(unsigned char *code)  {  //根据base64表，以字符找到对应的十进制数据      int table[]={0,0,0,0,0,0,0,0,0,0,0,0,             0,0,0,0,0,0,0,0,0,0,0,0,             0,0,0,0,0,0,0,0,0,0,0,0,             0,0,0,0,0,0,0,62,0,0,0,             63,52,53,54,55,56,57,58,             59,60,61,0,0,0,0,0,0,0,0,             1,2,3,4,5,6,7,8,9,10,11,12,             13,14,15,16,17,18,19,20,21,             22,23,24,25,0,0,0,0,0,0,26,             27,28,29,30,31,32,33,34,35,             36,37,38,39,40,41,42,43,44,             45,46,47,48,49,50,51               };      long len;      long str_len;      unsigned char *res;      int i,j;  //计算解码后的字符串长度      len=strlen(code);  //判断编码后的字符串后是否有=      if(strstr(code,&quot;==&quot;))          str_len=len/4*3-2;      else if(strstr(code,&quot;=&quot;))          str_len=len/4*3-1;      else          str_len=len/4*3;      res=malloc(sizeof(unsigned char)*str_len+1);      res[str_len]=&#39;\0&#39;;  //以4个字符为一位进行解码      for(i=0,j=0;i &lt; len-2;j+=3,i+=4)      {          res[j]=((unsigned char)table[code[i]])&lt;&lt;2 | (((unsigned char)table[code[i+1]])&gt;&gt;4); //取出第一个字符对应base64表的十进制数的前6位与第二个字符对应base64表的十进制数的后2位进行组合          res[j+1]=(((unsigned char)table[code[i+1]])&lt;&lt;4) | (((unsigned char)table[code[i+2]])&gt;&gt;2); //取出第二个字符对应base64表的十进制数的后4位与第三个字符对应bas464表的十进制数的后4位进行组合          res[j+2]=(((unsigned char)table[code[i+2]])&lt;&lt;6) | ((unsigned char)table[code[i+3]]); //取出第三个字符对应base64表的十进制数的后2位与第4个字符进行组合      }      return res;  }  </code></pre><p>（实在懒得写伪代码了，凑乎看吧）</p>]]></content>
+      
+      
+      <categories>
+          
+          <category> crypto </category>
+          
+      </categories>
+      
+      
+        <tags>
+            
+            <tag> 密码学 </tag>
+            
+            <tag> base系列 </tag>
+            
+        </tags>
+      
+    </entry>
+    
+    
+    
+    <entry>
       <title>算法简介</title>
       <link href="/2020/02/22/%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/"/>
       <url>/2020/02/22/%E7%AE%97%E6%B3%95%E7%AE%80%E4%BB%8B/</url>

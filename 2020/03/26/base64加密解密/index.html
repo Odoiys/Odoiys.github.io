@@ -5,14 +5,15 @@
     <meta charset="UTF-8" />
     <meta http-equiv="X-UA-Compatible" content="IE=edge,chrome=1" />
     <meta name="viewport" content="width=device-width, minimum-scale=1.0, maximum-scale=1.0, user-scalable=no">
-    <title>花指令学习 - Odoiys</title>
+    <title>base64加密解密 - Odoiys</title>
     <meta name="apple-mobile-web-app-capable" content="yes" />
     <meta name="apple-mobile-web-app-status-bar-style" content="black-translucent">
     <meta name="google" content="notranslate" />
     <meta name="keywords" content="odoiys,"> 
-    <meta name="description" content="万物皆存于此,定义在原来的汇编程序中加入一些干扰阅读的代码，这些代码可以看做是花指令。
-这类题在ctf中很常见，但是要多加练习。
-分类总体上花指令分为两类，一类是可履行式花指令，另一类为不可履行式花指令（废物指令,"> 
+    <meta name="description" content="万物皆存于此,base64原理：下面是对照表：
+
+原理如下：
+上表中总共有64个字符，2^6=64所以只需要6个bit位就足够描述所有的表中字符了。计算机中1个字节8个bit，一个ASCII码占1个字节。因此多出,"> 
     <meta name="author" content="archli"> 
     <link rel="alternative" href="atom.xml" title="Odoiys" type="application/atom+xml"> 
     <link rel="icon" href="/img/favicon.png"> 
@@ -45,7 +46,7 @@
     <div class="navigation animated fadeIn fast delay-1s">
         <img id="home-icon" class="icon-home" src="/img/favicon.png" alt="" data-url="http://yoursite.com">
         <div id="play-icon" title="Play/Pause" class="iconfont icon-play"></div>
-        <h3 class="subtitle">花指令学习</h3>
+        <h3 class="subtitle">base64加密解密</h3>
         <div class="social">
             <!--        <div class="like-icon">-->
             <!--            <a href="javascript:;" class="likeThis active"><span class="icon-like"></span><span class="count">76</span></a>-->
@@ -70,34 +71,34 @@
             animation-duration: 1.2s;
             background-image: 
                 radial-gradient(ellipse closest-side, rgba(0, 0, 0, 0.65), #100e17),
-                url(https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1579592181&di=ab4e05da9d32f5e40fd5cf44410e61e5&imgtype=jpg&er=1&src=http%3A%2F%2Fi0.hdslb.com%2Fbfs%2Farticle%2F81fbae7162675ef9c9627c47fc283a964a9f0c87.png);">
+                url(http://b-ssl.duitang.com/uploads/item/201411/16/20141116200458_yskFC.jpeg);">
         </div>
         <div class="else">
             <p class="animated fadeInDown">
                 
-                <a href="/categories/逆向工程"><b>「
-                    </b>逆向工程<b> 」</b></a>
+                <a href="/categories/crypto"><b>「
+                    </b>CRYPTO<b> 」</b></a>
                 
-                January 14, 2020
+                March 26, 2020
             </p>
-            <h3 class="post-title animated fadeInDown"><a href="/2020/01/14/%E8%8A%B1%E6%8C%87%E4%BB%A4%E5%AD%A6%E4%B9%A0/" title="花指令学习" class="">花指令学习</a>
+            <h3 class="post-title animated fadeInDown"><a href="/2020/03/26/base64%E5%8A%A0%E5%AF%86%E8%A7%A3%E5%AF%86/" title="base64加密解密" class="">base64加密解密</a>
             </h3>
             
             <p class="post-count animated fadeInDown">
                 
                 <span>
                     <b class="iconfont icon-text2"></b> <i>Words count</i>
-                    7.5k
+                    4.1k
                 </span>
                 
                 
                 <span>
                     <b class="iconfont icon-timer__s"></b> <i>Reading time</i>
-                    7 mins.
+                    4 mins.
                 </span>
                 
                 
-                <span id="/2020/01/14/花指令学习/" class="leancloud_visitors" data-flag-title="花指令学习">
+                <span id="/2020/03/26/base64加密解密/" class="leancloud_visitors" data-flag-title="base64加密解密">
                     <b class="iconfont icon-read"></b> <i>Read count</i>
                     <span class="leancloud-visitors-count">1000000</span>
                 </span>
@@ -105,6 +106,8 @@
                 
             </p>
             
+            
+            <ul class="animated fadeInDown post-tags-list" itemprop="keywords"><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/base%E7%B3%BB%E5%88%97/" rel="tag">base系列</a></li><li class="animated fadeInDown post-tags-list-item"><a class="animated fadeInDown post-tags-list-link" href="/tags/%E5%AF%86%E7%A0%81%E5%AD%A6/" rel="tag">密码学</a></li></ul>
             
         </div>
     </div>
@@ -125,191 +128,119 @@
 <div class="article">
     <div class='main'>
         <div class="content markdown animated fadeIn">
-            <h3 id="定义"><a href="#定义" class="headerlink" title="定义"></a>定义</h3><p>在原来的汇编程序中加入一些干扰阅读的代码，这些代码可以看做是花指令。</p>
-<p>这类题在ctf中很常见，但是要多加练习。</p>
-<h3 id="分类"><a href="#分类" class="headerlink" title="分类"></a>分类</h3><p>总体上花指令分为两类，一类是可履行式花指令，另一类为不可履行式花指令（废物指令）。</p>
-<p>对于可履行式花指令，望文生义就是能够正常运转的但又不改动原始程序逻辑性的一组无用指令。这类花指令有如下特色：</p>
-<p>①能够正常运转；</p>
-<p>②不改动任何寄存器的值；</p>
-<p>③反汇编器能够正确反汇编该指令。</p>
-<p>对于不可履行式花指令，是指被刺进到原始代码中但又不改动原始程序逻辑性的一组无用字节。这类花指令有如下特色：</p>
-<p>①不行以正常运转；</p>
-<p>②不改动任何寄存器的值；</p>
-<p>③反汇编器或许会过错反汇编这些字节。</p>
-<h3 id="花指令的经典模型"><a href="#花指令的经典模型" class="headerlink" title="花指令的经典模型"></a>花指令的经典模型</h3><h4 id="1-伪装-vc"><a href="#1-伪装-vc" class="headerlink" title="1.伪装 vc"></a>1.伪装 vc</h4><p><code>VC++程序的入口代码:</code></p>
-<p><code>PUSH EBP</code></p>
-<p><code>MOV EBP,ESP</code></p>
-<p><code>PUSH -1</code></p>
-<p><code>push 415448 -\___</code></p>
-<p><code>PUSH 4021A8 // 在这段代码中类似这样的[操作数](https://baike.baidu.com/item/操作数)可以乱填</code></p>
-<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
-<p><code>PUSH EAX</code></p>
-<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
-<p><code>ADD ESP,-6C</code></p>
-<p><code>PUSH EBX</code></p>
-<p><code>PUSH ESI</code></p>
-<p><code>PUSH EDI</code></p>
-<p><code>ADD BYTE PTR DS:[EAX],AL //这条指令可以不要!</code></p>
-<p><code>jmp 跳转到程序原来的入口点</code></p>
-<h4 id="2-跳转"><a href="#2-跳转" class="headerlink" title="2.跳转"></a>2.跳转</h4><p><code>somewhere:</code><br><code>nop //&quot;胡乱&quot;跳转的开始...</code><br><code>jmp 下一个jmp的地址 /在附近随意跳</code><br><code>jmp ... //...</code><br><code>jmp 原入口的地址 //跳到原始oep</code></p>
-<hr>
-<p><code>新入口: push ebp</code></p>
-<p><code>mov ebp,esp</code></p>
-<p><code>inc ecx</code></p>
-<p><code>push edx</code></p>
-<p><code>nop</code></p>
-<p><code>pop edx</code></p>
-<p><code>dec ecx</code></p>
-<p><code>pop ebp</code></p>
-<p><code>inc ecx</code></p>
-<p><code>loop somewhere //跳转到上面那段代码地址去！</code></p>
-<h4 id="3-伪装c"><a href="#3-伪装c" class="headerlink" title="3.伪装c"></a>3.伪装c</h4><p><code>融合</code></p>
-<p><code>把A的代码换成B的</code></p>
-<p><code>push ebp</code></p>
-<p><code>mov ebp,esp</code></p>
-<p><code>push -1</code></p>
-<p><code>push 111111</code></p>
-<p><code>push 222222</code></p>
-<p><code>mov eax,fs:[0]</code></p>
-<p><code>push eax</code></p>
-<p><code>mov fs:[0],esp</code></p>
-<p><code>pop eax</code></p>
-<p><code>mov fs:[0],eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>mov ebp,eax</code></p>
-<p><code>jmp 老入口</code></p>
-<h4 id="4-c"><a href="#4-c" class="headerlink" title="4.c ++"></a>4.c ++</h4><p><code>push ebp</code></p>
-<p><code>mov ebp,esp</code></p>
-<p><code>push -1</code></p>
-<p><code>push 111111</code></p>
-<p><code>push 222222</code></p>
-<p><code>mov eax,fs:[0]</code></p>
-<p><code>push eax</code></p>
-<p><code>mov fs:[0],esp</code></p>
-<p><code>pop eax</code></p>
-<p><code>mov fs:[0],eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>mov ebp,eax</code></p>
-<h4 id="5-Microsoft-Visual-C-6-0"><a href="#5-Microsoft-Visual-C-6-0" class="headerlink" title="5.Microsoft Visual C++ 6.0"></a>5.Microsoft Visual C++ 6.0</h4><p><code>PUSH -1</code></p>
-<p><code>PUSH 0</code></p>
-<p><code>PUSH 0</code></p>
-<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
-<p><code>PUSH EAX</code></p>
-<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
-<p><code>SUB ESP,68</code></p>
-<p><code>PUSH EBX</code></p>
-<p><code>PUSH ESI</code></p>
-<p><code>PUSH EDI</code></p>
-<p><code>POP EAX</code></p>
-<p><code>POP EAX</code></p>
-<p><code>POP EAX</code></p>
-<p><code>ADD ESP,68</code></p>
-<p><code>POP EAX</code></p>
-<p><code>MOV DWORD PTR FS:[0],EAX</code></p>
-<p><code>POP EAX</code></p>
-<p><code>POP EAX</code></p>
-<p><code>POP EAX</code></p>
-<p><code>POP EAX</code></p>
-<p><code>MOV EBP,EAX</code></p>
-<p><code>JMP 原入口</code></p>
-<h4 id="6"><a href="#6" class="headerlink" title="6."></a>6.</h4><p><code>在mov ebp,eax</code></p>
-<p><code>后面加上</code></p>
-<p><code>PUSH EAX</code></p>
-<p><code>POP EAX</code></p>
-<h4 id="7-防杀精灵一号防杀代码"><a href="#7-防杀精灵一号防杀代码" class="headerlink" title="7.防杀精灵一号防杀代码"></a>7.防杀精灵一号防杀代码</h4><p><code>push ebp</code></p>
-<p><code>mov ebp,esp</code></p>
-<p><code>push -1</code></p>
-<p><code>push 666666</code></p>
-<p><code>push 888888</code></p>
-<p><code>mov eax,dword ptr fs:[0]</code></p>
-<p><code>push eax</code></p>
-<p><code>mov dword ptr fs:[0],esp</code></p>
-<p><code>pop eax</code></p>
-<p><code>mov dword ptr fs:[0],eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>mov ebp,eax</code></p>
-<p><code>jmp 入口</code></p>
-<h4 id="8-防杀精灵二号防杀代码"><a href="#8-防杀精灵二号防杀代码" class="headerlink" title="8.防杀精灵二号防杀代码"></a>8.防杀精灵二号防杀代码</h4><p><code>push ebp</code></p>
-<p><code>mov ebp,esp</code></p>
-<p><code>push -1</code></p>
-<p><code>push 0</code></p>
-<p><code>push 0</code></p>
-<p><code>mov eax,dword ptr fs:[0]</code></p>
-<p><code>push eax</code></p>
-<p><code>mov dword ptr fs:[0],esp</code></p>
-<p><code>sub esp,68</code></p>
-<p><code>push ebx</code></p>
-<p><code>push esi</code></p>
-<p><code>push edi</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>add esp,68</code></p>
-<p><code>pop eax</code></p>
-<p><code>mov dword ptr fs:[0],eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>pop eax</code></p>
-<p><code>mov ebp,eax</code></p>
-<p><code>jmp 入口</code></p>
-<h4 id="9-防杀精灵终极防杀代码"><a href="#9-防杀精灵终极防杀代码" class="headerlink" title="9.防杀精灵终极防杀代码"></a>9.防杀精灵终极防杀代码</h4><p><code>push ebp</code></p>
-<p><code>mov ebp,esp</code></p>
-<p><code>add esp,-0C</code></p>
-<p><code>add esp,0C</code></p>
-<p><code>push eax</code></p>
-<p><code>jmp入口</code></p>
-<h4 id="10-木马彩衣-金色鱼锦衣-花代码"><a href="#10-木马彩衣-金色鱼锦衣-花代码" class="headerlink" title="10.木马彩衣(金色鱼锦衣)花代码"></a>10.木马彩衣(金色鱼锦衣)花代码</h4><p><code>push ebp</code></p>
-<p><code>mov ebp,esp</code></p>
-<p><code>add esp,-0C</code></p>
-<p><code>add esp,0C</code></p>
-<p><code>mov eax,原入口</code></p>
-<p><code>push eax</code></p>
-<p><code>retn</code></p>
-<h4 id="11-木马彩衣-虾米披风-花代码"><a href="#11-木马彩衣-虾米披风-花代码" class="headerlink" title="11.木马彩衣(虾米披风)花代码"></a>11.木马彩衣(虾米披风)花代码</h4><p><code>push ebp</code></p>
-<p><code>nop</code></p>
-<p><code>nop</code></p>
-<p><code>mov ebp,esp</code></p>
-<p><code>inc ecx</code></p>
-<p><code>nop</code></p>
-<p><code>push edx</code></p>
-<p><code>nop</code></p>
-<p><code>nop</code></p>
-<p><code>pop edx</code></p>
-<p><code>nop</code></p>
-<p><code>pop ebp</code></p>
-<p><code>inc ecx</code></p>
-<p><code>loopd //跳转到下面那段代码地址去！</code></p>
-<hr>
-<p><code>nop //&quot;胡乱&quot;跳转的开始...</code></p>
-<p><code>jmp 下一个jmp的地址 //在附近随意跳</code></p>
-<p><code>jmp ... //...</code></p>
-<p><code>jmp 原入口的地址 //跳到原始oep</code></p>
-<h4 id="12-VC-5-0代码-木马彩衣无限复活袍"><a href="#12-VC-5-0代码-木马彩衣无限复活袍" class="headerlink" title="12.VC++5.0代码(木马彩衣无限复活袍):"></a>12.VC++5.0代码(木马彩衣无限复活袍):</h4><p><code>PUSH EBP</code></p>
-<p><code>MOV EBP,ESP</code></p>
-<p><code>PUSH -1</code></p>
-<p><code>push 415448 -\___</code></p>
-<p><code>PUSH 4021A8 -// 在这段代码中类似这样的操作数可以乱填</code></p>
-<p><code>MOV EAX,DWORD PTR FS:[0]</code></p>
-<p><code>PUSH EAX</code></p>
-<p><code>MOV DWORD PTR FS:[0],ESP</code></p>
-<p><code>ADD ESP,-6C</code></p>
-<p><code>PUSH EBX</code></p>
-<p><code>PUSH ESI</code></p>
-<p><code>PUSH EDI</code></p>
-<p><code>ADD BYTE PTR DS:[EAX],AL //这条指令可以不要!</code></p>
-<p><code>jo 00401000 //原入口</code></p>
-<p><code>jno 00401000 //原入口</code></p>
-<p><code>db 0e8h //花代码</code></p>
+            <h2 id="base64原理："><a href="#base64原理：" class="headerlink" title="base64原理："></a>base64原理：</h2><p>下面是对照表：</p>
+<p><img src="https://s1.ax1x.com/2020/03/26/GpzgUJ.png" alt></p>
+<p>原理如下：</p>
+<p>上表中总共有64个字符，2^6=64所以只需要6个bit位就足够描述所有的表中字符了。计算机中1个字节8个bit，一个ASCII码占1个字节。因此多出来的两位用0填充。比如我用00000110来表示表中数值为6的字符即G</p>
+<p>计算机中1个字节8个bit，一个ASCII码占1个字节。因此多出来的两位用0填充。比如我用00000110来表示表中数值为6的字符即G</p>
+<p>那么如何用上表中的字符来表达所有的字符呢？</p>
+<p>Base64在编码时，首先将所有的待转换字符转成二进制的形式。</p>
+<p>例如将”abc”转成110000111000101100011 之后在每个6位比特之前加上00也就是将3个8位字节转换成4个6位字节</p>
+<p>由于base64编码是将3个8位字节变成4个6位字节因此最后所得到的字节数目一定是4的倍数。如果不是4的倍数要用=填充</p>
+<p>我们从一个例子当中来具体体会一下转换过程</p>
+<p>假设待转化的字符是 “example”</p>
+<p>转化成二进制之后得到</p>
+<p>01100101 01111000 01100001 01101101 01110000 01101100 01100101</p>
+<p>example的长度是7因此为了使得最后得到的字符是4的倍数我们要再添上两个字符</p>
+<p>01100101 01111000 01100001 01101101 01110000 01101100 01100101 00000000 00000000</p>
+<p>然后我们将其按照6位1字符排好</p>
+<p>011001 010111 100001 100001 011011 010111 000001 101100 011001 010000 000000 000000</p>
+<p>填充00之后得到</p>
+<p>00011001 00010111 00100001 00100001 00011011 00010111 00000001 00101100 00011001 00010000 00000000 00000000</p>
+<p>再将这些二进制转换成十进制</p>
+<p>25 23 33 33 27 23 1 44 25 16 0 0</p>
+<p>对照表用字符替换之后得到</p>
+<p>ZXhhbXBsZQAA</p>
+<p>再将最后的AA换成==即可</p>
+<p>ZXhhbXBsZQ==</p>
+<h2 id="C代码：（部分）"><a href="#C代码：（部分）" class="headerlink" title="C代码：（部分）"></a>C代码：（部分）</h2><pre><code class="c">unsigned char *base64_encode(unsigned char *str)  
+{  
+    long len;  
+    long str_len;  
+    unsigned char *res;  
+    int i,j;  
+//定义base64编码表  
+    unsigned char *base64_table=&quot;ABCDEFGHIJKLMNOPQRSTUVWXYZabcdefghijklmnopqrstuvwxyz0123456789+/&quot;;  
+
+//计算经过base64编码后的字符串长度  
+    str_len=strlen(str);  
+    if(str_len % 3 == 0)  
+        len=str_len/3*4;  
+    else  
+        len=(str_len/3+1)*4;  
+
+    res=malloc(sizeof(unsigned char)*len+1);  
+    res[len]=&#39;\0&#39;;  
+
+//以3个8位字符为一组进行编码  
+    for(i=0,j=0;i&lt;len-2;j+=3,i+=4)  
+    {  
+        res[i]=base64_table[str[j]&gt;&gt;2]; //取出第一个字符的前6位并找出对应的结果字符  
+        res[i+1]=base64_table[(str[j]&amp;0x3)&lt;&lt;4 | (str[j+1]&gt;&gt;4)]; //将第一个字符的后位与第二个字符的前4位进行组合并找到对应的结果字符  
+        res[i+2]=base64_table[(str[j+1]&amp;0xf)&lt;&lt;2 | (str[j+2]&gt;&gt;6)]; //将第二个字符的后4位与第三个字符的前2位组合并找出对应的结果字符  
+        res[i+3]=base64_table[str[j+2]&amp;0x3f]; //取出第三个字符的后6位并找出结果字符  
+    }  
+
+    switch(str_len % 3)  
+    {  
+        case 1:  
+            res[i-2]=&#39;=&#39;;  
+            res[i-1]=&#39;=&#39;;  
+            break;  
+        case 2:  
+            res[i-1]=&#39;=&#39;;  
+            break;  
+    }  
+
+    return res;  
+}  
+
+unsigned char *base64_decode(unsigned char *code)  
+{  
+//根据base64表，以字符找到对应的十进制数据  
+    int table[]={0,0,0,0,0,0,0,0,0,0,0,0,
+             0,0,0,0,0,0,0,0,0,0,0,0,
+             0,0,0,0,0,0,0,0,0,0,0,0,
+             0,0,0,0,0,0,0,62,0,0,0,
+             63,52,53,54,55,56,57,58,
+             59,60,61,0,0,0,0,0,0,0,0,
+             1,2,3,4,5,6,7,8,9,10,11,12,
+             13,14,15,16,17,18,19,20,21,
+             22,23,24,25,0,0,0,0,0,0,26,
+             27,28,29,30,31,32,33,34,35,
+             36,37,38,39,40,41,42,43,44,
+             45,46,47,48,49,50,51
+               };  
+    long len;  
+    long str_len;  
+    unsigned char *res;  
+    int i,j;  
+
+//计算解码后的字符串长度  
+    len=strlen(code);  
+//判断编码后的字符串后是否有=  
+    if(strstr(code,&quot;==&quot;))  
+        str_len=len/4*3-2;  
+    else if(strstr(code,&quot;=&quot;))  
+        str_len=len/4*3-1;  
+    else  
+        str_len=len/4*3;  
+
+    res=malloc(sizeof(unsigned char)*str_len+1);  
+    res[str_len]=&#39;\0&#39;;  
+
+//以4个字符为一位进行解码  
+    for(i=0,j=0;i &lt; len-2;j+=3,i+=4)  
+    {  
+        res[j]=((unsigned char)table[code[i]])&lt;&lt;2 | (((unsigned char)table[code[i+1]])&gt;&gt;4); //取出第一个字符对应base64表的十进制数的前6位与第二个字符对应base64表的十进制数的后2位进行组合  
+        res[j+1]=(((unsigned char)table[code[i+1]])&lt;&lt;4) | (((unsigned char)table[code[i+2]])&gt;&gt;2); //取出第二个字符对应base64表的十进制数的后4位与第三个字符对应bas464表的十进制数的后4位进行组合  
+        res[j+2]=(((unsigned char)table[code[i+2]])&lt;&lt;6) | ((unsigned char)table[code[i+3]]); //取出第三个字符对应base64表的十进制数的后2位与第4个字符进行组合  
+    }  
+
+    return res;  
+
+}  </code></pre>
+<p>（实在懒得写伪代码了，凑乎看吧）</p>
 
             <!--[if lt IE 9]><script>document.createElement('audio');</script><![endif]-->
             <audio id="audio" loop="1" preload="auto" controls="controls"
@@ -357,7 +288,7 @@
             <div class="box sticky animated fadeInRight faster">
                 <div id="toc" class="subbox">
                     <h4>Contents</h4>
-                    <ol class="toc"><li class="toc-item toc-level-3"><a class="toc-link" href="#定义"><span class="toc-number">1.</span> <span class="toc-text">定义</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#分类"><span class="toc-number">2.</span> <span class="toc-text">分类</span></a></li><li class="toc-item toc-level-3"><a class="toc-link" href="#花指令的经典模型"><span class="toc-number">3.</span> <span class="toc-text">花指令的经典模型</span></a></li></ol>
+                    <ol class="toc"><li class="toc-item toc-level-2"><a class="toc-link" href="#base64原理："><span class="toc-number">1.</span> <span class="toc-text">base64原理：</span></a></li><li class="toc-item toc-level-2"><a class="toc-link" href="#C代码：（部分）"><span class="toc-number">2.</span> <span class="toc-text">C代码：（部分）</span></a></li></ol>
                 </div>
             </div>
             
